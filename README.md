@@ -1,4 +1,4 @@
-# RC TX nRF24 2ch OLED
+# RC transmitter for cars, boats and tanks
 Simple surface 2 channel RC transmitter for cars, boats and tanks.
 The code is written for Arduino and contains only the necessary functions of modern transmitters for DIY racing cars, where only the steering and throttle channel is enough without unnecessary functions.
 The hardware includes a low-cost nRF24L01+ transceiver and an ATmega328P processor with an OLED screen.
