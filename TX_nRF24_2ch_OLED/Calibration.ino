@@ -140,7 +140,7 @@ void calib_MinMax_screen()
     u8g2.setCursor(101, 22);
     u8g2.print(analogRead(1));
     
-    // Print "Move the Pots"
+    // Print "Move the pots"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[8])));
     u8g2.setCursor(20, 44);
     u8g2.print(msg_buffer);
@@ -210,7 +210,7 @@ void calib_center_screen()
     u8g2.setCursor(0, 44);
     u8g2.print(msg_buffer);
     
-    // Print "Move the Pots"
+    // Print "Move the pots"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[8])));
     u8g2.setCursor(38, 44);
     u8g2.print(msg_buffer);
@@ -245,7 +245,7 @@ void calib_save_screen()
     
     // Print "SAVE DATA"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[0])));
-    u8g2.setCursor(25, 20);
+    u8g2.setCursor(33, 20);
     u8g2.print(msg_buffer);
     
     // Print "CALIBRATION"
