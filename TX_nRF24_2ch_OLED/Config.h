@@ -218,14 +218,14 @@ const char* const one_char[] PROGMEM = {
 // Array text strings for screen messages "msg_buffer[11]"
 //*********************************************************************************************************************
 const char message_0[] PROGMEM = "SAVE DATA";
-const char message_1[] PROGMEM = "ERASE DATA ?";
+const char message_1[] PROGMEM = "ERASE DATA?";
 const char message_2[] PROGMEM = "CALIBRATION";
 const char message_3[] PROGMEM = "MIN-MAX";
 const char message_4[] PROGMEM = "CENTER";
 const char message_5[] PROGMEM = "off!";
 const char message_6[] PROGMEM = "low!";
 const char message_7[] PROGMEM = "Don't";
-const char message_8[] PROGMEM = "Move the Pots";
+const char message_8[] PROGMEM = "Move the pots";
 const char message_9[] PROGMEM = "UP";
 const char message_10[] PROGMEM = "DOWN";
 
