@@ -50,12 +50,12 @@ void main_screen()
   else
   {
     // Print TX battery voltage
-    u8g2.setCursor(15, 9);
+    u8g2.setCursor(16, 9);
     u8g2.print(tx_batt_volt);
     
     // Print "V"
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[11])));
-    u8g2.setCursor(44, 9);
+    u8g2.setCursor(45, 9);
     u8g2.print(char_buffer);
   }
   
