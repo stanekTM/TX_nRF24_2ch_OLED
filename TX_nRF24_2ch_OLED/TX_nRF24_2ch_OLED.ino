@@ -1,8 +1,16 @@
 
 //*********************************************************************************************************************
-// Add communication nRF24L01P. Fixed RF channel, fixed address. Support for Arduino-based receivers
-// and RF24 libraries from this repository https://github.com/stanekTM/RX_nRF24_Motor_Servo
-// Thanks to the original authors "Gabapentin" https://github.com/Gabapentin/Arduino-RC-6CH-Radio-control
+// RC transmitter for cars, boats and tanks
+//******************************************
+// Simple surface 2 channel RC transmitter from my repository https://github.com/stanekTM/TX_nRF24_2ch_OLED
+//
+// The hardware includes nRF24L01+ transceiver and ATmega328P processor with an OLED screen.
+// The code is Arduino and contains only the necessary functions of modern transmitters,
+// where only the steering and throttle channel is enough without unnecessary functions.
+//
+// This RC transmitter works with RC receiver from my repository https://github.com/stanekTM/RX_nRF24_Motor_Servo
+//
+// Thank you to the original authors "Gabapentin" https://github.com/Gabapentin/Arduino-RC-6CH-Radio-control
 // and "doohans" https://github.com/doohans/arduino_surface_TX_4ch for code inspiration.
 //*********************************************************************************************************************
 
