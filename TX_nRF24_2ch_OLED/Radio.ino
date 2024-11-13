@@ -49,6 +49,8 @@ void send_and_receive_data()
       radio.read(&telemetry_packet, sizeof(telemetry_packet_size));
       
       rf_state = 1;
+      
+      RX_batt_check();
     }
   }
 */
