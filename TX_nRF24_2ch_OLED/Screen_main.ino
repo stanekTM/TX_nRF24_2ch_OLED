@@ -37,32 +37,32 @@ void main_screen()
   
   // Print "TX"
   strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[2])));
-  u8g2.setCursor(0, 9);
+  u8g2.setCursor(77, 9);
   u8g2.print(word_buffer);
   
   if (tx_low_batt)
   {
     // Print "low!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[6])));
-    u8g2.setCursor(18, 9);
+    u8g2.setCursor(95, 9);
     u8g2.print(msg_buffer);
   }
   else
   {
     // Print TX battery voltage
-    u8g2.setCursor(16, 9);
+    u8g2.setCursor(93, 9);
     u8g2.print(tx_batt_volt);
     
     // Print "V"
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[11])));
-    u8g2.setCursor(45, 9);
+    u8g2.setCursor(122, 9);
     u8g2.print(char_buffer);
   }
   
   
   // Print "RX"
   strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[3])));
-  u8g2.setCursor(72, 9);
+  u8g2.setCursor(0, 23);
   u8g2.print(word_buffer);
   
   if (rf_state)
@@ -71,18 +71,18 @@ void main_screen()
     {
       // Print "low!"
      strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[6])));
-     u8g2.setCursor(90, 9);
+     u8g2.setCursor(18, 23);
      u8g2.print(msg_buffer);
     }
     else
     {
     // Print RX battery voltage
-    u8g2.setCursor(88, 9);
+    u8g2.setCursor(16, 23);
     u8g2.print(rx_batt_volt);
     
     // Print "V"
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[11])));
-    u8g2.setCursor(122, 9);
+    u8g2.setCursor(45, 23);
     u8g2.print(char_buffer);
     }
   }
@@ -90,7 +90,7 @@ void main_screen()
   {
     // Print "off!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[5])));
-    u8g2.setCursor(90, 9);
+    u8g2.setCursor(18, 23);
     u8g2.print(msg_buffer);
   }
   rf_state = 0;
