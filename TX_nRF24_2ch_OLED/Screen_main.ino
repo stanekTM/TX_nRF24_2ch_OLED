@@ -70,20 +70,20 @@ void main_screen()
     if (rx_low_batt)
     {
       // Print "low!"
-     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[6])));
-     u8g2.setCursor(18, 23);
-     u8g2.print(msg_buffer);
+      strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[6])));
+      u8g2.setCursor(18, 23);
+      u8g2.print(msg_buffer);
     }
     else
     {
-    // Print RX battery voltage
-    u8g2.setCursor(16, 23);
-    u8g2.print(rx_batt_volt);
+      // Print RX battery voltage
+      u8g2.setCursor(16, 23);
+      u8g2.print(rx_batt_volt);
     
-    // Print "V"
-    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[11])));
-    u8g2.setCursor(45, 23);
-    u8g2.print(char_buffer);
+      // Print "V"
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[11])));
+      u8g2.setCursor(45, 23);
+      u8g2.print(char_buffer);
     }
   }
   else
