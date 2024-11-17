@@ -39,10 +39,10 @@ void epa_screen()
   u8g2.setCursor(0, 9);
   u8g2.print(menu_buffer);
   
-  // Print "in %"
-  strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[7])));
-  u8g2.setCursor(101, 9);
-  u8g2.print(word_buffer);
+  // Print "%"
+  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
+  u8g2.setCursor(122, 9);
+  u8g2.print(char_buffer);
   
   // Drawing horizontal line under header
   u8g2.drawHLine(0, 10, 128);

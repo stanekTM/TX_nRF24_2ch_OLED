@@ -35,6 +35,28 @@ void main_screen()
   
   read_pots(); // Macro again for stable pots value
   
+  // Drawing a vertical line
+  //u8g2.drawVLine(74, 0, 10);
+
+  // Drawing a horizontal line
+  u8g2.drawHLine(74, 10, 54);
+  
+  u8g2.drawHLine(0, 27, 128);
+  
+  // Print "RSSI"
+  strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[4])));
+  u8g2.setCursor(0, 9);
+  u8g2.print(word_buffer);
+
+  // Print RSSI in %
+  u8g2.setCursor(30, 9);
+  u8g2.print(telemetry_packet.rssi);
+  
+  // Print "%"
+  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
+  u8g2.setCursor(56, 9);
+  u8g2.print(char_buffer);
+  
   // Print "TX"
   strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[2])));
   u8g2.setCursor(77, 9);
@@ -95,9 +117,6 @@ void main_screen()
   }
   rf_state = 0;
   
-  
-  // Drawing horizontal line under header
-  //u8g2.drawHLine(0, 10, 128);
   
   // Print number of which model in use
   u8g2.setCursor(115, 26);
@@ -193,7 +212,7 @@ void main_screen()
       u8g2.print(expo[i]);
     }
     
-    u8g2.drawHLine(0, 10 + (i * 17), 128);
+    //u8g2.drawHLine(0, 10 + (i * 17), 128);
 
     // Print channel items name "CH1 and CH2"
     u8g2.setFont(u8g2_font_7x13_tr); // height 9 pixels (X11)
