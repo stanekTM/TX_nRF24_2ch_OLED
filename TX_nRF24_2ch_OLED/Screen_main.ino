@@ -43,19 +43,6 @@ void main_screen()
   
   u8g2.drawHLine(0, 27, 128);
   
-  // Print "RSSI"
-  strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[4])));
-  u8g2.setCursor(0, 9);
-  u8g2.print(word_buffer);
-
-  // Print RSSI in %
-  u8g2.setCursor(30, 9);
-  u8g2.print(telemetry_packet.rssi);
-  
-  // Print "%"
-  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
-  u8g2.setCursor(56, 9);
-  u8g2.print(char_buffer);
   
   // Print "TX"
   strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[2])));
@@ -84,7 +71,7 @@ void main_screen()
   
   // Print "RX"
   strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[3])));
-  u8g2.setCursor(0, 23);
+  u8g2.setCursor(0, 22);
   u8g2.print(word_buffer);
   
   if (rf_state)
@@ -93,18 +80,18 @@ void main_screen()
     {
       // Print "low!"
       strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[6])));
-      u8g2.setCursor(18, 23);
+      u8g2.setCursor(18, 22);
       u8g2.print(msg_buffer);
     }
     else
     {
       // Print RX battery voltage
-      u8g2.setCursor(16, 23);
+      u8g2.setCursor(16, 22);
       u8g2.print(rx_batt_volt);
     
       // Print "V"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[11])));
-      u8g2.setCursor(45, 23);
+      u8g2.setCursor(45, 22);
       u8g2.print(char_buffer);
     }
   }
@@ -112,7 +99,7 @@ void main_screen()
   {
     // Print "off!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[5])));
-    u8g2.setCursor(18, 23);
+    u8g2.setCursor(18, 22);
     u8g2.print(msg_buffer);
   }
   rf_state = 0;
@@ -175,6 +162,21 @@ void main_screen()
     
     
     u8g2.setFont(u8g2_font_5x7_tr); // height 6 pixels (X11)
+    
+    // Print "RSSI"
+    strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[4])));
+    u8g2.setCursor(0, 6);
+    u8g2.print(word_buffer);
+    
+    // Print RSSI in %
+    u8g2.setCursor(21, 6);
+    u8g2.print(telemetry_packet.rssi);
+    
+    // Print "%"
+    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
+    u8g2.setCursor(38, 6);
+    u8g2.print(char_buffer);
+    
     
     // Check reverse and applying reverse value if necessary
     if (bitRead(reverse, i) == 1)

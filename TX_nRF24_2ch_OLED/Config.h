@@ -55,7 +55,7 @@ rc_packet_size rc_packet;
 // this struct defines data, which are embedded inside the ACK payload
 struct telemetry_packet_size
 {
-  byte rssi;    // not used yet
+  byte rssi;
   byte batt_A1;
   byte batt_A2; // not used yet
 };
@@ -163,7 +163,7 @@ const char word_0[] PROGMEM = "CH1";
 const char word_1[] PROGMEM = "CH2";
 const char word_2[] PROGMEM = "TX";
 const char word_3[] PROGMEM = "RX";
-const char word_4[] PROGMEM = "rssi";
+const char word_4[] PROGMEM = "RSSI";
 const char word_5[] PROGMEM = "free";
 const char word_6[] PROGMEM = "us";
 const char word_7[] PROGMEM = "free";
