@@ -170,7 +170,7 @@ void main_screen()
     
     // Print RSSI in %
     u8g2.setCursor(21, 6);
-    u8g2.print(telemetry_packet.rssi);
+    u8g2.print(TSSI);
     
     // Print "%"
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));

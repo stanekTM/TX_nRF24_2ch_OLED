@@ -22,6 +22,10 @@ void radio_setup()
 // send and receive data **********************************************************************************************
 //*********************************************************************************************************************
 bool rf_state = 0;
+byte packet_state = 0;
+byte telemetry_counter = 0;
+byte tssi = 0;
+byte TSSI = 0;
 
 void send_and_receive_data()
 {
@@ -32,19 +36,6 @@ void send_and_receive_data()
   
   if (radio.write(&rc_packet, sizeof(rc_packet_size)))
   {
-    if (radio.isAckPayloadAvailable())
-    {
-      radio.read(&telemetry_packet, sizeof(telemetry_packet_size));
-      
-      rf_state = 1;
-      
-      RX_batt_check();
-    }
-  }
-  
-/*  
-  if (radio.write(&rc_packet, sizeof(rc_packet_size)))
-  {
     if (radio.available())
     {
       radio.read(&telemetry_packet, sizeof(telemetry_packet_size));
@@ -52,9 +43,18 @@ void send_and_receive_data()
       rf_state = 1;
       
       RX_batt_check();
+      
+      telemetry_counter++;
     }
   }
-*/
-
+  
+  if (packet_state++ > 253)
+  {
+    tssi = telemetry_counter;
+    telemetry_counter = 0;
+    packet_state = 0;
+  }
+  TSSI = map(tssi, 0, 255, 0, 100);
+  
 }
  
