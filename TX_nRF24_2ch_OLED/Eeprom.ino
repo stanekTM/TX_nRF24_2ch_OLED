@@ -178,7 +178,8 @@ void resetEeprom_screen()
         // Recall "Reset to default" macro
         resetEeprom();
         
-        /*u8g2.firstPage(); do {
+        /*
+        u8g2.firstPage(); do {
           
           // Print "ERASE DATA"
           strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[1])));
@@ -187,8 +188,9 @@ void resetEeprom_screen()
           
         } while (u8g2.nextPage());
         
-        delay(2000);*/
-        
+        delay(2000);
+        */
+
         break;
       }
     }
