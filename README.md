@@ -2,7 +2,7 @@
 Simple surface 2 channel RC transmitter.
 The hardware includes nRF24L01+ transceiver and ATmega328P processor with an OLED screen.
 The code is Arduino and contains only the necessary functions of modern transmitters, where only the steering and throttle channel is enough without unnecessary functions.
-Telemetry sends measured voltage and "fake" RSSI (the nRF24L01+ transceiver does not contain real RSSI and is only a rough measurement of lost packets).
+Telemetry monitors receiver voltage and "fake" RSSI (the nRF24L01+ transceiver does not contain real RSSI and is only a rough measurement of lost packets).
 
 This RC transmitter works with RC receiver from my repository [**RX_nRF24_Motor_Servo**](https://github.com/stanekTM/RX_nRF24_Motor_Servo).
 
