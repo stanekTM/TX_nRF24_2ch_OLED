@@ -22,19 +22,18 @@ void radio_setup()
 // send and receive data **********************************************************************************************
 //*********************************************************************************************************************
 bool rf_state = 0;
-byte telemetry_counter = 0;
-byte packet_state = 0;
-byte value_tssi = 0;
-byte tssi = 0;
-unsigned long arc_time = 0;
-byte retries = 0; 
+//byte retries = 0;
+//byte tssi = 0;
+//unsigned long arc_time = 0;
 
 void send_and_receive_data()
 {
   rc_packet.ch1 = pots_value[0]; //A0
   rc_packet.ch2 = pots_value[1]; //A1
   
+  telemetry_packet.rssi = 0;
   
+
   if (radio.write(&rc_packet, sizeof(rc_packet_size)))
   {
     if (radio.available())
@@ -44,18 +43,8 @@ void send_and_receive_data()
       rf_state = 1;
       
       RX_batt_check();
-      
-      telemetry_counter++;
     }
   }
-  
-  if (packet_state++ > 253)
-  {
-    value_tssi = telemetry_counter;
-    telemetry_counter = 0;
-    packet_state = 0;
-  }
-  tssi = map(value_tssi, 0, 255, 0, 100);
   
   /*
   retries = radio.getARC();

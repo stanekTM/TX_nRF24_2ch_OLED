@@ -169,12 +169,12 @@ void main_screen()
     u8g2.print(word_buffer);
     
     // Print RSSI in %
-    u8g2.setCursor(21, 6);
-    u8g2.print(tssi);
+    u8g2.setCursor(22, 6);
+    u8g2.print(telemetry_packet.rssi);
     
     // Print "%"
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
-    u8g2.setCursor(38, 6);
+    u8g2.setCursor(39, 6);
     u8g2.print(char_buffer);
     
     
