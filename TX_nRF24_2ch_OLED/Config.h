@@ -41,7 +41,10 @@ const char fw_version[] = "TX stanekTM v1.0";
 //*********************************************************************************************************************
 // Config radio comunication
 //*********************************************************************************************************************
-//setting RF channels address (5 bytes number or character)
+// RF communication channel settings (0-125, 2.4Ghz + 76 = 2.476Ghz)
+#define RADIO_CHANNEL  76
+
+//setting a unique address (5 bytes number or character)
 const byte address[] = "jirka";
 
 // this structure defines the sent data in bytes (structure size max. 32 bytes)
@@ -73,8 +76,6 @@ telemetry_packet_size telemetry_packet;
 #define MODELS                    10   // Total memory models 30
 #define NUM_BYTES_PER_MODEL       25   // Maximum bytes for data storage per model 32
 #define ACTUAL_MODEL_EEPROM_ADDR  1023
-
-#define RADIO_CHANNEL             76   // RF communication channel settings (0-125, 2.4Ghz + 76 = 2.476Ghz)
 
 //*********************************************************************************************************************
 // Control range value
