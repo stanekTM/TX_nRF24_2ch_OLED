@@ -52,6 +52,16 @@ struct rc_packet_size
 {
   unsigned int ch1;
   unsigned int ch2;
+  //unsigned int ch3;
+  //unsigned int ch4;
+  //unsigned int ch5;
+  //unsigned int ch6;
+  //unsigned int ch7;
+  //unsigned int ch8;
+  //unsigned int ch9;
+  //unsigned int ch10;
+  //unsigned int ch11;
+  //unsigned int ch12;
 };
 rc_packet_size rc_packet;
 
