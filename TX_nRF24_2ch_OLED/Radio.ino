@@ -22,7 +22,6 @@ void radio_setup()
 // send and receive data **********************************************************************************************
 //*********************************************************************************************************************
 bool rf_state = 0;
-//byte retries = 0;
 //byte tssi = 0;
 //unsigned long arc_time = 0;
 
@@ -33,7 +32,6 @@ void send_and_receive_data()
   
   telemetry_packet.rssi = 0;
   
-
   if (radio.write(&rc_packet, sizeof(rc_packet_size)))
   {
     if (radio.available())
@@ -47,13 +45,11 @@ void send_and_receive_data()
   }
   
   /*
-  retries = radio.getARC();
-  
   if (millis() - arc_time > 900)
   {
     arc_time = millis();
     
-    tssi = map(retries, 15, 0, 0, 100);
+    tssi = map(radio.getARC(), 15, 0, 0, 100);
   }
   */
 }
