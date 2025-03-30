@@ -19,38 +19,19 @@ void radio_setup()
 }
 
 //*********************************************************************************************************************
-// send and receive data **********************************************************************************************
+// Send and receive data
 //*********************************************************************************************************************
-bool rf_state = 0;
-//byte tssi = 0;
-//unsigned long arc_time = 0;
+unsigned long rf_timeout = 0;
 
 void send_and_receive_data()
 {
-  rc_packet.ch1 = pots_value[0]; //A0
-  rc_packet.ch2 = pots_value[1]; //A1
+  radio.write(&rc_packet, sizeof(rc_packet_size));
   
-  telemetry_packet.rssi = 0;
-  
-  if (radio.write(&rc_packet, sizeof(rc_packet_size)))
+  if (radio.available())
   {
-    if (radio.available())
-    {
-      radio.read(&telemetry_packet, sizeof(telemetry_packet_size));
-      
-      rf_state = 1;
-      
-      RX_batt_check();
-    }
-  }
-  
-  /*
-  if (millis() - arc_time > 900)
-  {
-    arc_time = millis();
+    radio.read(&telemetry_packet, sizeof(telemetry_packet_size));
     
-    tssi = map(radio.getARC(), 15, 0, 0, 100);
+    rf_timeout = millis();
   }
-  */
 }
  

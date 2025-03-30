@@ -22,7 +22,7 @@
 #include "Config.h"   // Load static and variable configuration settings
 
 //*********************************************************************************************************************
-// initial main settings
+// Program setup
 //*********************************************************************************************************************
 void setup()
 {
@@ -67,7 +67,7 @@ void setup()
 }
 
 //*********************************************************************************************************************
-// program loop
+// Program loop
 //*********************************************************************************************************************
 void loop()
 {
@@ -84,9 +84,14 @@ void loop()
   }
   
   
+  rc_packet.ch1 = pots_value[0]; //A0
+  rc_packet.ch2 = pots_value[1]; //A1
+  telemetry_packet.rssi = 0;
+  
   send_and_receive_data();
   
-  TX_batt_check();         // Checking TX battery status
+  TX_batt_monitoring();
+  RX_batt_monitoring();
   
   read_button_exit();      // Macro for read button status definitions
   read_pots();             // Macro for read pots, joysticks, values, applying calibration and rules

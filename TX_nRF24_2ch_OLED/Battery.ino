@@ -1,11 +1,11 @@
 
 //*********************************************************************************************************************
-// TX battery voltage display 0-4.2V and if TX battery voltage < TX_MONITORED_VOLTAGE = the display reports "TX low!"
+// TX battery voltage monitoring
 //*********************************************************************************************************************
 float tx_batt_volt;
 bool tx_low_batt = 0;
 
-void TX_batt_check()
+void TX_batt_monitoring()
 {
   tx_batt_volt = analogRead(7) * (TX_BATTERY_VOLTAGE / 1023);
   
@@ -15,17 +15,24 @@ void TX_batt_check()
 }
 
 //*********************************************************************************************************************
-// Voltage calculation from RX telemetry "byte 0-255". 
-// Battery voltage display 0-4.2V and if RX battery voltage < RX_MONITORED_VOLTAGE = display reports "RX low!"
+// RX battery voltage monitoring
 //*********************************************************************************************************************
 float rx_batt_volt;
 bool rx_low_batt = 0;
+bool previous_state_batt;
 
-void RX_batt_check()
+void RX_batt_monitoring()
 {
   rx_batt_volt = telemetry_packet.batt_A1 * (RX_BATTERY_VOLTAGE / 255);
   
   rx_low_batt = rx_batt_volt <= RX_MONITORED_VOLTAGE;
+  
+  // Battery alarm lock
+  if (rx_low_batt)
+  {
+    previous_state_batt = 1;
+  }
+  rx_low_batt = previous_state_batt;
   
   //Serial.println(rx_batt_volt);
 }

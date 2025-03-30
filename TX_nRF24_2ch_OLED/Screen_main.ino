@@ -74,35 +74,31 @@ void main_screen()
   u8g2.setCursor(0, 22);
   u8g2.print(word_buffer);
   
-  if (rf_state)
-  {
-    if (rx_low_batt)
-    {
-      // Print "low!"
-      strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[6])));
-      u8g2.setCursor(18, 22);
-      u8g2.print(msg_buffer);
-    }
-    else
-    {
-      // Print RX battery voltage
-      u8g2.setCursor(16, 22);
-      u8g2.print(rx_batt_volt);
-    
-      // Print "V"
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[11])));
-      u8g2.setCursor(45, 22);
-      u8g2.print(char_buffer);
-    }
-  }
-  else
+  if (millis() - rf_timeout > 1000) // If we lose RF data for 1 second
   {
     // Print "off!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[5])));
     u8g2.setCursor(18, 22);
     u8g2.print(msg_buffer);
   }
-  rf_state = 0;
+  else if (rx_low_batt)
+  {
+    // Print "low!"
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[6])));
+    u8g2.setCursor(18, 22);
+    u8g2.print(msg_buffer);
+  }
+  else
+  {
+    // Print RX battery voltage
+    u8g2.setCursor(16, 22);
+    u8g2.print(rx_batt_volt);
+    
+    // Print "V"
+    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[11])));
+    u8g2.setCursor(45, 22);
+    u8g2.print(char_buffer);
+  }
   
   
   // Print number of which model in use
