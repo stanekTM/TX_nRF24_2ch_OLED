@@ -16,27 +16,27 @@ const char fw_version[] = "TX stanekTM v1.0";
 //*********************************************************************************************************************
 // pins connecting
 //*********************************************************************************************************************
-//joystick 1               A0
-//joystick 2               A1
+// Joystick 1              A0
+// Joystick 2              A1
 
-//pin battery              A7
+// Pin battery             A7
 
-//pins button
-#define PIN_BUTTON_UP      2 //for Up/Prev functions
-#define PIN_BUTTON_DOWN    3 //for Down/Next functions
-#define PIN_BUTTON_SELECT  4 //for Menu/Select functions
-#define PIN_BUTTON_EXIT    5 //for Exit
+// Pins button
+#define PIN_BUTTON_UP      2 // For Up/Prev functions
+#define PIN_BUTTON_DOWN    3 // For Down/Next functions
+#define PIN_BUTTON_SELECT  4 // For Menu/Select functions
+#define PIN_BUTTON_EXIT    5 // For Exit
 
-//pins for nRF24L01
+// Pins for nRF24L01+
 #define PIN_CE             9
 #define PIN_CSN            10
-//          MOSI           11 hardware SPI
-//          MISO           12 hardware SPI
-//          SCK            13 hardware SPI
+//          MOSI           11 Hardware SPI
+//          MISO           12 Hardware SPI
+//          SCK            13 Hardware SPI
 
-//pins LCD display
-//          SDA            A4 hardware I2C
-//          SCL            A5 hardware I2C
+// Pins LCD display
+//          SDA            A4 Hardware I2C
+//          SCL            A5 Hardware I2C
 
 //*********************************************************************************************************************
 // Config radio comunication
@@ -65,7 +65,7 @@ struct rc_packet_size
 };
 rc_packet_size rc_packet;
 
-// this struct defines data, which are embedded inside the ACK payload
+// This struct defines data, which are embedded inside the ACK payload
 struct telemetry_packet_size
 {
   byte rssi;
@@ -136,14 +136,14 @@ unsigned char menuSubActual = 1;
 unsigned char modelActual   = 0; // Added for model menu management
 unsigned char menuSubModel  = 0; // Added for model menu management
 unsigned char screen        = 0;
-unsigned char menuPage      = 0; // for menu page
-unsigned char modelPage     = 0; // for model page
+unsigned char menuPage      = 0; // For menu page
+unsigned char modelPage     = 0; // For model page
 
 //*********************************************************************************************************************
 // Config LCD display
 //*********************************************************************************************************************
 U8G2_SSD1306_128X64_NONAME_1_HW_I2C
-u8g2(U8G2_R0, U8X8_PIN_NONE);       //https://github.com/olikraus/u8g2/wiki/u8g2setupcpp#constructor-name
+u8g2(U8G2_R0, U8X8_PIN_NONE);       // https://github.com/olikraus/u8g2/wiki/u8g2setupcpp#constructor-name
 
 //*********************************************************************************************************************
 // Using PROGMEM for characters and text strings to save RAM memory

@@ -68,7 +68,7 @@ void read_pots()
     // Check reverse and applying reverse value if necessary
     if (bitRead(reverse, ch) == 1) value_pots = MAX_CONTROL_VAL - value_pots + MIN_CONTROL_VAL;
     
-    //Min Max validation
+    // Min-Max validation
     //if (value_pots < MIN_CONTROL_VAL) value_pots = MIN_CONTROL_VAL;
     
     //if (value_pots > MAX_CONTROL_VAL) value_pots = MAX_CONTROL_VAL;

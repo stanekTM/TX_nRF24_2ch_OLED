@@ -2,25 +2,25 @@
 //*********************************************************************************************************************
 // Drawing MAIN screen display
 //*********************************************************************************************************************
-// this is the state machine, which will replace the do - while loop
+// This is the state machine, which will replace the do - while loop
 void draw_main_screen()
 {
   static uint8_t is_next_page = 0;
   
-  // call to first page, if required
+  // Call to first page, if required
   if (is_next_page == 0)
   {
     u8g2.firstPage();
     is_next_page = 1;
   }
   
-  // draw our screen
+  // Draw our screen
   main_screen();
   
-  // call to next page
+  // Call to next page
   if (u8g2.nextPage() == 0)
   {
-    is_next_page = 0; // ensure, that first page is called
+    is_next_page = 0; // Ensure, that first page is called
   }
 }
 
@@ -106,7 +106,7 @@ void main_screen()
   u8g2.print(modelActual + 1);
   
   // Print MODEL NAME "MODEL"
-  u8g2.setFont(u8g2_font_VCR_OSD_tr); // height 15 pixels (dafont)
+  u8g2.setFont(u8g2_font_VCR_OSD_tr); // Height 15 pixels (dafont)
   
   u8g2.setCursor(54, 27);
   u8g2.print(modelName);
@@ -140,8 +140,8 @@ void main_screen()
     int val_bar;
     
     // Value bars subdivision (pots value / 2)
-    //value sub trim  1=52, 10=53, 50=57, 100=62, 125=65
-    //value sub trim -1=51, 10=50, 50=46, 100=41, 125=39
+    // Value sub trim  1=52, 10=53, 50=57, 100=62, 125=65
+    // Value sub trim -1=51, 10=50, 50=46, 100=41, 125=39
     val_bar = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 104);
     
     // Drawing cursor in every channel bar
@@ -157,7 +157,7 @@ void main_screen()
     //Serial.println(val_center);
     
     
-    u8g2.setFont(u8g2_font_5x7_tr); // height 6 pixels (X11)
+    u8g2.setFont(u8g2_font_5x7_tr); // Height 6 pixels (X11)
     
     // Print "RSSI"
     strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[4])));

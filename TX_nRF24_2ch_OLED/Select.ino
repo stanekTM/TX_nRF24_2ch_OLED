@@ -291,7 +291,7 @@ void select()
       }
       else
       {
-        // changing selected position character ASCII value (DOWN)
+        // Changing selected position character ASCII value (DOWN)
         if (modelName[modelNameSelection] > 0x20)
         {
           modelName[modelNameSelection]--;
@@ -470,7 +470,7 @@ void select()
       }
       else
       {
-        // changing selected position character ASCII value (UP)
+        // Changing selected position character ASCII value (UP)
         if (modelName[modelNameSelection] < 0x7e)
         {
           modelName[modelNameSelection]++;

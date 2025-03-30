@@ -16,7 +16,7 @@ int calc_expo(unsigned short trim_ppm_mid, unsigned short value, unsigned short 
     return value;
   }
   
-  dv = 9 - dv; //1 ~ 9 -> 9 ~ 1 conversion
+  dv = 9 - dv; // 1 ~ 9 -> 9 ~ 1 conversion
   
   dv = map(dv, 1, 9, 300, 700);
   

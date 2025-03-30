@@ -2,25 +2,25 @@
 //*********************************************************************************************************************
 // Drawing EXPO screen display
 //*********************************************************************************************************************
-// this is the state machine, which will replace the do - while loop
+// This is the state machine, which will replace the do - while loop
 void draw_expo_screen()
 {
   static uint8_t is_next_page = 0;
   
-  // call to first page, if required
+  // Call to first page, if required
   if (is_next_page == 0)
   {
     u8g2.firstPage();
     is_next_page = 1;
   }
   
-  // draw our screen
+  // Draw our screen
   expo_screen();
   
-  // call to next page
+  // Call to next page
   if (u8g2.nextPage() == 0)
   {
-    is_next_page = 0; // ensure, that first page is called
+    is_next_page = 0; // Ensure, that first page is called
   }
 }
 
@@ -85,26 +85,26 @@ void expo_screen()
       
       
       // Draw EXPO Graph
-      u8g2.drawFrame(77, 13, 51, 51); //rámeček
+      u8g2.drawFrame(77, 13, 51, 51); // rámeček
       
-      u8g2.drawHLine(78, 38, 49); //vodorovná čára
-      //u8g2.drawHLine(0, 62, 128); //pomocná
+      u8g2.drawHLine(78, 38, 49); // vodorovná čára
+      //u8g2.drawHLine(0, 62, 128); // pomocná
       
-      u8g2.drawVLine(102, 14, 49); //svislá čára
-      //u8g2.drawVLine(126, 0, 64); //pomocná
+      u8g2.drawVLine(102, 14, 49); // svislá čára
+      //u8g2.drawVLine(126, 0, 64); // pomocná
       
-      u8g2.drawLine(77, 63, 127, 13); //šikmá čára
+      u8g2.drawLine(77, 63, 127, 13); // šikmá čára
       
       
       if (expo[i] > 0)
-      { // bottom
+      { // Bottom
         for (int j = 77; j <= 102; j++)
         {
           u8g2.drawPixel(j, map(calc_expo(MID_CONTROL_VAL,
           map(j, 77, 102, MIN_CONTROL_VAL, MID_CONTROL_VAL), MIN_CONTROL_VAL, expo[i]), MIN_CONTROL_VAL, MID_CONTROL_VAL, 63, 38));
         }
         
-        // top
+        // Top
         for (int j = 102; j <= 127; j++)
         {
           u8g2.drawPixel(j, map(calc_expo(MID_CONTROL_VAL,

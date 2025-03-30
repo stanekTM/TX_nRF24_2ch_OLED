@@ -2,25 +2,25 @@
 //*********************************************************************************************************************
 // Drawing MODEL NAME screen display
 //*********************************************************************************************************************
-// this is the state machine, which will replace the do - while loop
+// This is the state machine, which will replace the do - while loop
 void draw_model_name_screen()
 {
   static uint8_t is_next_page = 0;
   
-  // call to first page, if required
+  // Call to first page, if required
   if (is_next_page == 0)
   {
     u8g2.firstPage();
     is_next_page = 1;
   }
   
-  // draw our screen
+  // Draw our screen
   model_name_screen();
   
-  // call to next page
+  // Call to next page
   if (u8g2.nextPage() == 0)
   {
-    is_next_page = 0; // ensure, that first page is called
+    is_next_page = 0; // Ensure, that first page is called
   }
 }
 
@@ -45,7 +45,7 @@ void model_name_screen()
   
   
   // Print MODEL NAME 5 byte
-  u8g2.setFont(u8g2_font_VCR_OSD_tr); // height 15 pixels (dafont)
+  u8g2.setFont(u8g2_font_VCR_OSD_tr); // Height 15 pixels (dafont)
   
   for (int i = 0; i < 5; i++)
   {
@@ -76,6 +76,6 @@ void model_name_screen()
     }
   }
   
-  u8g2.setFont(u8g2_font_7x13_tr); // height 9 pixels (X11)
+  u8g2.setFont(u8g2_font_7x13_tr); // Height 9 pixels (X11)
 }
  

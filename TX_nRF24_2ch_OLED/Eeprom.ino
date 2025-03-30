@@ -18,7 +18,7 @@ unsigned char storedDataEeprom(unsigned char mod)
   
   unsigned int eepromPos = eepromBase;
   
-  // read MODEL NAME 5 byte
+  // Read MODEL NAME 5 byte
   for (int i = 0; i < 5; i++)
   {
     modelName[i] = EEPROM.read(eepromPos++);
@@ -97,7 +97,7 @@ int EEPROMReadInt(int p_address)
   return (firstTwoBytes);
 }
 
-// will update only changed value to preserve eeprom writing cycles
+// Will update only changed value to preserve eeprom writing cycles
 void EEPROMUpdateInt(int p_address, int p_value)
 {
   // Write a 16bit value in Eeprom
@@ -166,12 +166,12 @@ void resetEeprom_screen()
     {
       switch (read_button())
       {
-        // button UP
+        // Button UP
         case 1:
         isWait = false;
         break;
         
-        // button DOWN
+        // Button DOWN
         case 3:
         isWait = false;
         

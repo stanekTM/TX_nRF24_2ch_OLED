@@ -41,7 +41,7 @@ void Calibration()
   calibStatus = 1;
   
   
-  // button UP not pressed check
+  // Button UP not pressed check
   while (read_button() != 0)
   {
     delay(10);

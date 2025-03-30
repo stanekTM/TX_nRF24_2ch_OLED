@@ -15,18 +15,18 @@
 //*********************************************************************************************************************
 
 
-#include <RF24.h>     // https://github.com/nRF24/RF24
-#include <SPI.h>      // Arduino standard library
-#include <EEPROM.h>   // Arduino standard library
-#include <U8g2lib.h>  // https://github.com/olikraus/u8g2
-#include "Config.h"   // Load static and variable configuration settings
+#include <RF24.h>    // https://github.com/nRF24/RF24
+#include <SPI.h>     // Arduino standard library
+#include <EEPROM.h>  // Arduino standard library
+#include <U8g2lib.h> // https://github.com/olikraus/u8g2
+#include "Config.h"  // Load static and variable configuration settings
 
 //*********************************************************************************************************************
 // Program setup
 //*********************************************************************************************************************
 void setup()
 {
-  //Serial.begin(9600); // print value on a serial monitor
+  //Serial.begin(9600);
   
   radio_setup();
   
@@ -48,7 +48,7 @@ void setup()
   // Set default font type used for all display sessions (mandatory)
   u8g2.setFont(u8g2_font_7x13_tr); // height 9 pixels (X11)
   
-  // print boot screen
+  // Print boot screen
   u8g2.firstPage(); do {
     
     // Print version string
@@ -60,7 +60,7 @@ void setup()
   delay(1000);
   
   // NOTE: SHOULD BE USED FOR THE FIRST TIME AFTER CALIBRATION !!!
-  resetEeprom_screen(); // print "ERASE DATA" screen
+  resetEeprom_screen(); // Print "ERASE DATA" screen
   
   // Load data from Eeprom
   modelActual = storedDataEeprom(255);
@@ -84,8 +84,8 @@ void loop()
   }
   
   
-  rc_packet.ch1 = pots_value[0]; //A0
-  rc_packet.ch2 = pots_value[1]; //A1
+  rc_packet.ch1 = pots_value[0]; // A0
+  rc_packet.ch2 = pots_value[1]; // A1
   telemetry_packet.rssi = 0;
   
   send_and_receive_data();

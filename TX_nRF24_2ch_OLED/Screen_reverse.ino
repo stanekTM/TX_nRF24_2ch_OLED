@@ -2,25 +2,25 @@
 //*********************************************************************************************************************
 // Drawing REVERSE screen display
 //*********************************************************************************************************************
-// this is the state machine, which will replace the do - while loop
+// This is the state machine, which will replace the do - while loop
 void draw_reverse_screen()
 {
   static uint8_t is_next_page = 0;
   
-  // call to first page, if required
+  // Call to first page, if required
   if (is_next_page == 0)
   {
     u8g2.firstPage();
     is_next_page = 1;
   }
   
-  // draw our screen
+  // Draw our screen
   reverse_screen();
   
-  // call to next page
+  // Call to next page
   if (u8g2.nextPage() == 0)
   {
-    is_next_page = 0; // ensure, that first page is called
+    is_next_page = 0; // Ensure, that first page is called
   }
 }
 
