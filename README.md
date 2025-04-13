@@ -1,6 +1,6 @@
 # RC transmitter for cars, boats and tanks
 Simple surface 2 channel RC transmitter.
-The hardware includes nRF24L01+ transceiver and ATmega328P processor with an OLED screen.
+Includes nRF24L01+ transceiver and ATmega328P processor with an OLED screen.
 The code is Arduino and contains only the necessary functions of modern transmitters, where only the steering and throttle channel is enough without unnecessary functions.
 Telemetry monitors receiver voltage and "fake" RSSI (the nRF24L01+ transceiver does not contain real RSSI and is only a rough counting of lost packets).
 
