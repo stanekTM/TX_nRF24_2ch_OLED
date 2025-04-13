@@ -4,7 +4,7 @@
 //******************************************
 // Simple surface 2 channel RC transmitter from my repository https://github.com/stanekTM/TX_nRF24_2ch_OLED
 //
-// The hardware includes nRF24L01+ transceiver and ATmega328P processor with an OLED screen.
+// Includes nRF24L01+ transceiver and ATmega328P processor with an OLED screen.
 // The code is Arduino and contains only the necessary functions of modern transmitters,
 // where only the steering and throttle channel is enough without unnecessary functions.
 //
