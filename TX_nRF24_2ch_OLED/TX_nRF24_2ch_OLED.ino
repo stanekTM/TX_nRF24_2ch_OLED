@@ -1,7 +1,7 @@
 
 //*********************************************************************************************************************
-// RC transmitter for cars, boats and tanks
-//******************************************
+// RC transmitter
+//****************
 // Simple surface 2 channel RC transmitter from my repository https://github.com/stanekTM/TX_nRF24_2ch_OLED
 //
 // Includes nRF24L01+ transceiver and ATmega328P processor with an OLED screen.
