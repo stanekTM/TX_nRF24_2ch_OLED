@@ -8,10 +8,10 @@ const char fw_version[] = "TX stanekTM v1.5";
 // Battery voltage settings TX/RX, minimum battery voltage for alarm
 //*********************************************************************************************************************
 #define TX_BATTERY_VOLTAGE    4.2  // Maximum battery voltage
-#define TX_MONITORED_VOLTAGE  3.35 // Minimum battery voltage for alarm
+#define TX_MONITORED_VOLTAGE  3.45 // Minimum battery voltage for alarm
 
 #define RX_BATTERY_VOLTAGE    4.2  // Maximum battery voltage
-#define RX_MONITORED_VOLTAGE  3.35 // Minimum battery voltage for alarm
+#define RX_MONITORED_VOLTAGE  3.45 // Minimum battery voltage for alarm
 
 //*********************************************************************************************************************
 // pins connecting
