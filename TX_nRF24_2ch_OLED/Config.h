@@ -41,7 +41,7 @@ const char fw_version[] = "TX stanekTM v1.5";
 //*********************************************************************************************************************
 // Config radio comunication
 //*********************************************************************************************************************
-// RF communication channel settings (0-125, 2.4Ghz + 76 = 2.476Ghz)
+// RF communication channel setting (0-125, 2.4Ghz + 76 = 2.476Ghz)
 #define RADIO_CHANNEL  76
 
 // Setting a unique address (5 bytes number or character)

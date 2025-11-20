@@ -1,25 +1,25 @@
+/*
+  **************************************************************************************************************
+  RC transmitter
+  **************
+  Simple surface 2 channel RC transmitter from my repository https://github.com/stanekTM/TX_nRF24_2ch_OLED
+  
+  This RC transmitter works with RC receiver from my repository https://github.com/stanekTM/RX_nRF24_Motor_Servo
+  
+  Thank you to the original authors "Gabapentin" https://github.com/Gabapentin/Arduino-RC-6CH-Radio-control
+  and "doohans" https://github.com/doohans/arduino_surface_TX_4ch for code inspiration.
+  **************************************************************************************************************
+*/
 
-//*********************************************************************************************************************
-// RC transmitter
-//****************
-// Simple surface 2 channel RC transmitter from my repository https://github.com/stanekTM/TX_nRF24_2ch_OLED
-//
-// This RC transmitter works with RC receiver from my repository https://github.com/stanekTM/RX_nRF24_Motor_Servo
-//
-// Thank you to the original authors "Gabapentin" https://github.com/Gabapentin/Arduino-RC-6CH-Radio-control
-// and "doohans" https://github.com/doohans/arduino_surface_TX_4ch for code inspiration.
-//*********************************************************************************************************************
-
-
-#include <RF24.h>    // https://github.com/nRF24/RF24
-#include <SPI.h>     // Arduino standard library
-#include <EEPROM.h>  // Arduino standard library
-#include <U8g2lib.h> // https://github.com/olikraus/u8g2
+#include <RF24.h>    // v1.4.11
+#include <SPI.h>
+#include <EEPROM.h>
+#include <U8g2lib.h> // v2.33.15
 #include "Config.h"  // Load static and variable configuration settings
 
-//*********************************************************************************************************************
+//**************************************************************************************************************
 // Program setup
-//*********************************************************************************************************************
+//**************************************************************************************************************
 void setup()
 {
   //Serial.begin(9600);
@@ -62,9 +62,9 @@ void setup()
   modelActual = storedDataEeprom(255);
 }
 
-//*********************************************************************************************************************
+//**************************************************************************************************************
 // Program loop
-//*********************************************************************************************************************
+//**************************************************************************************************************
 void loop()
 {
   // Start Calibration screen if button SELECT is pressed on power on
