@@ -11,10 +11,12 @@
   **************************************************************************************************************
 */
 
-#include "RF24.h"    // v1.4.11
-#include "SPI.h"
-#include "EEPROM.h"
-#include "U8g2lib.h" // v2.33.15
+#include <RF24.h>    // v1.4.11
+#include <RF24_config.h>
+#include <nRF24L01.h>
+#include <SPI.h>
+#include <EEPROM.h>
+#include <U8g2lib.h> // v2.33.15
 #include "Config.h"  // Load static and variable configuration settings
 
 //**************************************************************************************************************
