@@ -28,11 +28,6 @@ void setup()
   
   radio_setup();
   
-  //-----------------------------------------------------------------
-  // Debouncing mechanical buttons
-  // NOTE: For input pin buttons is necessary to mount on every pin
-  // 0,1uF/100nF(104)ceramic capacitors from pin to GND
-  //-----------------------------------------------------------------
   pinMode(PIN_BUTTON_UP, INPUT_PULLUP);
   pinMode(PIN_BUTTON_DOWN, INPUT_PULLUP);
   pinMode(PIN_BUTTON_SELECT, INPUT_PULLUP);
