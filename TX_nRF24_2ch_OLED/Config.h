@@ -86,8 +86,8 @@ const byte address[] = "jirka";
 // This structure defines the data sent (max 32 bytes)
 struct rc_packet_size
 {
-  unsigned int ch1; // A0
-  unsigned int ch2; // A1
+  unsigned int ch1 = 1500; // A0
+  unsigned int ch2 = 1500; // A1
 };
 rc_packet_size rc_packet;
 
