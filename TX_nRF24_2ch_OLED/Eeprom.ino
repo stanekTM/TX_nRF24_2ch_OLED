@@ -2,7 +2,7 @@
 //*********************************************************************************************************************
 // Macro for read selected model data from eeprom
 //*********************************************************************************************************************
-unsigned char storedDataEeprom(unsigned char mod)
+unsigned char stored_data_eeprom(unsigned char mod)
 {
   // For eeprom position reference
   unsigned int eepromBase;
@@ -18,7 +18,7 @@ unsigned char storedDataEeprom(unsigned char mod)
   
   unsigned int eepromPos = eepromBase;
   
-  // Read MODEL NAME 5 byte
+  // Read MODEL NAME 5byte
   for (int i = 0; i < 5; i++)
   {
     modelName[i] = EEPROM.read(eepromPos++);
@@ -46,7 +46,7 @@ unsigned char storedDataEeprom(unsigned char mod)
     expo[i] = EEPROM.read(eepromPos++);
   } 
   
-  // Read MIN, MAX, CENTER values in Eeprom
+  // Read MIN, MAX and CENTER values in Eeprom
   unsigned int posEeprom;
   
   // Read MIN and MAX calibration values from Eeprom
@@ -55,7 +55,7 @@ unsigned char storedDataEeprom(unsigned char mod)
     // Read MIN calibration values for channels
     posEeprom = 1000 + (i * 4);
     pot_calib_min[i] = EEPROMReadInt(posEeprom);
-
+    
     // Read MAX calibration values for channels
     posEeprom += 2;
     pot_calib_max[i] = EEPROMReadInt(posEeprom);
@@ -64,11 +64,106 @@ unsigned char storedDataEeprom(unsigned char mod)
   // Read CENTER calibration values from Eeprom
   for (int i = 0; i < CHANNELS; i++)
   {
-    // Read CENTER calibration values for channels
     posEeprom = 1016 + (i * 2);
     pot_calib_mid[i] = EEPROMReadInt(posEeprom);
   }
+  
   return mod;
+}
+
+//*********************************************************************************************************************
+// This macro will be used to clear eeprom and set default parameters if necessary
+//*********************************************************************************************************************
+void erase_data_eeprom()
+{
+  unsigned int eepromPos;
+  
+  // Writing default model[0]
+  EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, 0);
+  
+  // Start writing default values for every model memory bank
+  for (int j = 0; j < MODELS; j++)
+  {
+    // Define start position for Eeprom storing (32 * [0,1,2,3,4...])
+    eepromPos = NUM_BYTES_PER_MODEL * j;
+    
+    // Writing default model name "MODEL" 5 byte
+    for (uint8_t i = 0; i < 5; i++)
+    {
+      EEPROM.update(eepromPos++, modelName[i]);
+    }
+    
+    // Writing default REVERSE value in first address of start position
+    EEPROM.update(eepromPos++, 0x00);
+    
+    // Writing default SUB TRIM values for every channels
+    for (int i = 0; i < CHANNELS; i++)
+    {
+      EEPROMUpdateInt(eepromPos, 0);
+      eepromPos += 2;
+    }
+    
+    // Writing default EPA values for every channels
+    for (int i = 0; i < 4; i++)
+    {
+      EEPROM.update(eepromPos++, epa[i] + EPA_MAX);
+    }
+    
+    // Writing default EXPO values will start after first address of start position
+    for (int i = 0; i < CHANNELS; i++)
+    {
+      EEPROM.update(eepromPos++, 0);
+    }
+  }
+}
+
+//*********************************************************************************************************************
+// This macro will be used to save eeprom and set default parameters if necessary
+//*********************************************************************************************************************
+void save_data_eeprom()
+{
+  // For eeprom position reference
+  unsigned int eepromBase;
+  
+  // Define start position for eeprom write/update (32 * [0,1,2,3,4])
+  eepromBase = NUM_BYTES_PER_MODEL * modelActual;
+  
+  // Save ACTUAL MODEL DATA
+  EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, modelActual);
+  
+  // For write/update REVERSE and EPA position
+  unsigned int eepromPos = eepromBase;
+  
+  // Save MODEL NAME 5 byte
+  for (int i = 0; i < 5; i++)
+  {
+    EEPROM.update(eepromPos++, modelName[i]);
+  }
+  
+  // Save REVERSE data
+  EEPROM.update(eepromPos++, reverse);
+  
+  // Save SUB TRIM center stick values for two channels in every model memory bank
+  for (int i = 0; i < CHANNELS; i++)
+  {
+    // Save CENTER stick values
+    EEPROMUpdateInt(eepromPos, subTrim[i]);
+    eepromPos += 2;
+  }
+  
+  // Save EPA data
+  for (int i = 0; i < 4; i++)
+  {
+    EEPROM.update(eepromPos, epa[i]);
+    eepromPos++;
+  }
+  
+  // Save EXPO data
+  for (int i = 0; i < CHANNELS; i++)
+  {
+    EEPROM.update(eepromPos, expo[i]);
+    eepromPos++;
+  }
 }
 
 //*********************************************************************************************************************
@@ -106,146 +201,5 @@ void EEPROMUpdateInt(int p_address, int p_value)
   
   EEPROM.update(p_address, Byte1);
   EEPROM.update(p_address + 1, Byte2);
-}
-
-//*********************************************************************************************************************
-// Hold button DOWN on power ON to initialize default memory data
-// Will only write data settings to default (not erase calibration data)
-// NOTE: SHOULD BE USED FOR THE FIRST TIME AFTER CALIBRATION !!!
-//*********************************************************************************************************************
-void resetEeprom_screen()
-{
-  if (digitalRead(PIN_BUTTON_EXIT) == LOW)
-  {
-    bool isWait = true;
-    
-    // Set memory buffer for text strings
-    char msg_buffer[11];
-    char char_buffer[8];
-    
-    u8g2.firstPage(); do {
-      
-      // Print "ERASE DATA?"
-      strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[1])));
-      u8g2.setCursor(25, 20);
-      u8g2.print(msg_buffer);
-      
-      // Print "Y"
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[0])));
-      u8g2.setCursor(0, 40);
-      u8g2.print(char_buffer);
-      
-      // Print "="
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
-      u8g2.setCursor(10, 40);
-      u8g2.print(char_buffer);
-      
-      // Print "DOWN"
-      strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[10])));
-      u8g2.setCursor(20, 40);
-      u8g2.print(msg_buffer);
-      
-      // Print "N"
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[1])));
-      u8g2.setCursor(95, 40);
-      u8g2.print(char_buffer);
-      
-      // Print "="
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
-      u8g2.setCursor(105, 40);
-      u8g2.print(char_buffer);
-      
-      // Print "UP"
-      strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[9])));
-      u8g2.setCursor(115, 40);
-      u8g2.print(msg_buffer);
-      
-    } while (u8g2.nextPage());
-    
-    while (isWait)
-    {
-      switch (read_button())
-      {
-        // Button UP
-        case 1:
-        isWait = false;
-        break;
-        
-        // Button DOWN
-        case 3:
-        isWait = false;
-        
-        // Recall "Reset to default" macro
-        resetEeprom();
-        
-        /*
-        u8g2.firstPage(); do {
-          
-          // Print "ERASE DATA"
-          strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[1])));
-          u8g2.setCursor(25, 20);
-          u8g2.print(msg_buffer);
-          
-        } while (u8g2.nextPage());
-        
-        delay(2000);
-        */
-
-        break;
-      }
-    }
-  }
-}
-
-//*********************************************************************************************************************
-// This macro will be used to clear eeprom and set default parameters if necessary
-//*********************************************************************************************************************
-void resetEeprom()
-{
-  // For write REVERE and EPA position
-  unsigned int eepromPos;
-  
-  // Writing default model[0]
-  EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, 0);
-  
-  // Start writing default values for every model memory bank
-  for (int j = 0; j < MODELS; j++)
-  {
-    // Define start position for Eeprom storing (32 * [0,1,2,3,4...])
-    eepromPos = NUM_BYTES_PER_MODEL * j;
-    
-    // Writing MODEL NAME 5 byte
-    for (uint8_t i = 0; i < 5; i++)
-    {
-      EEPROM.update(eepromPos++, modelName[i]);
-    }
-    
-    // Writing REVERSE default value in first address of start position
-    EEPROM.update(eepromPos++, 0x00);
-    
-    // Writing SUB TRIM offset values for two channels in every model memory bank
-    for (int i = 0; i < CHANNELS; i++)
-    {
-      // Writing SUB TRIM stick values for every channels
-      EEPROMUpdateInt(eepromPos, 0);
-      eepromPos += 2;
-    }
-    
-    // Writing EPA values for every channels in every model memory bank
-    // Writing values will start after first address of start position
-    for (int i = 0; i < 4; i++)
-    {
-      // Writing default EPA for channels
-      EEPROM.update(eepromPos++, EPA_MAX);
-    }
-    
-    // Writing EXPO values for every channels in every model memory bank
-    // Writing values will start after first address of start position
-    for (int i = 0; i < CHANNELS; i++)
-    {
-      // Writing default EXPO for channels
-      EEPROM.update(eepromPos++, 0);
-    }
-  }
 }
  
