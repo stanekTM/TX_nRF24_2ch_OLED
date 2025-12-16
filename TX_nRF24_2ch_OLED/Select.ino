@@ -22,7 +22,7 @@ void select()
       // Execute EPA task
       if (menuActual == 1)
       {
-        draw_epa_screen();
+        draw_end_point_screen();
       }
       
       // Execute MODEL SELECT task
@@ -37,10 +37,10 @@ void select()
         draw_reverse_screen();
       }
       
-      // Execute SAVE MODEL task
+      // Execute SAVE DATA task
       if (menuActual == 4)
       {
-        save_model_screen();
+        save_data_screen();
       }
       
       // Execute SUB TRIM task
@@ -111,7 +111,7 @@ void select()
         
         // Save data in eeprom
         EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, modelActual);
-        storedDataEeprom(modelActual);
+        stored_data_eeprom(modelActual);
         
         screen = 0;
         menuActual = 0;
