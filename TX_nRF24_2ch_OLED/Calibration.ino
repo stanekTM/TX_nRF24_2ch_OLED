@@ -2,7 +2,7 @@
 //*********************************************************************************************************************
 // Calibration and screen
 //*********************************************************************************************************************
-void Calibration()
+void calibration()
 {
   while (calibStatus == 1)
   {
@@ -27,8 +27,8 @@ void Calibration()
       }
     }
     
-    // Print calibration "MIN-MAX" real time channels
-    calib_MinMax_screen();
+    // Print calibration "MIN-MAX CALIBRATION" real time channels
+    calibration_screen();
     
     delay(10);
     
@@ -40,13 +40,11 @@ void Calibration()
   }
   calibStatus = 1;
   
-  
   // Button UP not pressed check
   while (read_button() != 0)
   {
     delay(10);
   }
-  
   
   while (calibStatus == 1)
   {
@@ -70,7 +68,6 @@ void Calibration()
   
   // Print calibration message "SAVE DATA"
   calib_save_screen();
-  
   
   // Save MIN, MAX and CENTER values in Eeprom
   unsigned int posEeprom;
@@ -96,163 +93,5 @@ void Calibration()
   }
   
   delay(2000); // Screen message for 2sec
-}
-
-//*********************************************************************************************************************
-// Print calibration "MIN-MAX" real time channels
-//*********************************************************************************************************************
-void calib_MinMax_screen()
-{
-  // Set memory buffer for text strings
-  char msg_buffer[11];
-  char word_buffer[13];
-  char char_buffer[8];
-  
-  u8g2.firstPage(); do {
-    
-    read_pots(); // Macro again for stable pots value
-    
-    // Print "MIN-MAX"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[3])));
-    u8g2.setCursor(0, 9);
-    u8g2.print(msg_buffer);
-    
-    // Print "CALIBRATION"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[2])));
-    u8g2.setCursor(52, 9);
-    u8g2.print(msg_buffer);
-    
-    // Drawing horizontal line under header and vertical/middle line
-    u8g2.drawHLine(0, 10, 128);
-    u8g2.drawVLine(64, 12, 15);
-    
-    // Print "CH1" and value
-    strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[0])));
-    u8g2.setCursor(0, 22);
-    u8g2.print(word_buffer);
-    u8g2.setCursor(30, 22);
-    u8g2.print(analogRead(0));
-    
-    // Print "CH2" and value
-    strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[1])));
-    u8g2.setCursor(71, 22);
-    u8g2.print(word_buffer);
-    u8g2.setCursor(101, 22);
-    u8g2.print(analogRead(1));
-    
-    // Print "Move the pots"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[8])));
-    u8g2.setCursor(20, 44);
-    u8g2.print(msg_buffer);
-    
-    // Print "SAVE DATA"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[0])));
-    u8g2.setCursor(0, 64);
-    u8g2.print(msg_buffer);
-    
-    // Print "="
-    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
-    u8g2.setCursor(66, 64);
-    u8g2.print(char_buffer);
-    
-    // Print "UP"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[9])));
-    u8g2.setCursor(76, 64);
-    u8g2.print(msg_buffer);
-    
-  } while (u8g2.nextPage());
-}
-
-//*********************************************************************************************************************
-// Print calibration "CENTER" real time channels
-//*********************************************************************************************************************
-void calib_center_screen()
-{
-  // Set memory buffer for text strings
-  char msg_buffer[11];
-  char word_buffer[13];
-  char char_buffer[8];
-  
-  u8g2.firstPage(); do {
-    
-    read_pots(); // Macro again for stable pots value
-    
-    // Print "CENTER"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[4])));
-    u8g2.setCursor(0, 9);
-    u8g2.print(msg_buffer);
-    
-    // Print "CALIBRATION"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[2])));
-    u8g2.setCursor(52, 9);
-    u8g2.print(msg_buffer);
-    
-    // Drawing horizontal line under header and vertical/middle line
-    u8g2.drawHLine(0, 10, 128);
-    u8g2.drawVLine(64, 12, 15);
-    
-    // Print "CH1" and value
-    strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[0])));
-    u8g2.setCursor(0, 22);
-    u8g2.print(word_buffer);
-    u8g2.setCursor(30, 22);
-    u8g2.print(analogRead(0));
-    
-    // Print "CH2" and value
-    strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[1])));
-    u8g2.setCursor(71, 22);
-    u8g2.print(word_buffer);
-    u8g2.setCursor(101, 22);
-    u8g2.print(analogRead(1));
-    
-    // Print "Don't"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[7])));
-    u8g2.setCursor(0, 44);
-    u8g2.print(msg_buffer);
-    
-    // Print "Move the pots"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[8])));
-    u8g2.setCursor(38, 44);
-    u8g2.print(msg_buffer);
-    
-    // Print "SAVE DATA"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[0])));
-    u8g2.setCursor(0, 64);
-    u8g2.print(msg_buffer);
-    
-    // Print "="
-    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
-    u8g2.setCursor(66, 64);
-    u8g2.print(char_buffer);
-    
-    // Print "UP"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[9])));
-    u8g2.setCursor(76, 64);
-    u8g2.print(msg_buffer);
-    
-  } while (u8g2.nextPage());
-}
-
-//*********************************************************************************************************************
-// Print calibration message "SAVE DATA"
-//*********************************************************************************************************************
-void calib_save_screen()
-{
-  // Set memory buffer for text strings
-  char msg_buffer[11];
-  
-  u8g2.firstPage(); do {
-    
-    // Print "SAVE DATA"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[0])));
-    u8g2.setCursor(33, 20);
-    u8g2.print(msg_buffer);
-    
-    // Print "CALIBRATION"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[2])));
-    u8g2.setCursor(25, 40);
-    u8g2.print(msg_buffer);
-    
-  } while (u8g2.nextPage());
 }
  
