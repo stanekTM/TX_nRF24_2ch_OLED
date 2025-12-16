@@ -3,7 +3,7 @@
 // Drawing EPA screen display
 //*********************************************************************************************************************
 // This is the state machine, which will replace the do - while loop
-void draw_epa_screen()
+void draw_end_point_screen()
 {
   static uint8_t is_next_page = 0;
   
@@ -15,7 +15,7 @@ void draw_epa_screen()
   }
   
   // Draw our screen
-  epa_screen();
+  end_point_screen();
   
   // Call to next page
   if (u8g2.nextPage() == 0)
@@ -25,7 +25,7 @@ void draw_epa_screen()
 }
 
 //------------------------------------------------------------------------
-void epa_screen()
+void end_point_screen()
 {
   // Set memory buffer for text strings
   char menu_buffer[7];
