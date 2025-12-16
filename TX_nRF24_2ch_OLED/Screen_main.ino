@@ -213,7 +213,7 @@ void main_screen()
     //u8g2.drawHLine(0, 10 + (i * 17), 128);
 
     // Print channel items name "CH1 and CH2"
-    u8g2.setFont(u8g2_font_7x13_tr); // height 9 pixels (X11)
+    u8g2.setFont(u8g2_font_7x13_tr); // Height 9 pixels (X11)
     
     strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[i])));
     u8g2.setCursor(0, 42 + (i * 20));
