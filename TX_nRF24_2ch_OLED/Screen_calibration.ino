@@ -1,6 +1,6 @@
 
 //*********************************************************************************************************************
-// Print calibration "CALIBRATION MIN-MAX" real time channels
+// Print calibration "MIN-MAX CALIBRATION" real time channels
 //*********************************************************************************************************************
 void calibration_screen()
 {
@@ -137,7 +137,7 @@ void calib_center_screen()
 //*********************************************************************************************************************
 // Print calibration message "SAVE DATA"
 //*********************************************************************************************************************
-void calib_save_screen()
+void calib_save_data_screen()
 {
   // Set memory buffer for text strings
   char msg_buffer[11];

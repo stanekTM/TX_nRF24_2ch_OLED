@@ -55,7 +55,7 @@ void end_point_screen()
     u8g2.setCursor(44, 21 + (i * 26));
     u8g2.print(word_buffer);
     
-    // Check reverse and applying reverse value if necessary
+    // Check REVERSE and applying REVERSE value if necessary
     if (bitRead(reverse, i) == 1)
     {
       // Print "REV"

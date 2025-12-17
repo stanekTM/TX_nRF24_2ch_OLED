@@ -105,7 +105,7 @@ void main_screen()
   u8g2.setCursor(115, 26);
   u8g2.print(modelActual + 1);
   
-  // Print MODEL NAME "MODEL"
+  // Print model name "XXXXX"
   u8g2.setFont(u8g2_font_VCR_OSD_tr); // Height 15 pixels (dafont)
   
   u8g2.setCursor(54, 27);
@@ -140,8 +140,8 @@ void main_screen()
     int val_bar;
     
     // Value bars subdivision (pots value / 2)
-    // Value sub trim  1=52, 10=53, 50=57, 100=62, 125=65
-    // Value sub trim -1=51, 10=50, 50=46, 100=41, 125=39
+    // Value SUB TRIM  1=52, 10=53, 50=57, 100=62, 125=65
+    // Value SUB TRIM -1=51, 10=50, 50=46, 100=41, 125=39
     val_bar = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 104);
     
     // Drawing cursor in every channel bar
@@ -174,7 +174,7 @@ void main_screen()
     u8g2.print(char_buffer);
     
     
-    // Check reverse and applying reverse value if necessary
+    // Check REVERSE and applying REVERSE value if necessary
     if (bitRead(reverse, i) == 1)
     {
       // Print "REV"

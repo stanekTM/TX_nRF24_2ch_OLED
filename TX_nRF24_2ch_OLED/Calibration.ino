@@ -1,6 +1,6 @@
 
 //*********************************************************************************************************************
-// Calibration and screen
+// Pots calibration
 //*********************************************************************************************************************
 void calibration()
 {
@@ -67,7 +67,7 @@ void calibration()
   }
   
   // Print calibration message "SAVE DATA"
-  calib_save_screen();
+  calib_save_data_screen();
   
   // Save MIN, MAX and CENTER values in Eeprom
   unsigned int posEeprom;

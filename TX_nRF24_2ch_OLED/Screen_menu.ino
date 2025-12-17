@@ -33,7 +33,7 @@ void menu_screen()
   
   read_pots(); // Macro again for stable pots value
   
-  // Print MODEL NAME "MODEL"
+  // Print model name "XXXXX"
   u8g2.setCursor(0, 9);
   u8g2.print(modelName);
   

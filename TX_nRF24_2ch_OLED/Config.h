@@ -146,7 +146,7 @@ unsigned char reverse;                      // Reading bit status
 //*********************************************************************************************************************
 // MODEL NAME
 //*********************************************************************************************************************
-char modelName[] = "MODEL";              // MODEL NAME 5 byte
+char modelName[] = "MODEL";              // Default MODEL NAME 5byte
 unsigned char modelNameSelection = 0xFF; // Default value for MODEL NAME selection
 
 //*********************************************************************************************************************
@@ -194,7 +194,7 @@ const char* const menu_name[] PROGMEM = {
 };
 
 //*********************************************************************************************************************
-// Array text strings (short) for channel/pots names, status, model for all screens "word_buffer[13]"
+// Array text strings (short) for channel/pots names, status, model for all screens "word_buffer[10]"
 //*********************************************************************************************************************
 const char word_0[] PROGMEM = "CH1";
 const char word_1[] PROGMEM = "CH2";
@@ -221,7 +221,7 @@ const char* const word_name[] PROGMEM = {
 };
 
 //*********************************************************************************************************************
-// Array for single characters "char_buffer[9]"
+// Array for single characters "char_buffer[12]"
 //*********************************************************************************************************************
 const char char_0[] PROGMEM = "Y";
 const char char_1[] PROGMEM = "N";

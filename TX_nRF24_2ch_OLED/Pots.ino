@@ -1,6 +1,6 @@
 
 //*********************************************************************************************************************
-// Macro for read pots, joysticks, values, applying calibration and rules
+// Macro for read pots, values, applying calibration and rules
 //*********************************************************************************************************************
 void read_pots()
 {
@@ -65,10 +65,10 @@ void read_pots()
     }
     
     
-    // Check reverse and applying reverse value if necessary
+    // Check REVERSE and applying REVERSE value if necessary
     if (bitRead(reverse, ch) == 1) value_pots = MAX_CONTROL_VAL - value_pots + MIN_CONTROL_VAL;
     
-    // Min-Max validation
+    // MIN-MAX validation
     //if (value_pots < MIN_CONTROL_VAL) value_pots = MIN_CONTROL_VAL;
     
     //if (value_pots > MAX_CONTROL_VAL) value_pots = MAX_CONTROL_VAL;

@@ -6,7 +6,7 @@ void save_data_screen()
 {
   save_data_eeprom();
   
-  // Start of save data message screen
+  // Start of SAVE DATA message screen
   u8g2.firstPage(); do {
     
     // Set memory buffer for text strings
@@ -17,7 +17,7 @@ void save_data_screen()
     u8g2.setCursor(25, 20);
     u8g2.print(msg_buffer);
     
-    // Print MODEL NAME "MODEL"
+    // Print model name "XXXXX"
     u8g2.setCursor(25, 40);
     u8g2.print(modelName);
     

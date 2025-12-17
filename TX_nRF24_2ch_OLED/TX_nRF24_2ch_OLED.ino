@@ -53,7 +53,7 @@ void setup()
   delay(1000);
   
   // NOTE: SHOULD BE USED FOR THE FIRST TIME AFTER CALIBRATION !!!
-  erase_data_eeprom(); // Print "ERASE DATA" screen
+  erase_data_eeprom(); // Print "ERASE DATA?" screen
   
   // Load data from Eeprom
   modelActual = stored_data_eeprom(255);
@@ -64,7 +64,7 @@ void setup()
 //**************************************************************************************************************
 void loop()
 {
-  // Start Calibration screen if button SELECT is pressed on power on
+  // Start calibration screen if button SELECT is pressed on power on
   if (calibStatus == 1 && read_button() == 2)
   {
     // Recall calibration procedure

@@ -141,7 +141,7 @@ void select()
       }
       
       
-      // Selection value for Set MODEL NAME
+      // Selection value for set MODEL NAME
       if (menuActual == 6)
       {
         if (modelNameSelection != 0xFF)

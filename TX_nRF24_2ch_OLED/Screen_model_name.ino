@@ -44,7 +44,7 @@ void model_name_screen()
   u8g2.drawHLine(0, 10, 128);
   
   
-  // Print MODEL NAME 5 byte
+  // Print model name "XXXXX" 5byte
   u8g2.setFont(u8g2_font_VCR_OSD_tr); // Height 15 pixels (dafont)
   
   for (int i = 0; i < 5; i++)

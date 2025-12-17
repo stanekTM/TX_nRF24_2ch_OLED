@@ -30,7 +30,7 @@ void model_select_screen()
   // Set memory buffer for text strings
   char char_buffer[9];
   
-  // Print MODEL NAME "MODEL"
+  // Print model name "XXXXX"
   u8g2.setCursor(0, 9);
   u8g2.print(modelName);
   
@@ -76,7 +76,7 @@ void model_select_screen()
     // Define start position for Eeprom write/update (32 * [0,1,2,3,4])
     eepromPos = NUM_BYTES_PER_MODEL * tempModelNoIdx;
     
-    // Print MODEL NAME
+    // Print model name
     for (int j = 0; j < 5; j++)
     {
       u8g2.setCursor(10 + (j * 8), 21 + (i * 10));
@@ -106,7 +106,7 @@ void model_select_screen()
     // Define start position for Eeprom write/update (25 * [0,1,2,3,4])
     eepromPos = NUM_BYTES_PER_MODEL * tempModelNoIdx;
     
-    // Print MODEL NAME
+    // Print model name
     for (int j = 0; j < 5; j++)
     {
       u8g2.setCursor(74 + (j * 8), 21 + (i * 10));
