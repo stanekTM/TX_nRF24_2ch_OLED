@@ -47,7 +47,7 @@ void setup()
     // Print version string
     u8g2.setCursor(0, 28);
     u8g2.print(fw_version);
-
+    
   } while (u8g2.nextPage());
   
   delay(1000);

@@ -4,8 +4,7 @@
 //*********************************************************************************************************************
 unsigned char stored_data_eeprom(unsigned char mod)
 {
-  // For eeprom position reference
-  unsigned int eepromBase;
+  unsigned int eepromBase; // For eeprom position reference
   
   // Read which model to upload data
   if (mod == 255)
@@ -46,8 +45,9 @@ unsigned char stored_data_eeprom(unsigned char mod)
     expo[i] = EEPROM.read(eepromPos++);
   } 
   
+
   // Read MIN, MAX and CENTER values in Eeprom
-  unsigned int posEeprom;
+  unsigned int posEeprom; // For eeprom position reference
   
   // Read MIN and MAX calibration values from Eeprom
   for (int i = 0; i < CHANNELS; i++)
@@ -76,7 +76,7 @@ unsigned char stored_data_eeprom(unsigned char mod)
 //*********************************************************************************************************************
 void erase_data_eeprom()
 {
-  unsigned int eepromPos;
+  unsigned int eepromPos; // For eeprom position reference
   
   // Writing default model[0]
   EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, 0);
@@ -122,8 +122,7 @@ void erase_data_eeprom()
 //*********************************************************************************************************************
 void save_data_eeprom()
 {
-  // For eeprom position reference
-  unsigned int eepromBase;
+  unsigned int eepromBase; // For eeprom position reference
   
   // Define start position for eeprom write/update (32 * [0,1,2,3,4])
   eepromBase = NUM_BYTES_PER_MODEL * modelActual;
@@ -131,6 +130,7 @@ void save_data_eeprom()
   // Save ACTUAL MODEL DATA
   EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, modelActual);
   
+
   // For write/update REVERSE and EPA position
   unsigned int eepromPos = eepromBase;
   
@@ -175,7 +175,7 @@ void EEPROMWriteInt(int p_address, int p_value)
   // Write a 16bit value in Eeprom
   byte Byte1 = ((p_value >> 0) & 0xFF);
   byte Byte2 = ((p_value >> 8) & 0xFF);
-
+  
   EEPROM.write(p_address, Byte1);
   EEPROM.write(p_address + 1, Byte2);
 }

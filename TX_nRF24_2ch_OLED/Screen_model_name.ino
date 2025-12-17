@@ -14,8 +14,7 @@ void draw_model_name_screen()
     is_next_page = 1;
   }
   
-  // Draw our screen
-  model_name_screen();
+  model_name_screen(); // Draw our screen
   
   // Call to next page
   if (u8g2.nextPage() == 0)
@@ -40,12 +39,11 @@ void model_name_screen()
   u8g2.setCursor(90, 9);
   u8g2.print(modelActual + 1);
   
-  // Drawing horizontal line under header
-  u8g2.drawHLine(0, 10, 128);
-  
+  u8g2.drawHLine(0, 10, 128); // Drawing horizontal line under header
   
   // Print model name "XXXXX" 5byte
   u8g2.setFont(u8g2_font_VCR_OSD_tr); // Height 15 pixels (dafont)
+  
   
   for (int i = 0; i < 5; i++)
   {

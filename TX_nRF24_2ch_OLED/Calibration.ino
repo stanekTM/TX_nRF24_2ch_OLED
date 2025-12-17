@@ -11,8 +11,7 @@ void calibration()
     
     for (int ch = 0; ch < CHANNELS; ch++)
     {
-      // Get value from every ADC ports
-      raw_pots = analogRead(ch);
+      raw_pots = analogRead(ch); // Get value from every ADC ports
       
       // Get MIN values
       if (raw_pots < pot_calib_min[ch])
@@ -27,8 +26,7 @@ void calibration()
       }
     }
     
-    // Print calibration "MIN-MAX CALIBRATION" real time channels
-    calibration_screen();
+    calibration_screen(); // Print calibration "MIN-MAX CALIBRATION" real time channels
     
     delay(10);
     
@@ -50,12 +48,10 @@ void calibration()
   {
     for (int ch = 0; ch < CHANNELS; ch++)
     {
-      // Get value from every ADC ports
-      pot_calib_mid[ch] = analogRead(ch);
+      pot_calib_mid[ch] = analogRead(ch); // Get value from every ADC ports
     }
     
-    // Print calibration "CENTER" real time channels
-    calib_center_screen();
+    calib_center_screen(); // Print calibration "CENTER" real time channels
     
     delay(10);
     
@@ -66,8 +62,7 @@ void calibration()
     }
   }
   
-  // Print calibration message "SAVE DATA"
-  calib_save_data_screen();
+  calib_save_data_screen(); // Print calibration message "SAVE DATA"
   
   // Save MIN, MAX and CENTER values in Eeprom
   unsigned int posEeprom;

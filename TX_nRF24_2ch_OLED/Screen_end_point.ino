@@ -14,8 +14,7 @@ void draw_end_point_screen()
     is_next_page = 1;
   }
   
-  // Draw our screen
-  end_point_screen();
+  end_point_screen(); // Draw our screen
   
   // Call to next page
   if (u8g2.nextPage() == 0)
@@ -44,8 +43,7 @@ void end_point_screen()
   u8g2.setCursor(122, 9);
   u8g2.print(char_buffer);
   
-  // Drawing horizontal line under header
-  u8g2.drawHLine(0, 10, 128);
+  u8g2.drawHLine(0, 10, 128); // Drawing horizontal line under header
   
   
   for (int i = 0; i < 2; i++)
@@ -96,6 +94,7 @@ void end_point_screen()
     u8g2.print(word_buffer);
     
     
+    // Left/Right section start
     int section_epa;
     
     // Left section start

@@ -53,6 +53,7 @@ void erase_data_screen()
       
     } while (u8g2.nextPage());
     
+
     while (isWait)
     {
       switch (read_button())
@@ -66,8 +67,7 @@ void erase_data_screen()
         case 3:
         isWait = false;
         
-        // Recall "Reset to default" macro
-        erase_data_eeprom();
+        erase_data_eeprom(); // Recall "Reset to default" macro
         
         /*
         u8g2.firstPage(); do {
@@ -81,7 +81,7 @@ void erase_data_screen()
         
         delay(2000);
         */
-
+        
         break;
       }
     }

@@ -14,8 +14,7 @@ void draw_sub_trim_screen()
     is_next_page = 1;
   }
   
-  // Draw our screen
-  sub_trim_screen();
+  sub_trim_screen(); // Draw our screen
   
   // Call to next page
   if (u8g2.nextPage() == 0)
@@ -39,13 +38,12 @@ void sub_trim_screen()
   u8g2.setCursor(0, 9);
   u8g2.print(menu_buffer);
   
-  // Drawing horizontal line under header
-  u8g2.drawHLine(0, 10, 128);
+  u8g2.drawHLine(0, 10, 128); // Drawing horizontal line under header
   
-  
-  unsigned char temp_Counter = 0;
   
   // Drawing only first 2 channels
+  unsigned char temp_Counter = 0;
+  
   for (int i = 0; i < CHANNELS; i++)
   {
     // Print channel items name "CH1, CH2"

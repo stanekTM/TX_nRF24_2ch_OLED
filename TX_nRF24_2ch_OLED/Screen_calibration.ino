@@ -139,8 +139,7 @@ void calib_center_screen()
 //*********************************************************************************************************************
 void calib_save_data_screen()
 {
-  // Set memory buffer for text strings
-  char msg_buffer[11];
+  char msg_buffer[11]; // Set memory buffer for text strings
   
   u8g2.firstPage(); do {
     

@@ -14,8 +14,7 @@ void draw_main_screen()
     is_next_page = 1;
   }
   
-  // Draw our screen
-  main_screen();
+  main_screen(); // Draw our screen
   
   // Call to next page
   if (u8g2.nextPage() == 0)
@@ -37,10 +36,9 @@ void main_screen()
   
   // Drawing a vertical line
   //u8g2.drawVLine(74, 0, 10);
-
+  
   // Drawing a horizontal line
   u8g2.drawHLine(74, 10, 54);
-  
   u8g2.drawHLine(0, 27, 128);
   
   
@@ -115,11 +113,9 @@ void main_screen()
   // Drawing only first 2 channels
   for (int i = 0; i < CHANNELS; i++)
   {
-    // Draw boxes/frames for every channel
-    u8g2.drawFrame(23, 36 + (i * 20), 105, 8);
+    u8g2.drawFrame(23, 36 + (i * 20), 105, 8); // Draw boxes/frames for every channel
     
-    // Drawing vertical middle/center separation line
-    u8g2.drawVLine(75, 34 + (i * 20), 9);
+    u8g2.drawVLine(75, 34 + (i * 20), 9); // Drawing vertical middle/center separation line
     
     int val_center;
     
@@ -211,7 +207,7 @@ void main_screen()
     }
     
     //u8g2.drawHLine(0, 10 + (i * 17), 128);
-
+    
     // Print channel items name "CH1 and CH2"
     u8g2.setFont(u8g2_font_7x13_tr); // Height 9 pixels (X11)
     

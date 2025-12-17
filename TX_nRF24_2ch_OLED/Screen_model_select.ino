@@ -14,8 +14,7 @@ void draw_model_select_screen()
     is_next_page = 1;
   }
   
-  // Draw our screen
-  model_select_screen();
+  model_select_screen(); // Draw our screen
   
   // Call to next page
   if (u8g2.nextPage() == 0)
@@ -27,8 +26,7 @@ void draw_model_select_screen()
 //------------------------------------------------------------------------
 void model_select_screen()
 {
-  // Set memory buffer for text strings
-  char char_buffer[9];
+  char char_buffer[9]; // Set memory buffer for text strings
   
   // Print model name "XXXXX"
   u8g2.setCursor(0, 9);
@@ -53,8 +51,7 @@ void model_select_screen()
   u8g2.print((MODELS - 1) / MODELS + 1);
   */
   
-  // Drawing horizontal line under header
-  u8g2.drawHLine(0, 10, 128);
+  u8g2.drawHLine(0, 10, 128); // Drawing horizontal line under header
   
   
   // For Eeprom position reference

@@ -9,8 +9,7 @@ void save_data_screen()
   // Start of SAVE DATA message screen
   u8g2.firstPage(); do {
     
-    // Set memory buffer for text strings
-    char msg_buffer[11];
+    char msg_buffer[11]; // Set memory buffer for text strings
     
     // Print "SAVE DATA"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[0])));

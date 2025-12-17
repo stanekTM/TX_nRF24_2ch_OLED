@@ -63,10 +63,10 @@ void select()
     }
   }
   
-  
+
+  // If pressed button SELECT
   unsigned char pressedKey = read_button();
   
-  // If pressed button SELECT
   if (pressedKey == 2)
   {
     if (screen < 2)
@@ -232,7 +232,7 @@ void select()
       if (menuSubActual < 2)
       {
         menuSubActual++;
-
+        
         if (screen == 0)
         {
           screen++;
@@ -527,7 +527,6 @@ void select()
         }
       }
       break;
-      
     }
   }
   //Serial.println(menuActual);

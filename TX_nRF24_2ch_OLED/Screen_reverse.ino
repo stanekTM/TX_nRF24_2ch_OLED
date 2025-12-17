@@ -14,8 +14,7 @@ void draw_reverse_screen()
     is_next_page = 1;
   }
   
-  // Draw our screen
-  reverse_screen();
+  reverse_screen(); // Draw our screen
   
   // Call to next page
   if (u8g2.nextPage() == 0)
@@ -39,8 +38,7 @@ void reverse_screen()
   u8g2.setCursor(0, 9);
   u8g2.print(menu_buffer);
   
-  // Drawing horizontal line under header
-  u8g2.drawHLine(0, 10, 128);
+  u8g2.drawHLine(0, 10, 128); // Drawing horizontal line under header
   
   
   // Drawing only first 2 channels

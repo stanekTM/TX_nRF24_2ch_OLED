@@ -39,8 +39,7 @@ void read_button_exit()
   // Excute only one time after button EXIT is up
   if (exitStatus == 1 && digitalRead(PIN_BUTTON_EXIT) == LOW)
   {
-    // Button EXIT pushed
-    exitStatus = !exitStatus;
+    exitStatus = !exitStatus; // Button EXIT pushed
     
     // Button EXIT can be cancle button. Go main screen
     if (screen != 0)
@@ -61,8 +60,7 @@ void read_button_exit()
   
   if (digitalRead(PIN_BUTTON_EXIT) == LOW)
   {
-    // Button EXIT
-    exitStatus = 1;
+    exitStatus = 1; // Button EXIT
   }
 }
  
