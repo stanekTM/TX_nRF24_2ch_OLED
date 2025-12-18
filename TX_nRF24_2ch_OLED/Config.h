@@ -109,8 +109,8 @@ telemetry_packet_size telemetry_packet;
 #define CHANNELS                  2    // Number of channels
 
 #define MENU_COUNT                7    // Total menu count
-#define MODELS                    10   // Total memory models 30
-#define NUM_BYTES_PER_MODEL       25   // Maximum bytes for data storage per model 32
+#define MODELS                    10   // Total memory models
+#define NUM_BYTES_PER_MODEL       25   // Maximum bytes for data storage per model
 #define ACTUAL_MODEL_EEPROM_ADDR  1023
 
 //*********************************************************************************************************************

@@ -70,11 +70,11 @@ void calibration()
   // Save MIN and MAX calibration values from Eeprom
   for (int ch = 0; ch < CHANNELS; ch++)
   {
-    // Save MIN calibration values for channels
+    // MIN calibration values for channels
     posEeprom = 1000 + (ch * 4);
     EEPROMUpdateInt(posEeprom, pot_calib_min[ch]);
     
-    // Save MAX calibration values for channels
+    // MAX calibration values for channels
     posEeprom += 2;
     EEPROMUpdateInt(posEeprom, pot_calib_max[ch]);
   }
@@ -82,7 +82,6 @@ void calibration()
   // Save CENTER calibration values from Eeprom
   for (int ch = 0; ch < CHANNELS; ch++)
   {
-    // Save CENTER calibration values for channels
     posEeprom = 1016 + (ch * 2);
     EEPROMUpdateInt(posEeprom, pot_calib_mid[ch]);
   }
