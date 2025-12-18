@@ -1,12 +1,12 @@
 
 //*********************************************************************************************************************
-// Read input buttons status and send value to loop
+// Reading the state of input buttons and sending the value to the loop
 //*********************************************************************************************************************
-unsigned long button_time = 0;
-
 unsigned char read_button()
 {
-  if (millis() - button_time > 200)
+  unsigned long button_time = 0;
+
+  if (millis() - button_time > 200) // Button anti-bounce delay
   {
     if (digitalRead(PIN_BUTTON_SELECT) == LOW)
     {
@@ -30,7 +30,7 @@ unsigned char read_button()
 }
 
 //*********************************************************************************************************************
-// Macro for read button status definitions
+// Reading the state of the EXIT input button
 //*********************************************************************************************************************
 void read_button_exit()
 {
@@ -60,7 +60,7 @@ void read_button_exit()
   
   if (digitalRead(PIN_BUTTON_EXIT) == LOW)
   {
-    exitStatus = 1; // Button EXIT
+    exitStatus = 1;
   }
 }
  

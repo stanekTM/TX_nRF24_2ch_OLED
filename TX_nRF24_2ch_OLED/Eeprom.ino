@@ -2,11 +2,11 @@
 //*********************************************************************************************************************
 // This macro will be used to clear Eeprom and set default parameters if necessary
 //*********************************************************************************************************************
-void erase_data_eeprom()
+void clear_data_eeprom()
 {
   unsigned int eepromPos; // For Eeprom position reference
   
-  // Update default "modelActual = 0"
+  // Save default "modelActual = 0"
   EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, 0);
   
   // Start writing default values for every model memory bank
@@ -15,29 +15,29 @@ void erase_data_eeprom()
     // Define start position for Eeprom storing (25 * [0, 1, 2, 3, 4...])
     eepromPos = NUM_BYTES_PER_MODEL * j;
     
-    // Update default model name "MODEL" 5byte
+    // Save default model name "MODEL" 5byte
     for (uint8_t i = 0; i < 5; i++)
     {
       EEPROM.update(eepromPos++, modelName[i]);
     }
     
-    // Update default REVERSE value in first address of start position
+    // Save default REVERSE value in first address of start position
     EEPROM.update(eepromPos++, 0x00);
     
-    // Update default SUB TRIM center pots values for two channels in every model memory bank
+    // Save default SUB TRIM center pots values for two channels in every model memory bank
     for (int i = 0; i < CHANNELS; i++)
     {
       EEPROMUpdateInt(eepromPos, 0);
       eepromPos += 2;
     }
     
-    // Update default EPA values for every channels
+    // Save default EPA values for every channels
     for (int i = 0; i < 4; i++)
     {
       EEPROM.update(eepromPos++, epa[i] + EPA_MAX);
     }
     
-    // Update default EXPO values will start after first address of start position
+    // Save default EXPO values will start after first address of start position
     for (int i = 0; i < CHANNELS; i++)
     {
       EEPROM.update(eepromPos++, 0);
@@ -55,41 +55,69 @@ void save_data_eeprom()
   // Define start position for Eeprom write/update (25 * [0, 1, 2, 3, 4...])
   eepromBase = NUM_BYTES_PER_MODEL * modelActual;
   
-  // Update ACTUAL MODEL data
+  // Save ACTUAL MODEL data
   EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, modelActual);
   
 
   // For write/update data
   unsigned int eepromPos = eepromBase;
   
-  // Update model name "XXXXX" 5byte
+  // Save model name "XXXXX" 5byte
   for (int i = 0; i < 5; i++)
   {
     EEPROM.update(eepromPos++, modelName[i]);
   }
   
-  // Update REVERSE data
+  // Save REVERSE data
   EEPROM.update(eepromPos++, reverse);
   
-  // Update SUB TRIM data
+  // Save SUB TRIM data
   for (int i = 0; i < CHANNELS; i++)
   {
     EEPROMUpdateInt(eepromPos, subTrim[i]);
     eepromPos += 2;
   }
   
-  // Update EPA data
+  // Save EPA data
   for (int i = 0; i < 4; i++)
   {
     EEPROM.update(eepromPos, epa[i]);
     eepromPos++;
   }
   
-  // Update EXPO data
+  // Save EXPO data
   for (int i = 0; i < CHANNELS; i++)
   {
     EEPROM.update(eepromPos, expo[i]);
     eepromPos++;
+  }
+}
+
+//*********************************************************************************************************************
+// Save MIN, MAX and CENTER calibration values in Eeprom
+//*********************************************************************************************************************
+void calib_save_data_eeprom()
+{
+  // Save MIN, MAX and CENTER calibration values in Eeprom
+  unsigned int posEeprom;
+  
+  // Save MIN and MAX
+  for (int ch = 0; ch < CHANNELS; ch++)
+  {
+    // MIN
+    posEeprom = 1000 + (ch * 4);
+    EEPROMUpdateInt(posEeprom, pot_calib_min[ch]);
+    
+    // MAX
+    posEeprom += 2;
+    EEPROMUpdateInt(posEeprom, pot_calib_max[ch]);
+  }
+  
+  // Save CENTER
+  for (int ch = 0; ch < CHANNELS; ch++)
+  {
+    posEeprom = 1016 + (ch * 2);
+    EEPROMUpdateInt(posEeprom, pot_calib_mid[ch]);
   }
 }
 
@@ -166,7 +194,7 @@ unsigned char stored_data_eeprom(unsigned char mod)
 }
 
 //*********************************************************************************************************************
-// Read and Update Eeprom data format
+// Read and update Eeprom data format
 //*********************************************************************************************************************
 int EEPROMReadInt(int p_address)
 {

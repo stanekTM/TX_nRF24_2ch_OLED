@@ -6,86 +6,69 @@ void calibration()
 {
   while (calibStatus == 1)
   {
-    // Reading MIN and MAX value for every channel
+    // Get MIN and MAX value for each channel
     unsigned int raw_pots;
     
     for (int ch = 0; ch < CHANNELS; ch++)
     {
-      raw_pots = analogRead(ch); // Get value from every ADC ports
+      raw_pots = analogRead(ch);
       
-      // Get MIN values
+      // MIN
       if (raw_pots < pot_calib_min[ch])
       {
         pot_calib_min[ch] = raw_pots;
       }
       
-      // Get MAX values
+      // MAX
       if (raw_pots > pot_calib_max[ch])
       {
         pot_calib_max[ch] = raw_pots;
       }
     }
     
-    calibration_screen(); // Print calibration "MIN-MAX CALIBRATION" real time channels
-    
+    calibration_screen(); // Print "MIN-MAX CALIBRATION" in real time
     delay(10);
     
-    // Set calibStatus = 0 to exit calibration procedure by pressing button UP
+    // Set "calibStatus = 0" to exit calibration procedure by pressing button UP
     if (read_button() == 1)
     {
       calibStatus = 0;
     }
   }
+  
   calibStatus = 1;
   
-  // Button UP not pressed check
+  
+  // Check if the UP button is not pressed
   while (read_button() != 0)
   {
     delay(10);
   }
   
+  
+  // Get CENTER value for each channel
   while (calibStatus == 1)
   {
     for (int ch = 0; ch < CHANNELS; ch++)
     {
-      pot_calib_mid[ch] = analogRead(ch); // Get value from every ADC ports
+      pot_calib_mid[ch] = analogRead(ch);
     }
     
-    calib_center_screen(); // Print calibration "CENTER" real time channels
-    
+    calib_center_screen(); // Print "CENTER CALIBRATION" in real time
     delay(10);
     
-    // Set calibStatus = 0 to exit calibration procedure by pressing button UP
+    // Set "calibStatus = 0" to exit calibration procedure by pressing button UP
     if (read_button() == 1)
     {
       calibStatus = 0;
     }
   }
   
-  calib_save_data_screen(); // Print calibration message "SAVE DATA"
   
-  // Save MIN, MAX and CENTER values in Eeprom
-  unsigned int posEeprom;
+  calib_save_data_eeprom(); // Save MIN, MAX and CENTER calibration values in Eeprom
   
-  // Save MIN and MAX calibration values from Eeprom
-  for (int ch = 0; ch < CHANNELS; ch++)
-  {
-    // MIN calibration values for channels
-    posEeprom = 1000 + (ch * 4);
-    EEPROMUpdateInt(posEeprom, pot_calib_min[ch]);
-    
-    // MAX calibration values for channels
-    posEeprom += 2;
-    EEPROMUpdateInt(posEeprom, pot_calib_max[ch]);
-  }
   
-  // Save CENTER calibration values from Eeprom
-  for (int ch = 0; ch < CHANNELS; ch++)
-  {
-    posEeprom = 1016 + (ch * 2);
-    EEPROMUpdateInt(posEeprom, pot_calib_mid[ch]);
-  }
-  
-  delay(2000); // Screen message for 2sec
+  calib_save_data_screen(); // Print message "SAVE DATA CALIBRATION"
+  delay(2000);              // Message on screen for 2 seconds
 }
  

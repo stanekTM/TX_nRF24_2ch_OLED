@@ -19,7 +19,6 @@ void TX_batt_monitoring()
 //*********************************************************************************************************************
 float rx_batt_volt;
 bool rx_low_batt = 0;
-bool previous_state_batt;
 
 void RX_batt_monitoring()
 {
@@ -28,6 +27,8 @@ void RX_batt_monitoring()
   rx_low_batt = rx_batt_volt <= RX_MONITORED_VOLTAGE;
   
   // Battery alarm lock
+  bool previous_state_batt;
+  
   if (rx_low_batt)
   {
     previous_state_batt = 1;

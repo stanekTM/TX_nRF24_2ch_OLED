@@ -1,10 +1,10 @@
 
 //*********************************************************************************************************************
 // Hold button DOWN on power ON to initialize default memory data
-// Will only write data settings to default (not erase calibration data)
+// Will only write data settings to default (not clear calibration data)
 // NOTE: SHOULD BE USED FOR THE FIRST TIME AFTER CALIBRATION !!!
 //*********************************************************************************************************************
-void erase_data_screen()
+void clear_data_screen()
 {
   if (digitalRead(PIN_BUTTON_EXIT) == LOW)
   {
@@ -16,7 +16,7 @@ void erase_data_screen()
     
     u8g2.firstPage(); do {
       
-      // Print "ERASE DATA?"
+      // Print "CLEAR DATA?"
       strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[1])));
       u8g2.setCursor(25, 20);
       u8g2.print(msg_buffer);
@@ -67,12 +67,12 @@ void erase_data_screen()
         case 3:
         isWait = false;
         
-        erase_data_eeprom(); // Recall "Reset to default" macro
+        clear_data_eeprom(); // Recall "Reset to default" macro
         
         /*
         u8g2.firstPage(); do {
           
-          // Print "ERASE DATA?"
+          // Print "CLEAR DATA?"
           strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[1])));
           u8g2.setCursor(25, 20);
           u8g2.print(msg_buffer);

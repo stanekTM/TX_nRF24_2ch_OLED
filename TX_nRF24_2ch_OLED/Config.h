@@ -255,7 +255,7 @@ const char* const one_char[] PROGMEM = {
 // Array text strings for screen messages "msg_buffer[11]"
 //*********************************************************************************************************************
 const char message_0[] PROGMEM = "SAVE DATA";
-const char message_1[] PROGMEM = "ERASE DATA?";
+const char message_1[] PROGMEM = "CLEAR DATA?";
 const char message_2[] PROGMEM = "CALIBRATION";
 const char message_3[] PROGMEM = "MIN-MAX";
 const char message_4[] PROGMEM = "CENTER";

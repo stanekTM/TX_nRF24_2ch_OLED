@@ -53,10 +53,9 @@ void setup()
   delay(1000);
   
   // NOTE: SHOULD BE USED FOR THE FIRST TIME AFTER CALIBRATION !!!
-  erase_data_eeprom(); // Print "ERASE DATA?" screen
+  clear_data_screen(); // Print "CLEAR DATA?" screen
   
-  // Load data from Eeprom
-  modelActual = stored_data_eeprom(255);
+  modelActual = stored_data_eeprom(255); // Load data from Eeprom
 }
 
 //**************************************************************************************************************
@@ -67,15 +66,12 @@ void loop()
   // Start calibration screen if button SELECT is pressed on power on
   if (calibStatus == 1 && read_button() == 2)
   {
-    // Recall calibration procedure
-    calibration();
+    calibration(); // Recall calibration procedure
   }
-  // Set condition 0 to continue loop if calibration procedure is not selected
   else
   {
-    calibStatus = 0;
+    calibStatus = 0; // Set condition 0 to continue loop if calibration procedure is not selected
   }
-  
   
   rc_packet.ch1 = pots_value[0]; // A0
   rc_packet.ch2 = pots_value[1]; // A1
@@ -86,8 +82,8 @@ void loop()
   TX_batt_monitoring();
   RX_batt_monitoring();
   
-  read_button_exit();      // Macro for read button status definitions
-  read_pots();             // Macro for read pots, joysticks, values, applying calibration and rules
-  select();                // Select screen, calibration, step control for channels/values
+  read_button_exit();
+  read_pots();
+  select();
 }
  

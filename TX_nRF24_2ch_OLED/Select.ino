@@ -109,7 +109,7 @@ void select()
       {
         modelActual = menuSubModel;
         
-        // Update data in Eeprom
+        // Save data in Eeprom
         EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, modelActual);
         stored_data_eeprom(modelActual);
         
