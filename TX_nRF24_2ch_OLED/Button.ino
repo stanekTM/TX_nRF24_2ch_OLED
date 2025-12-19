@@ -1,11 +1,11 @@
 
 //*********************************************************************************************************************
-// Reading the state of input buttons and sending the value to the loop
+// Reading the state of the SELECT, UP, DOWN and EXIT input buttons in a loop
 //*********************************************************************************************************************
+unsigned long button_time = 0; // The time variable must be global
+
 unsigned char read_button()
 {
-  unsigned long button_time = 0;
-
   if (millis() - button_time > 200) // Button anti-bounce delay
   {
     if (digitalRead(PIN_BUTTON_SELECT) == LOW)
@@ -25,42 +25,16 @@ unsigned char read_button()
       button_time = millis();
       return 3;
     }
-  }
-  return 0;
-}
-
-//*********************************************************************************************************************
-// Reading the state of the EXIT input button
-//*********************************************************************************************************************
-void read_button_exit()
-{
-  bool exitStatus = 1;
-  
-  // Excute only one time after button EXIT is up
-  if (exitStatus == 1 && digitalRead(PIN_BUTTON_EXIT) == LOW)
-  {
-    exitStatus = !exitStatus; // Button EXIT pushed
     
-    // Button EXIT can be cancle button. Go main screen
-    if (screen != 0)
+    if (digitalRead(PIN_BUTTON_EXIT) == LOW)
     {
       screen = 0;
       menuSubActual = 1;
       menuActual = 0;
       menuPage = 0;
-      
-      epaSelection = 0xFF;
-      subTrimSelection = 0xFF;
-      modelNameSelection = 0xFF;
-      expoSelection = 0xFF;
-      
-      return;
     }
   }
   
-  if (digitalRead(PIN_BUTTON_EXIT) == LOW)
-  {
-    exitStatus = 1;
-  }
+  return 0;
 }
  

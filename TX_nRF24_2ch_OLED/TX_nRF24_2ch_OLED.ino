@@ -55,7 +55,7 @@ void setup()
   // NOTE: SHOULD BE USED FOR THE FIRST TIME AFTER CALIBRATION !!!
   clear_data_screen(); // Print "CLEAR DATA?" screen
   
-  modelActual = stored_data_eeprom(255); // Load data from Eeprom
+  modelActual = stored_data_eeprom(255); // Reading selected model data from EEPROM
 }
 
 //**************************************************************************************************************
@@ -82,7 +82,6 @@ void loop()
   TX_batt_monitoring();
   RX_batt_monitoring();
   
-  read_button_exit();
   read_pots();
   select();
 }
