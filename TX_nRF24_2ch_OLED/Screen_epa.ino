@@ -3,7 +3,7 @@
 // Drawing EPA screen display
 //*********************************************************************************************************************
 // This is the state machine, which will replace the do - while loop
-void draw_end_point_screen()
+void draw_epa_screen()
 {
   static uint8_t is_next_page = 0;
   
@@ -14,7 +14,7 @@ void draw_end_point_screen()
     is_next_page = 1;
   }
   
-  end_point_screen(); // Draw our screen
+  epa_screen(); // Draw our screen
   
   // Call to next page
   if (u8g2.nextPage() == 0)
@@ -24,7 +24,7 @@ void draw_end_point_screen()
 }
 
 //------------------------------------------------------------------------
-void end_point_screen()
+void epa_screen()
 {
   // Set memory buffer for text strings
   char menu_buffer[7];
@@ -33,15 +33,17 @@ void end_point_screen()
   
   read_pots(); // Macro again for stable pots value
   
-  // Print "END POINT"
+  // Print "EPA"
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[0])));
   u8g2.setCursor(0, 9);
   u8g2.print(menu_buffer);
   
+  /*
   // Print "%"
   strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
   u8g2.setCursor(122, 9);
   u8g2.print(char_buffer);
+  */
   
   u8g2.drawHLine(0, 10, 128); // Drawing horizontal line under header
   
