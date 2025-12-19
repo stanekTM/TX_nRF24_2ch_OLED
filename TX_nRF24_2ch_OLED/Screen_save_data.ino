@@ -1,12 +1,12 @@
 
 //*********************************************************************************************************************
-// Drawing SAVE DATA screen display
+// Print message "SAVE DATA"
 //*********************************************************************************************************************
 void save_data_screen()
 {
-  save_data_eeprom();
+  save_data_eeprom(); // Save to EEPROM and set default parameters if necessary
   
-  // Start of SAVE DATA message screen
+  
   u8g2.firstPage(); do {
     
     char msg_buffer[11]; // Set memory buffer for text strings

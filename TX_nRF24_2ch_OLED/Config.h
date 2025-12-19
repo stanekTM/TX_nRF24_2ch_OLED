@@ -175,7 +175,7 @@ u8g2(U8G2_R0, U8X8_PIN_NONE);       // https://github.com/olikraus/u8g2/wiki/u8g
 // Using PROGMEM for characters and text strings to save RAM memory
 // Array text strings for drawing menu "menu_buffer[7]"
 //*********************************************************************************************************************
-const char menu_0[] PROGMEM = "END POINT";
+const char menu_0[] PROGMEM = "EPA";
 const char menu_1[] PROGMEM = "MODEL SELECT";
 const char menu_2[] PROGMEM = "REVERSE";
 const char menu_3[] PROGMEM = "SAVE MODEL";

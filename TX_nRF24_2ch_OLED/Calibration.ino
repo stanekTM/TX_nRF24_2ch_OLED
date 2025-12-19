@@ -65,7 +65,7 @@ void calibration()
   }
   
   
-  calib_save_data_eeprom(); // Save MIN, MAX and CENTER calibration values in Eeprom
+  calib_save_data_eeprom(); // Save MIN, MAX and CENTER calibration values in EEPROM
   
   
   calib_save_data_screen(); // Print message "SAVE DATA CALIBRATION"

@@ -65,7 +65,7 @@ void calibration_screen()
 }
 
 //*********************************************************************************************************************
-// Print calibration "CENTER" real time channels
+// Print calibration "CENTER CALIBRATION" real time channels
 //*********************************************************************************************************************
 void calib_center_screen()
 {
@@ -135,7 +135,7 @@ void calib_center_screen()
 }
 
 //*********************************************************************************************************************
-// Print calibration message "SAVE DATA"
+// Print message "SAVE DATA CALIBRATION"
 //*********************************************************************************************************************
 void calib_save_data_screen()
 {

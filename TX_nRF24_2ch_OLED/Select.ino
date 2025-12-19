@@ -22,7 +22,7 @@ void select()
       // Execute EPA task
       if (menuActual == 1)
       {
-        draw_end_point_screen();
+        draw_epa_screen();
       }
       
       // Execute MODEL SELECT task
@@ -37,7 +37,7 @@ void select()
         draw_reverse_screen();
       }
       
-      // Execute SAVE DATA task
+      // Execute SAVE MODEL task
       if (menuActual == 4)
       {
         save_data_screen();
@@ -64,10 +64,13 @@ void select()
   }
   
 
-  // If pressed button SELECT
-  unsigned char pressedKey = read_button();
+  // If pressed button
+  unsigned char pressed_button = read_button();
   
-  if (pressedKey == 2)
+  //**************************************************************
+  // Step control for selecting MENU (button SELECT)
+  //**************************************************************
+  if (pressed_button == 2)
   {
     if (screen < 2)
     {
@@ -79,7 +82,7 @@ void select()
     }
     else
     {
-      // Added if MENU/SELECT button is pressed without menu cursor (do nothing)
+      // If MENU/SELECT button is pressed without menu cursor (do nothing)
       if (menuActual == 0)
       {
         screen--;
@@ -88,7 +91,7 @@ void select()
       
       
       //****************************************************************************
-      // Options for each menu
+      // Options for each MENU
       //****************************************************************************
       // Selection value for EPA
       if (menuActual == 1)
@@ -109,9 +112,9 @@ void select()
       {
         modelActual = menuSubModel;
         
-        // Save data in Eeprom
+        // Save data in EEPROM
         EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, modelActual);
-        stored_data_eeprom(modelActual);
+        stored_data_eeprom(modelActual); // Reading selected model data from EEPROM
         
         screen = 0;
         menuActual = 0;
@@ -172,9 +175,9 @@ void select()
   
   
   //**************************************************************
-  // Min step control for selecting channels/values (button DOWN)
+  // MIN step control for selecting channels/values (button DOWN)
   //**************************************************************
-  if (pressedKey == 3)
+  if (pressed_button == 3)
   {
     switch (menuActual)
     {
@@ -342,9 +345,9 @@ void select()
   
   
   //************************************************************
-  // Max step control for selecting channels/values (button UP)
+  // MAX step control for selecting channels/values (button UP)
   //************************************************************
-  if (pressedKey == 1)
+  if (pressed_button == 1)
   {
     switch (menuActual)
     {

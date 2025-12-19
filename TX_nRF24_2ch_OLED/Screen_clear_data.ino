@@ -67,7 +67,7 @@ void clear_data_screen()
         case 3:
         isWait = false;
         
-        clear_data_eeprom(); // Recall "Reset to default" macro
+        clear_data_eeprom(); // Clear EEPROM and, if necessary, set default parameters
         
         /*
         u8g2.firstPage(); do {

@@ -54,7 +54,7 @@ void model_select_screen()
   u8g2.drawHLine(0, 10, 128); // Drawing horizontal line under header
   
   
-  // For Eeprom position reference
+  // For EEPROM position reference
   int tempModelNoIdx;
   unsigned int eepromPos;
   
@@ -70,7 +70,7 @@ void model_select_screen()
     u8g2.setCursor(51, 21 + (i * 10));
     u8g2.print(tempModelNoIdx + 1);
     
-    // Define start position for Eeprom write/update (25 * [0, 1, 2, 3, 4...])
+    // Define start position for EEPROM write/update (25 * [0, 1, 2, 3, 4...])
     eepromPos = NUM_BYTES_PER_MODEL * tempModelNoIdx;
     
     // Print model name
@@ -100,7 +100,7 @@ void model_select_screen()
     u8g2.setCursor(115, 21 + (i * 10));
     u8g2.print(tempModelNoIdx + 1);
     
-    // Define start position for Eeprom write/update (25 * [0, 1, 2, 3, 4...])
+    // Define start position for EEPROM write/update (25 * [0, 1, 2, 3, 4...])
     eepromPos = NUM_BYTES_PER_MODEL * tempModelNoIdx;
     
     // Print model name
