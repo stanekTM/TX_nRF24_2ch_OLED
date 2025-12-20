@@ -52,7 +52,7 @@ void setup()
   
   delay(1000);
   
-  // NOTE: SHOULD BE USED FOR THE FIRST TIME AFTER CALIBRATION !!!
+  // If you hold down the EXIT button while turning on, the default memory data will be initialized
   clear_data_screen(); // Print "CLEAR DATA?" screen
   
   modelActual = stored_data_eeprom(255); // Reading selected model data from EEPROM
@@ -63,14 +63,14 @@ void setup()
 //**************************************************************************************************************
 void loop()
 {
-  // Start calibration screen if button SELECT is pressed on power on
+  // If you hold down the SELECT button while turning on, the calibration procedure will start
   if (calibStatus == 1 && read_button() == 2)
   {
-    calibration(); // Recall calibration procedure
+    calibration();
   }
   else
   {
-    calibStatus = 0; // Set condition 0 to continue loop if calibration procedure is not selected
+    calibStatus = 0;
   }
   
   rc_packet.ch1 = pots_value[0]; // A0

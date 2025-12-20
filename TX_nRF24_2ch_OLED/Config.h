@@ -150,9 +150,9 @@ char modelName[] = "MODEL";              // Default MODEL NAME 5byte
 unsigned char modelNameSelection = 0xFF; // Default value for MODEL NAME selection
 
 //*********************************************************************************************************************
-// Checking the status of the calibration switch
+// Checking the status to start the calibration process
 //*********************************************************************************************************************
-bool calibStatus = 1; // Checking status to enter in calibration procedure
+bool calibStatus = 1;
 
 //*********************************************************************************************************************
 // Menu management variables

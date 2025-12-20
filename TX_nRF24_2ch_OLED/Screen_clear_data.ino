@@ -1,8 +1,7 @@
 
 //*********************************************************************************************************************
-// Hold button DOWN on power ON to initialize default memory data
+// If you hold down the EXIT button while turning on, the default memory data will be initialized.
 // Will only write data settings to default (not clear calibration data)
-// NOTE: SHOULD BE USED FOR THE FIRST TIME AFTER CALIBRATION !!!
 //*********************************************************************************************************************
 void clear_data_screen()
 {
@@ -53,7 +52,7 @@ void clear_data_screen()
       
     } while (u8g2.nextPage());
     
-
+    
     while (isWait)
     {
       switch (read_button())
@@ -68,20 +67,7 @@ void clear_data_screen()
         isWait = false;
         
         clear_data_eeprom(); // Clear EEPROM and, if necessary, set default parameters
-        
-        /*
-        u8g2.firstPage(); do {
-          
-          // Print "CLEAR DATA?"
-          strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[1])));
-          u8g2.setCursor(25, 20);
-          u8g2.print(msg_buffer);
-          
-        } while (u8g2.nextPage());
-        
         delay(2000);
-        */
-        
         break;
       }
     }

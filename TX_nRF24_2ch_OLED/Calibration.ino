@@ -4,6 +4,7 @@
 //*********************************************************************************************************************
 void calibration()
 {
+  // Checking the status to start the calibration process
   while (calibStatus == 1)
   {
     // Get MIN and MAX value for each channel
@@ -29,7 +30,7 @@ void calibration()
     calibration_screen(); // Print "MIN-MAX CALIBRATION" in real time
     delay(10);
     
-    // Set "calibStatus = 0" to exit calibration procedure by pressing button UP
+    // Press the UP button to end the calibration process
     if (read_button() == 1)
     {
       calibStatus = 0;
@@ -46,9 +47,10 @@ void calibration()
   }
   
   
-  // Get CENTER value for each channel
+  // Checking the status to start the calibration process
   while (calibStatus == 1)
   {
+    // Get CENTER value for each channel
     for (int ch = 0; ch < CHANNELS; ch++)
     {
       pot_calib_mid[ch] = analogRead(ch);
@@ -57,7 +59,7 @@ void calibration()
     calib_center_screen(); // Print "CENTER CALIBRATION" in real time
     delay(10);
     
-    // Set "calibStatus = 0" to exit calibration procedure by pressing button UP
+    // Press the UP button to end the calibration process
     if (read_button() == 1)
     {
       calibStatus = 0;
