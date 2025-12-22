@@ -7,12 +7,12 @@
 const char fw_version[] = "TX stanekTM v1.7";
 
 //*********************************************************************************************************************
-// Battery voltage settings TX/RX, minimum battery voltage for alarm
+// Maximum nominal battery voltage TX/RX and minimum battery voltage for alarm
 //*********************************************************************************************************************
-#define TX_BATTERY_VOLTAGE    4.2  // Maximum battery voltage
+#define TX_BATTERY_VOLTAGE    4.2  // Maximum nominal battery voltage
 #define TX_MONITORED_VOLTAGE  3.45 // Minimum battery voltage for alarm
 
-#define RX_BATTERY_VOLTAGE    4.2  // Maximum battery voltage
+#define RX_BATTERY_VOLTAGE    4.2  // Maximum nominal battery voltage
 #define RX_MONITORED_VOLTAGE  3.45 // Minimum battery voltage for alarm
 
 //*********************************************************************************************************************
@@ -50,14 +50,16 @@ const char fw_version[] = "TX stanekTM v1.7";
 // ADC7   -    A7
 
 //*********************************************************************************************************************
-// Pins connecting
+// Connection pins
 //*********************************************************************************************************************
+// Pins for pots, joysticks
 // Joystick 1              A0
 // Joystick 2              A1
 
-// Pin battery             A7
+// Input battery
+#define PIN_BATTERY        A7
 
-// Pins button
+// Pins for buttons
 #define PIN_BUTTON_UP      2 // For Up/Prev functions
 #define PIN_BUTTON_DOWN    3 // For Down/Next functions
 #define PIN_BUTTON_SELECT  4 // For Menu/Select functions
@@ -70,7 +72,7 @@ const char fw_version[] = "TX stanekTM v1.7";
 //          MISO           12 Hardware SPI
 //          SCK            13 Hardware SPI
 
-// Pins LCD display
+// Pins for LCD display
 //          SDA            A4 Hardware I2C
 //          SCL            A5 Hardware I2C
 
@@ -101,7 +103,7 @@ struct telemetry_packet_size
 telemetry_packet_size telemetry_packet;
 
 //*********************************************************************************************************************
-// Configuration of the global TX parameter
+// Config global parameters TX
 //*********************************************************************************************************************
 #define DEAD_ZONE                 10   // Dead zone bar center value of poor quality joysticks
 #define EPA_MAX                   100  // Maximum EPA value
@@ -121,7 +123,7 @@ telemetry_packet_size telemetry_packet;
 #define MAX_CONTROL_VAL  2000
 
 //*********************************************************************************************************************
-// Parameters of potentiometers
+// Analog reading parameters for calibration
 //*********************************************************************************************************************
 unsigned short int pots[CHANNELS];
 unsigned short int pots_value[CHANNELS];
@@ -130,7 +132,7 @@ unsigned short int pot_calib_mid[] = {512, 512};
 unsigned short int pot_calib_max[] = {1023, 1023};
 
 //*********************************************************************************************************************
-// PPM setting parameters
+// Setting control output values
 //*********************************************************************************************************************
 unsigned char epa[4];                       // EPA value array
 unsigned char epaSelection = 0xFF;          // Default value for EPA selection
@@ -173,7 +175,8 @@ u8g2(U8G2_R0, U8X8_PIN_NONE);       // https://github.com/olikraus/u8g2/wiki/u8g
 
 //*********************************************************************************************************************
 // Using PROGMEM for characters and text strings to save RAM memory
-// Array text strings for drawing menu "menu_buffer[7]"
+//*********************************************************************************************************************
+// Array text strings for menu screen "menu_buffer[7]"
 //*********************************************************************************************************************
 const char menu_0[] PROGMEM = "EPA";
 const char menu_1[] PROGMEM = "MODEL SELECT";
@@ -194,7 +197,7 @@ const char* const menu_name[] PROGMEM = {
 };
 
 //*********************************************************************************************************************
-// Array text strings (short) for channel/pots names, status, model for all screens "word_buffer[10]"
+// Array text strings (short) for all screens "word_buffer[10]"
 //*********************************************************************************************************************
 const char word_0[] PROGMEM = "CH1";
 const char word_1[] PROGMEM = "CH2";

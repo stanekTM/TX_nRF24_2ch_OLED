@@ -7,7 +7,7 @@ bool tx_low_batt = 0;
 
 void TX_batt_monitoring()
 {
-  tx_batt_volt = analogRead(7) * (TX_BATTERY_VOLTAGE / 1023);
+  tx_batt_volt = analogRead(PIN_BATTERY) * (TX_BATTERY_VOLTAGE / 1023);
   
   tx_low_batt = tx_batt_volt <= TX_MONITORED_VOLTAGE;
   
