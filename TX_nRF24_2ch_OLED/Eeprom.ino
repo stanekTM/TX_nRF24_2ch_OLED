@@ -6,14 +6,12 @@ void clear_data_eeprom()
 {
   unsigned int eepromPos; // For EEPROM position reference
   
-  // Save default "modelActual = 0"
-  EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, 0);
+  EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, 0); // Save default "modelActual = 0"
   
   // Start writing default values for every model memory bank
   for (int j = 0; j < MODELS; j++)
   {
-    // Define start position for EEPROM storing (25 * [0, 1, 2, 3, 4...])
-    eepromPos = NUM_BYTES_PER_MODEL * j;
+    eepromPos = NUM_BYTES_PER_MODEL * j; // Define start position for EEPROM storing (25 * [0, 1, 2, 3, 4...])
     
     // Save default model name "MODEL" 5byte
     for (uint8_t i = 0; i < 5; i++)
@@ -21,10 +19,9 @@ void clear_data_eeprom()
       EEPROM.update(eepromPos++, modelName[i]);
     }
     
-    // Save default REVERSE value in first address of start position
-    EEPROM.update(eepromPos++, 0x00);
+    EEPROM.update(eepromPos++, 0x00); // Save default REVERSE value in first address of start position
     
-    // Save default SUB TRIM center pots values for two channels in every model memory bank
+    // Save default SUB TRIM center values ​​for two channels in each model memory bank
     for (int i = 0; i < CHANNELS; i++)
     {
       EEPROMUpdateInt(eepromPos, 0);
@@ -52,15 +49,11 @@ void save_data_eeprom()
 {
   unsigned int eepromBase; // For EEPROM position reference
   
-  // Define start position for EEPROM write/update (25 * [0, 1, 2, 3, 4...])
-  eepromBase = NUM_BYTES_PER_MODEL * modelActual;
+  eepromBase = NUM_BYTES_PER_MODEL * modelActual; // Define start position for EEPROM write/update (25 * [0, 1, 2, 3, 4...])
   
-  // Save ACTUAL MODEL data
-  EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, modelActual);
+  EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, modelActual); // Save ACTUAL MODEL data
   
-
-  // For write/update data
-  unsigned int eepromPos = eepromBase;
+  unsigned int eepromPos = eepromBase; // For write/update data
   
   // Save model name "XXXXX" 5byte
   for (int i = 0; i < 5; i++)
@@ -68,8 +61,7 @@ void save_data_eeprom()
     EEPROM.update(eepromPos++, modelName[i]);
   }
   
-  // Save REVERSE data
-  EEPROM.update(eepromPos++, reverse);
+  EEPROM.update(eepromPos++, reverse); // Save REVERSE data
   
   // Save SUB TRIM data
   for (int i = 0; i < CHANNELS; i++)
@@ -98,8 +90,7 @@ void save_data_eeprom()
 //*********************************************************************************************************************
 void calib_save_data_eeprom()
 {
-  // Save MIN, MAX and CENTER calibration values in EEPROM
-  unsigned int posEeprom;
+  unsigned int posEeprom; // For EEPROM position reference
   
   // Save MIN and MAX
   for (int ch = 0; ch < CHANNELS; ch++)
@@ -134,10 +125,9 @@ unsigned char stored_data_eeprom(unsigned char mod)
     mod = EEPROM.read(ACTUAL_MODEL_EEPROM_ADDR);
   }
   
-  // Define start position for EEPROM read (25 * [0, 1, 2, 3, 4...])
-  eepromBase = NUM_BYTES_PER_MODEL * mod;
+  eepromBase = NUM_BYTES_PER_MODEL * mod; // Define start position for EEPROM read (25 * [0, 1, 2, 3, 4...])
   
-  unsigned int eepromPos = eepromBase;
+  unsigned int eepromPos = eepromBase; // For read data
   
   // Read model name "XXXXX" 5byte
   for (int i = 0; i < 5; i++)
@@ -145,8 +135,7 @@ unsigned char stored_data_eeprom(unsigned char mod)
     modelName[i] = EEPROM.read(eepromPos++);
   }
   
-  // Read REVERSE from first position
-  reverse = EEPROM.read(eepromPos++);
+  reverse = EEPROM.read(eepromPos++); // Read REVERSE from first position
   
   // Read SUB TRIM offset values for selected model
   for (int i = 0; i < CHANNELS; i++)
