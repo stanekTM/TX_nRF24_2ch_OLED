@@ -4,14 +4,14 @@
 //*********************************************************************************************************************
 void select()
 {
-  // Print MAIN screen
+  // MAIN screen
   if (screen == 0)
   {
     draw_main_screen();
   }
   else
   {
-    // Print MENU screen
+    // MENU screen
     if (screen == 1)
     {
       draw_menu_screen();
@@ -93,7 +93,7 @@ void select()
       //****************************************************************************
       // Options for each MENU
       //****************************************************************************
-      // Selection value for EPA
+      // Selecting a value for EPA
       if (menuActual == 1)
       {
         if (epaSelection != 0xFF)
@@ -107,7 +107,7 @@ void select()
       }
       
       
-      // Selection value for MODEL SELECT
+      // Selecting a value for MODEL SELECT
       if (menuActual == 2)
       {
         modelActual = menuSubModel;
@@ -123,14 +123,14 @@ void select()
       }
       
       
-      // Selection value for REVERSE
+      // Selecting a value for REVERSE
       if (menuActual == 3)
       {
         bitWrite(reverse, menuSubActual - 1, !bitRead(reverse, menuSubActual - 1));
       }
       
       
-      // Selection value for SUB TRIM
+      // Selecting a value for SUB TRIM
       if (menuActual == 5)
       {
         if (subTrimSelection != 0xFF)
@@ -144,7 +144,7 @@ void select()
       }
       
       
-      // Selection value for set MODEL NAME
+      // Selecting a value for set MODEL NAME
       if (menuActual == 6)
       {
         if (modelNameSelection != 0xFF)
@@ -158,7 +158,7 @@ void select()
       }
       
       
-      // Selection value for EXPO
+      // Selecting a value for EXPO
       if (menuActual == 7)
       {
         if (expoSelection != 0xFF)
@@ -183,7 +183,7 @@ void select()
     {
       // EPA
       case 1:
-      // Initial value for EPA selection value
+      // Initial value for EPA selection
       if (epaSelection == 0xFF)
       {
         // Only first 4 values
@@ -202,7 +202,7 @@ void select()
         // EPA step control for changing selected channel value (DOWN)
         if ((epaSelection % 1) == 0)
         {
-          // Define min for EPA value
+          // Define the minimum EPA value
           if (epa[epaSelection / 1] > 0)
           {
             // Define step value
@@ -246,7 +246,7 @@ void select()
       
       // SUB TRIM
       case 5:
-      // Initial value for SUB TRIM selection value
+      // Initial value for SUB TRIM selection
       if (subTrimSelection == 0xFF)
       {
         // Only first 2 channels
@@ -265,7 +265,7 @@ void select()
         // SUB TRIM step control for changing selected channel value (DOWN)
         if ((subTrimSelection % 1) == 0)
         {
-          // Define Min SUB TRIM value
+          // Define the minimum SUB TRIM value
           if (subTrim[subTrimSelection / 1] > SUB_TRIM_MAX * - 1)
           {
             // Define step value
@@ -278,10 +278,10 @@ void select()
       
       // MODEL NAME
       case 6:
-      // Initial value for MODEL NAME selection value
+      // Initial value for MODEL NAME selection
       if (modelNameSelection == 0xFF)
       {
-        // Only 5 characters
+        // Only first 5 characters
         if (menuSubActual < 5)
         {
           menuSubActual++;
@@ -305,7 +305,7 @@ void select()
       
       // EXPO
       case 7:
-      // Initial value for EXPO selection value
+      // Initial value for EXPO selection
       if (expoSelection == 0xFF)
       {
         // Only first 2 channels
@@ -333,7 +333,7 @@ void select()
       
       // DEFAULT
       default:
-      // 1 to 5 items
+      // 1 to 7 MENU items
       if (menuSubActual < MENU_COUNT)
       {
         menuSubActual++;
@@ -353,7 +353,7 @@ void select()
     {
       // EPA
       case 1:
-      // Initial value for EPA selection value
+      // Initial value for EPA selection
       if (epaSelection == 0xFF)
       {
         // Only first 4 values (2 / 2)
@@ -373,7 +373,7 @@ void select()
         // Step control for changing selected channel value (UP)
         if ((epaSelection % 1) == 0)
         {
-          // Define max for EPA value
+          // Define the maximum EPA value
           if (epa[epaSelection / 1] < EPA_MAX)
           {
             // Define step value
@@ -423,7 +423,7 @@ void select()
       
       // SUB TRIM
       case 5:
-      
+      // Initial value for SUB TRIM selection
       if (subTrimSelection == 0xFF)
       {
         // Only first 2 channels
@@ -443,7 +443,7 @@ void select()
         // SUB TRIM step control for changing selected channel (UP)
         if ((subTrimSelection % 1) == 0 )
         {
-          // Define max value for SUB TRIM
+          // Define the maximum SUB TRIM
           if ((subTrim[subTrimSelection / 1]) < SUB_TRIM_MAX)
           {
             // Define step value
@@ -456,10 +456,10 @@ void select()
       
       // MODEL NAME
       case 6:
-      // Initial value for MODEL NAME selection value
+      // Initial value for MODEL NAME selection
       if (modelNameSelection == 0xFF)
       {
-        // Only 2 characters
+        // Only first 2 characters
         if (menuSubActual < 2)
         {
           screen--;
@@ -484,7 +484,7 @@ void select()
       
       // EXPO
       case 7:
-      // Initial value for EXPO selection value
+      // Initial value for EXPO selection
       if (expoSelection == 0xFF)
       {
         // Only first 2 channels
@@ -513,7 +513,7 @@ void select()
       
       // DEFAULT
       default:
-      
+      // 7 to 1 MENU items
       if (menuSubActual > 1)
       {
         menuSubActual--;
