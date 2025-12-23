@@ -1,6 +1,6 @@
 
 //*********************************************************************************************************************
-// Macro for read pots, values, applying calibration and rules
+// Read pots, apply calibration, EPA, EXPO, SUB TRIM, REVERSE
 //*********************************************************************************************************************
 void read_pots()
 {
@@ -17,7 +17,7 @@ void read_pots()
     //if (pots[ch] > pot_calib_max[ch]) pots[ch] = pot_calib_max[ch];
     
     
-    // EPA check
+    // Use of EPA
     unsigned short left_epa_value = 0;
     unsigned short right_epa_value = 0;
     
@@ -45,7 +45,7 @@ void read_pots()
       
       value_pots = map(pots[ch], pot_calib_min[ch], pot_calib_mid[ch] - DEAD_ZONE, min_control_trim, mid_control_trim);
       
-      // EXPO
+      // Use of EXPO
       if (expo[ch] > 0) value_pots = calc_expo(mid_control_trim, value_pots, min_control_trim, expo[ch]);
       
     }
@@ -55,7 +55,7 @@ void read_pots()
       
       value_pots = map(pots[ch], pot_calib_mid[ch] + DEAD_ZONE, pot_calib_max[ch], mid_control_trim, max_control_trim);
       
-      // EXPO
+      // Use of EXPO
       if (expo[ch] > 0) value_pots = calc_expo(mid_control_trim, value_pots, max_control_trim, expo[ch]);
       
     }
