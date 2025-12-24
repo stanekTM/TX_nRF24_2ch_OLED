@@ -1,6 +1,6 @@
 
 //*********************************************************************************************************************
-// Drawing MODEL SELECT screen display
+// Print screen MODEL SELECT
 //*********************************************************************************************************************
 // This is the state machine, which will replace the do - while loop
 void draw_model_select_screen()

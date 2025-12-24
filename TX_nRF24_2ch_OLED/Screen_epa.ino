@@ -1,6 +1,6 @@
 
 //*********************************************************************************************************************
-// Drawing EPA screen display
+// Print screen EPA with real-time channels
 //*********************************************************************************************************************
 // This is the state machine, which will replace the do - while loop
 void draw_epa_screen()

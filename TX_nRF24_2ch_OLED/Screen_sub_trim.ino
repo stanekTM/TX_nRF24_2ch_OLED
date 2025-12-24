@@ -1,6 +1,6 @@
 
 //*********************************************************************************************************************
-// Drawing SUB TRIM screen display
+// Print screen SUB TRIM with real-time channels
 //*********************************************************************************************************************
 // This is the state machine, which will replace the do - while loop
 void draw_sub_trim_screen()

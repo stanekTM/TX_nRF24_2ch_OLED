@@ -1,6 +1,6 @@
 
 //*********************************************************************************************************************
-// Print calibration "MIN-MAX CALIBRATION" real time channels
+// Print screen MIN-MAX CALIBRATION with real-time channels
 //*********************************************************************************************************************
 void calibration_screen()
 {
@@ -65,7 +65,7 @@ void calibration_screen()
 }
 
 //*********************************************************************************************************************
-// Print calibration "CENTER CALIBRATION" real time channels
+// Print screen CENTER CALIBRATION with real-time channels
 //*********************************************************************************************************************
 void calib_center_screen()
 {
@@ -135,7 +135,7 @@ void calib_center_screen()
 }
 
 //*********************************************************************************************************************
-// Print message "SAVE DATA CALIBRATION"
+// Print screen SAVE DATA CALIBRATION message
 //*********************************************************************************************************************
 void calib_save_data_screen()
 {

@@ -33,13 +33,13 @@ void setup()
   pinMode(PIN_BUTTON_SELECT, INPUT_PULLUP);
   pinMode(PIN_BUTTON_EXIT, INPUT_PULLUP);
   
-  // LCD config with U8G2 library display init (mandatory)
-  //u8g2.setBusClock(800000); //max 800000
+  // OLED config
+  //u8g2.setBusClock(800000); // Max 800000
   u8g2.begin();
   //u8g2.setFlipMode(1);   
   //u8g2.setContrast(10);
   // Set default font type used for all display sessions (mandatory)
-  u8g2.setFont(u8g2_font_7x13_tr); // height 9 pixels (X11)
+  u8g2.setFont(u8g2_font_7x13_tr); // Height 9 pixels (X11)
   
   // Print boot screen
   u8g2.firstPage(); do {
@@ -52,8 +52,8 @@ void setup()
   
   delay(1000);
   
-  // If you hold down the EXIT button while turning on, the default memory data will be initialized
-  clear_data_screen(); // Print "CLEAR DATA?" screen
+  // If you hold down the EXIT button while powering on, you can clear/write the data to the default values
+  clear_data_screen(); // Print screen CLEAR DATA? message
   
   modelActual = stored_data_eeprom(255); // Reading selected model data from EEPROM
 }
@@ -63,7 +63,7 @@ void setup()
 //**************************************************************************************************************
 void loop()
 {
-  // If you hold down the SELECT button while turning on, the calibration procedure will start
+  // If you hold down the SELECT button while powering on, the calibration procedure will start
   if (calibStatus == 1 && read_button() == 2)
   {
     calibration();

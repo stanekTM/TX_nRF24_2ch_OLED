@@ -1,7 +1,8 @@
 
 //*********************************************************************************************************************
-// If you hold down the EXIT button while turning on, the default memory data will be initialized.
-// Will only write data settings to default (not clear calibration data)
+// Print screen CLEAR DATA? message
+// If you hold down the EXIT button while powering on, you can clear/write the data to the default values.
+// The calibration data will not be cleared.
 //*********************************************************************************************************************
 void clear_data_screen()
 {

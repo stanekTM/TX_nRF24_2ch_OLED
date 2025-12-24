@@ -1,6 +1,6 @@
 
 //*********************************************************************************************************************
-// Drawing REVERSE screen display
+// Print screen REVERSE with real-time channels
 //*********************************************************************************************************************
 // This is the state machine, which will replace the do - while loop
 void draw_reverse_screen()
