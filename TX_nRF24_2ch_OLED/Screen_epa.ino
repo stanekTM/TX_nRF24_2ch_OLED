@@ -96,20 +96,14 @@ void epa_screen()
     u8g2.print(word_buffer);
     
     
-    // Left/Right section start
-    int section_epa;
-    
     // Left section start
-    section_epa = i;
-    
     // EPA value
     u8g2.setCursor(6, 31 + (i * 26));
-    u8g2.print(epa[section_epa]);
+    u8g2.print(epa[i]);
     
-    
-    if (menuSubActual - 1 == section_epa)
+    if (i == menuSubActual - 1)
     {
-      if (epaSelection == section_epa)
+      if (epaSelection == i)
       {
         // Print "("
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
@@ -133,16 +127,13 @@ void epa_screen()
     
     
     // Right section start
-    section_epa = i + 2;
-    
     // EPA value
     u8g2.setCursor(103, 31 + (i * 26));
-    u8g2.print(epa[section_epa]);
+    u8g2.print(epa[i + 2]);
     
-    
-    if (menuSubActual - 1 == section_epa)
+    if (i + 2 == menuSubActual - 1)
     {
-      if (epaSelection == section_epa)
+      if (epaSelection == i + 2)
       {
         // Print "("
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));

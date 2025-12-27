@@ -32,6 +32,11 @@ unsigned char read_button()
       menuSubActual = 1;
       menuActual = 0;
       menuPage = 0;
+      
+      epaSelection = 0xFF;
+      subTrimSelection = 0xFF;
+      modelNameSelection = 0xFF;
+      expoSelection = 0xFF;
     }
   }
   
