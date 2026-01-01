@@ -74,6 +74,8 @@ void main_screen()
   
   if (millis() - rf_timeout > 1000) // If we lose RF data for 1 second
   {
+    telemetry_packet.rssi = 0;
+    
     // Print "off!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[5])));
     u8g2.setCursor(18, 22);

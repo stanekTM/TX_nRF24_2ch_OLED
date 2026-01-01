@@ -75,7 +75,6 @@ void loop()
   
   rc_packet.ch1 = pots_value[0]; // A0
   rc_packet.ch2 = pots_value[1]; // A1
-  telemetry_packet.rssi = 0;
   
   send_and_receive_data();
   
