@@ -33,10 +33,10 @@ void setup()
   pinMode(PIN_BUTTON_SELECT, INPUT_PULLUP);
   pinMode(PIN_BUTTON_EXIT, INPUT_PULLUP);
   
-  // OLED config
-  //u8g2.setBusClock(800000); // Max 800000
+  // OLED SSD1306 I2C config
   u8g2.begin();
-  //u8g2.setFlipMode(1);   
+  u8g2.setBusClock(1000000);
+  //u8g2.setFlipMode(1);
   //u8g2.setContrast(10);
   // Set default font type used for all display sessions (mandatory)
   u8g2.setFont(u8g2_font_7x13_tr); // Height 9 pixels (X11)

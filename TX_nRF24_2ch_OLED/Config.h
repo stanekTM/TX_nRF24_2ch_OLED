@@ -168,7 +168,7 @@ unsigned char menuPage      = 0; // For menu page
 unsigned char modelPage     = 0; // For model page
 
 //*********************************************************************************************************************
-// Config LCD display
+// OLED SSD1306 I2C config
 //*********************************************************************************************************************
 U8G2_SSD1306_128X64_NONAME_1_HW_I2C
 u8g2(U8G2_R0, U8X8_PIN_NONE);       // https://github.com/olikraus/u8g2/wiki/u8g2setupcpp#constructor-name
