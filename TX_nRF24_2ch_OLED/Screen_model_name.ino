@@ -30,6 +30,8 @@ void model_name_screen()
   char menu_buffer[7];
   char char_buffer[9];
   
+  read_pots(); // Reused for stable pots values
+  
   // Print "MODEL NAME"
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[5])));
   u8g2.setCursor(0, 9);

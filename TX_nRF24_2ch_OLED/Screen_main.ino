@@ -32,7 +32,7 @@ void main_screen()
   char msg_buffer[11];
   char menu_buffer[7];
   
-  read_pots(); // Macro again for stable pots value
+  read_pots(); // Reused for stable pots values
   
   // Drawing a vertical line
   //u8g2.drawVLine(74, 0, 10);

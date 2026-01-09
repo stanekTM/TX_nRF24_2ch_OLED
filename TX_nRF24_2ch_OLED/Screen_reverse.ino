@@ -31,7 +31,7 @@ void reverse_screen()
   char word_buffer[13];
   char char_buffer[9];
   
-  read_pots(); // Macro again for stable pots value
+  read_pots(); // Reused for stable pots values
   
   // Print "REVERSE"
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[2])));

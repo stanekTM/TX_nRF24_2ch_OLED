@@ -28,6 +28,8 @@ void model_select_screen()
 {
   char char_buffer[9]; // Set memory buffer for text strings
   
+  read_pots(); // Reused for stable pots values
+  
   // Print model name "XXXXX"
   u8g2.setCursor(0, 9);
   u8g2.print(modelName);

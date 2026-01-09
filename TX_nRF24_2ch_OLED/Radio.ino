@@ -25,13 +25,14 @@ unsigned long rf_timeout = 0;
 
 void send_and_receive_data()
 {
-  radio.write(&rc_packet, sizeof(rc_packet_size));
-  
-  if (radio.available())
+  if (radio.write(&rc_packet, sizeof(rc_packet_size)))
   {
-    radio.read(&telemetry_packet, sizeof(telemetry_packet_size));
-    
-    rf_timeout = millis();
+    if (radio.available())
+    {
+      radio.read(&telemetry_packet, sizeof(telemetry_packet_size));
+      
+      rf_timeout = millis();
+    }
   }
 }
  

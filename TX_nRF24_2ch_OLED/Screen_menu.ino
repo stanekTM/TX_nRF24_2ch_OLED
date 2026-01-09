@@ -30,7 +30,7 @@ void menu_screen()
   char menu_buffer[7];
   char char_buffer[9];
   
-  read_pots(); // Macro again for stable pots value
+  read_pots(); // Reused for stable pots values
   
   // Print model name "XXXXX"
   u8g2.setCursor(0, 9);

@@ -11,7 +11,7 @@ void calibration_screen()
   
   u8g2.firstPage(); do {
     
-    read_pots(); // Macro again for stable pots value
+    read_pots(); // Reused for stable pots values
     
     // Print "MIN-MAX"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[3])));
@@ -76,7 +76,7 @@ void calib_center_screen()
   
   u8g2.firstPage(); do {
     
-    read_pots(); // Macro again for stable pots value
+    read_pots(); // Reused for stable pots values
     
     // Print "CENTER"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[4])));
