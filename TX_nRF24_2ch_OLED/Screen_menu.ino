@@ -37,7 +37,7 @@ void menu_screen()
   u8g2.print(modelName);
   
   // Print number of which model in use
-  u8g2.setCursor(40, 9);
+  u8g2.setCursor(37, 9);
   u8g2.print(modelActual + 1);
   
   

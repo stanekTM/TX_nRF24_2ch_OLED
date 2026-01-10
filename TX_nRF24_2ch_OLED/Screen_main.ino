@@ -29,7 +29,7 @@ void main_screen()
   // Set memory buffer for text strings
   char word_buffer[13];
   char char_buffer[8];
-  char msg_buffer[11];
+  char msg_buffer[13];
   char menu_buffer[7];
   
   read_pots(); // Reused for stable pots values

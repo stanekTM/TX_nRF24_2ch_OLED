@@ -38,7 +38,7 @@ void model_name_screen()
   u8g2.print(menu_buffer);
   
   // Print number of which model in use
-  u8g2.setCursor(90, 9);
+  u8g2.setCursor(72, 9);
   u8g2.print(modelActual + 1);
   
   u8g2.drawHLine(0, 10, 128); // Drawing horizontal line under header

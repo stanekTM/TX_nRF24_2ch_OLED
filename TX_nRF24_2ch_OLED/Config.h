@@ -226,8 +226,8 @@ const char* const word_name[] PROGMEM = {
 //*********************************************************************************************************************
 // Array for single characters "char_buffer[12]"
 //*********************************************************************************************************************
-const char char_0[] PROGMEM = "Y";
-const char char_1[] PROGMEM = "N";
+const char char_0[] PROGMEM = "free";
+const char char_1[] PROGMEM = "free";
 const char char_2[] PROGMEM = "(";
 const char char_3[] PROGMEM = ")";
 const char char_4[] PROGMEM = "<";
@@ -255,7 +255,7 @@ const char* const one_char[] PROGMEM = {
 };
 
 //*********************************************************************************************************************
-// Array text strings for screen messages "msg_buffer[11]"
+// Array text strings for screen messages "msg_buffer[13]"
 //*********************************************************************************************************************
 const char message_0[] PROGMEM = "SAVE DATA";
 const char message_1[] PROGMEM = "CLEAR DATA?";
@@ -268,6 +268,8 @@ const char message_7[] PROGMEM = "Don't";
 const char message_8[] PROGMEM = "Move the pots";
 const char message_9[] PROGMEM = "UP";
 const char message_10[] PROGMEM = "DOWN";
+const char message_11[] PROGMEM = "YES";
+const char message_12[] PROGMEM = "NO";
 
 const char* const message[] PROGMEM = {
   message_0,
@@ -280,6 +282,8 @@ const char* const message[] PROGMEM = {
   message_7,
   message_8,
   message_9,
-  message_10
+  message_10,
+  message_11,
+  message_12
 };
  

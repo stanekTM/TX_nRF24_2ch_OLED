@@ -5,7 +5,7 @@
 void calibration_screen()
 {
   // Set memory buffer for text strings
-  char msg_buffer[11];
+  char msg_buffer[13];
   char word_buffer[13];
   char char_buffer[8];
   
@@ -43,7 +43,7 @@ void calibration_screen()
     
     // Print "Move the pots"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[8])));
-    u8g2.setCursor(20, 44);
+    u8g2.setCursor(0, 44);
     u8g2.print(msg_buffer);
     
     // Print "SAVE DATA"
@@ -70,7 +70,7 @@ void calibration_screen()
 void calib_center_screen()
 {
   // Set memory buffer for text strings
-  char msg_buffer[11];
+  char msg_buffer[13];
   char word_buffer[13];
   char char_buffer[8];
   
@@ -139,13 +139,13 @@ void calib_center_screen()
 //*********************************************************************************************************************
 void calib_save_data_screen()
 {
-  char msg_buffer[11]; // Set memory buffer for text strings
+  char msg_buffer[13]; // Set memory buffer for text strings
   
   u8g2.firstPage(); do {
     
     // Print "SAVE DATA"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[0])));
-    u8g2.setCursor(33, 20);
+    u8g2.setCursor(25, 20);
     u8g2.print(msg_buffer);
     
     // Print "CALIBRATION"

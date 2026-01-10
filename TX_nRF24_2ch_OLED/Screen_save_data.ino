@@ -9,7 +9,7 @@ void save_data_screen()
   
   u8g2.firstPage(); do {
     
-    char msg_buffer[11]; // Set memory buffer for text strings
+    char msg_buffer[13]; // Set memory buffer for text strings
     
     // Print "SAVE DATA"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[0])));
@@ -21,7 +21,7 @@ void save_data_screen()
     u8g2.print(modelName);
     
     // Print number of which model in use
-    u8g2.setCursor(75, 40);
+    u8g2.setCursor(63, 40);
     u8g2.print(modelActual + 1);
     
   } while (u8g2.nextPage());
