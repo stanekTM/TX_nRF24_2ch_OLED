@@ -38,38 +38,38 @@ void main_screen()
   //u8g2.drawVLine(74, 0, 10);
   
   // Drawing a horizontal line
-  u8g2.drawHLine(74, 10, 54);
+  u8g2.drawHLine(0, 10, 54);
   u8g2.drawHLine(0, 27, 128);
   
   
   // Print "TX"
   strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[2])));
-  u8g2.setCursor(77, 9);
+  u8g2.setCursor(0, 9);
   u8g2.print(word_buffer);
   
   if (tx_low_batt)
   {
     // Print "low!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[6])));
-    u8g2.setCursor(95, 9);
+    u8g2.setCursor(15, 9);
     u8g2.print(msg_buffer);
   }
   else
   {
     // Print TX battery voltage
-    u8g2.setCursor(93, 9);
+    u8g2.setCursor(15, 9);
     u8g2.print(tx_batt_volt);
     
     // Print "V"
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[11])));
-    u8g2.setCursor(122, 9);
+    u8g2.setCursor(44, 9);
     u8g2.print(char_buffer);
   }
   
   
   // Print "RX"
   strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[3])));
-  u8g2.setCursor(0, 22);
+  u8g2.setCursor(78, 9);
   u8g2.print(word_buffer);
   
   if (millis() - rf_timeout > 1000) // If we lose RF data for 1 second
@@ -78,37 +78,38 @@ void main_screen()
     
     // Print "off!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[5])));
-    u8g2.setCursor(18, 22);
+    u8g2.setCursor(93, 9);
     u8g2.print(msg_buffer);
   }
   else if (rx_low_batt)
   {
     // Print "low!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[6])));
-    u8g2.setCursor(18, 22);
+    u8g2.setCursor(93, 9);
     u8g2.print(msg_buffer);
   }
   else
   {
     // Print RX battery voltage
-    u8g2.setCursor(16, 22);
+    u8g2.setCursor(93, 9);
     u8g2.print(rx_batt_volt);
     
     // Print "V"
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[11])));
-    u8g2.setCursor(45, 22);
+    u8g2.setCursor(122, 9);
     u8g2.print(char_buffer);
   }
   
   
   // Print number of which model in use
-  u8g2.setCursor(115, 26);
+  u8g2.setCursor(62, 26);
   u8g2.print(modelActual + 1);
   
-  // Print model name "XXXXX"
-  u8g2.setFont(u8g2_font_VCR_OSD_tr); // Height 15 pixels (dafont)
+  // Height 15 pixels (dafont)
+  u8g2.setFont(u8g2_font_VCR_OSD_tr);
   
-  u8g2.setCursor(54, 27);
+  // Print model name "XXXXX"
+  u8g2.setCursor(0, 27);
   u8g2.print(modelName);
   
   
@@ -154,21 +155,21 @@ void main_screen()
     
     //Serial.println(val_center);
     
-    
-    u8g2.setFont(u8g2_font_5x7_tr); // Height 6 pixels (X11)
+    // Height 6 pixels (X11)
+    u8g2.setFont(u8g2_font_5x7_tr);
     
     // Print "RSSI"
     strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[4])));
-    u8g2.setCursor(0, 6);
+    u8g2.setCursor(87, 21);
     u8g2.print(word_buffer);
     
-    // Print RSSI in %
-    u8g2.setCursor(22, 6);
+    // Print RSSI value in %
+    u8g2.setCursor(108, 21);
     u8g2.print(telemetry_packet.rssi);
     
     // Print "%"
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
-    u8g2.setCursor(39, 6);
+    u8g2.setCursor(124, 21);
     u8g2.print(char_buffer);
     
     
@@ -210,9 +211,10 @@ void main_screen()
     
     //u8g2.drawHLine(0, 10 + (i * 17), 128);
     
-    // Print channel items name "CH1 and CH2"
-    u8g2.setFont(u8g2_font_7x13_tr); // Height 9 pixels (X11)
+    // Height 9 pixels (X11)
+    u8g2.setFont(u8g2_font_7x13_tr);
     
+    // Print channel items name "CH1 and CH2"
     strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[i])));
     u8g2.setCursor(0, 42 + (i * 20));
     u8g2.print(word_buffer);
