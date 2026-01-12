@@ -97,18 +97,18 @@ void calib_save_data_eeprom()
   {
     // MIN
     posEeprom = 1000 + (ch * 4);
-    EEPROMUpdateInt(posEeprom, pot_calib_min[ch]);
+    EEPROMUpdateInt(posEeprom, min_pots_calib[ch]);
     
     // MAX
     posEeprom += 2;
-    EEPROMUpdateInt(posEeprom, pot_calib_max[ch]);
+    EEPROMUpdateInt(posEeprom, max_pots_calib[ch]);
   }
   
   // Save CENTER
   for (int ch = 0; ch < CHANNELS; ch++)
   {
     posEeprom = 1016 + (ch * 2);
-    EEPROMUpdateInt(posEeprom, pot_calib_mid[ch]);
+    EEPROMUpdateInt(posEeprom, mid_pots_calib[ch]);
   }
 }
 
@@ -165,18 +165,18 @@ unsigned char stored_data_eeprom(unsigned char mod)
   {
     // Read MIN calibration values for channels
     posEeprom = 1000 + (i * 4);
-    pot_calib_min[i] = EEPROMReadInt(posEeprom);
+    min_pots_calib[i] = EEPROMReadInt(posEeprom);
     
     // Read MAX calibration values for channels
     posEeprom += 2;
-    pot_calib_max[i] = EEPROMReadInt(posEeprom);
+    max_pots_calib[i] = EEPROMReadInt(posEeprom);
   }
   
   // Read CENTER calibration values from EEPROM
   for (int i = 0; i < CHANNELS; i++)
   {
     posEeprom = 1016 + (i * 2);
-    pot_calib_mid[i] = EEPROMReadInt(posEeprom);
+    mid_pots_calib[i] = EEPROMReadInt(posEeprom);
   }
   
   return mod;

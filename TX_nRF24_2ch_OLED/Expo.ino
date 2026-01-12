@@ -4,9 +4,9 @@
 // Y = X * EXPO((X - EPA) / dv))
 // Proper dv value : 300 ~ 700
 //*********************************************************************************************************************
-int calc_expo(unsigned short trim_mid, unsigned short value, unsigned short in_max, unsigned short dv)
+int calc_expo(unsigned short mid_value, unsigned short value, unsigned short max_value, unsigned short dv)
 {
-  if (value == trim_mid)
+  if (value == mid_value)
   {
     return value;
   }
@@ -20,18 +20,22 @@ int calc_expo(unsigned short trim_mid, unsigned short value, unsigned short in_m
   
   dv = map(dv, 1, 9, 300, 700);
   
-  if (value > trim_mid)
+  if (value > mid_value)
   {
-    value = (value - trim_mid) * exp((((double)value - trim_mid) - (in_max - trim_mid)) / dv) + trim_mid;
+    value = (value - mid_value) * exp((((double)value - mid_value) - (max_value - mid_value)) / dv) + mid_value;
+
     return value;
   }
   else
   {
-    unsigned short trim_value = trim_mid - MID_CONTROL_VAL;
+    unsigned short trim_value = mid_value - MID_CONTROL_VAL;
+
     value = (MAX_CONTROL_VAL + trim_value) - value + (MIN_CONTROL_VAL + trim_value);
-    in_max = (MAX_CONTROL_VAL + trim_value) - in_max + (MIN_CONTROL_VAL + trim_value);
     
-    value = (value - trim_mid) * exp((((double)value - trim_mid) - (in_max - trim_mid)) / dv) + trim_mid;
+    max_value = (MAX_CONTROL_VAL + trim_value) - max_value + (MIN_CONTROL_VAL + trim_value);
+    
+    value = (value - mid_value) * exp((((double)value - mid_value) - (max_value - mid_value)) / dv) + mid_value;
+
     return (MAX_CONTROL_VAL + trim_value) - value + (MIN_CONTROL_VAL + trim_value);
   }
 }

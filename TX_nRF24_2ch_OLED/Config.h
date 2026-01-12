@@ -125,25 +125,25 @@ telemetry_packet_size telemetry_packet;
 //*********************************************************************************************************************
 // Analog reading parameters for calibration
 //*********************************************************************************************************************
-unsigned short int pots[CHANNELS];
-unsigned short int pots_value[CHANNELS];
-unsigned short int pot_calib_min[] = {0, 0};
-unsigned short int pot_calib_mid[] = {512, 512};
-unsigned short int pot_calib_max[] = {1023, 1023};
+unsigned int raw_pots;
+unsigned int pots_value[] = {1500, 1500};
+unsigned int min_pots_calib[] = {0, 0};
+unsigned int mid_pots_calib[] = {512, 512};
+unsigned int max_pots_calib[] = {1023, 1023};
 
 //*********************************************************************************************************************
 // Setting control output values
 //*********************************************************************************************************************
-unsigned char epa[4];                       // EPA value array
-unsigned char epaSelection = 0xFF;          // Default value for EPA selection
+short epa[4];                           // EPA value array
+unsigned char epaSelection = 0xFF;     // Default value for EPA selection
 
-short subTrim[2];                           // SUB TRIM channel array
-unsigned short int subTrimSelection = 0xFF; // Default value for SUB TRIM
+short subTrim[2];                       // SUB TRIM channel array
+unsigned char subTrimSelection = 0xFF; // Default value for SUB TRIM
 
-unsigned char expo[2];                      // EXPO value array
-unsigned char expoSelection = 0xFF;         // Default value for EXPO selection
+short expo[2];                          // EXPO value array
+unsigned char expoSelection = 0xFF;    // Default value for EXPO selection
 
-unsigned char reverse;                      // Reading bit status
+unsigned char reverse;                 // Reading bit status
 
 //*********************************************************************************************************************
 // MODEL NAME

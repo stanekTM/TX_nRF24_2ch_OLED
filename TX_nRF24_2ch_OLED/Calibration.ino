@@ -8,22 +8,21 @@ void calibration()
   while (calibStatus == 1)
   {
     // Get MIN and MAX value for each channel
-    unsigned int raw_pots;
-    
+
     for (int ch = 0; ch < CHANNELS; ch++)
     {
       raw_pots = analogRead(ch);
       
       // MIN
-      if (raw_pots < pot_calib_min[ch])
+      if (raw_pots < min_pots_calib[ch])
       {
-        pot_calib_min[ch] = raw_pots;
+        min_pots_calib[ch] = raw_pots;
       }
       
       // MAX
-      if (raw_pots > pot_calib_max[ch])
+      if (raw_pots > max_pots_calib[ch])
       {
-        pot_calib_max[ch] = raw_pots;
+        max_pots_calib[ch] = raw_pots;
       }
     }
     
@@ -53,7 +52,7 @@ void calibration()
     // Get CENTER value for each channel
     for (int ch = 0; ch < CHANNELS; ch++)
     {
-      pot_calib_mid[ch] = analogRead(ch);
+      mid_pots_calib[ch] = analogRead(ch);
     }
     
     calib_center_screen(); // Print "CENTER CALIBRATION" in real time
