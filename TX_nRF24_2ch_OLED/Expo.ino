@@ -28,15 +28,13 @@ int calc_expo(unsigned short mid_value, unsigned short value, unsigned short max
   }
   else
   {
-    unsigned short trim_value = mid_value - MID_CONTROL_VAL;
-
-    value = (MAX_CONTROL_VAL + trim_value) - value + (MIN_CONTROL_VAL + trim_value);
+    value = (MAX_CONTROL_VAL + MID_CONTROL_VAL) - value + (MIN_CONTROL_VAL + MID_CONTROL_VAL);
     
-    max_value = (MAX_CONTROL_VAL + trim_value) - max_value + (MIN_CONTROL_VAL + trim_value);
+    max_value = (MAX_CONTROL_VAL + MID_CONTROL_VAL) - max_value + (MIN_CONTROL_VAL + MID_CONTROL_VAL);
     
     value = (value - mid_value) * exp((((double)value - mid_value) - (max_value - mid_value)) / dv) + mid_value;
 
-    return (MAX_CONTROL_VAL + trim_value) - value + (MIN_CONTROL_VAL + trim_value);
+    return (MAX_CONTROL_VAL + MID_CONTROL_VAL) - value + (MIN_CONTROL_VAL + MID_CONTROL_VAL);
   }
 }
  
