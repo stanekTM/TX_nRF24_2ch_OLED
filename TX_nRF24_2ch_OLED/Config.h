@@ -134,13 +134,13 @@ unsigned int max_pots_calib[] = {1023, 1023};
 //*********************************************************************************************************************
 // Setting control output values
 //*********************************************************************************************************************
-short epa[4];                           // EPA value array
+short epa[4];                          // EPA value array
 unsigned char epaSelection = 0xFF;     // Default value for EPA selection
 
-short subTrim[2];                       // SUB TRIM channel array
+short subTrim[2];                      // SUB TRIM channel array
 unsigned char subTrimSelection = 0xFF; // Default value for SUB TRIM
 
-short expo[2];                          // EXPO value array
+short expo[2];                         // EXPO value array
 unsigned char expoSelection = 0xFF;    // Default value for EXPO selection
 
 unsigned char reverse;                 // Reading bit status
