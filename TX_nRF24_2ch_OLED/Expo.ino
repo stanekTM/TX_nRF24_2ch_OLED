@@ -28,7 +28,7 @@ int calc_expo(unsigned short mid_value, unsigned short value, unsigned short max
   }
   else
   {
-    unsigned short trim_val = 6;
+    unsigned short trim_val = mid_value - MID_CONTROL_VAL;
     
     value = (MAX_CONTROL_VAL + trim_val) - value + (MIN_CONTROL_VAL + trim_val);
     max_value = (MAX_CONTROL_VAL + trim_val) - max_value + (MIN_CONTROL_VAL + trim_val);
