@@ -118,42 +118,42 @@ void main_screen()
   {
     u8g2.drawFrame(23, 36 + (i * 20), 105, 8); // Draw boxes/frames for every channel
     
-    u8g2.drawVLine(75, 34 + (i * 20), 9); // Drawing vertical middle/center separation line
+    u8g2.drawVLine(75, 37 + (i * 20), 6); // Drawing vertical middle/center separation line
     
-    int val_center;
     
+    int center_val;
+    
+    // Drawing a vertical line SUB TRIM
     if (bitRead(reverse, i) == 1)
     {
-      val_center = map(subTrim[i], -136, 126, 65, 39);
+      center_val = map(subTrim[i], -136, 126, 65, 39);
       
-      u8g2.drawVLine(val_center + 23, 37 + (i * 20), 6);
+      u8g2.drawVLine(center_val + 23, 37 + (i * 20), 6);
     }
     else
     {
-      val_center = map(subTrim[i], -136, 126, 39, 65);
+      center_val = map(subTrim[i], -136, 126, 39, 65);
       
-      u8g2.drawVLine(val_center + 23, 37 + (i * 20), 6);
+      u8g2.drawVLine(center_val + 23, 37 + (i * 20), 6);
     }
     
-    // Define value bar reference
-    int val_bar;
     
     // Value bars subdivision (pots value / 2)
     // Value SUB TRIM  1=52, 10=53, 50=57, 100=62, 125=65
     // Value SUB TRIM -1=51, 10=50, 50=46, 100=41, 125=39
-    val_bar = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 104);
+    int bar_val = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 104);
     
     // Drawing cursor in every channel bar
-    if (val_bar < val_center)
+    if (bar_val < center_val)
     {
-      u8g2.drawBox(24 + val_bar, 37 + (i * 20), val_center - val_bar, 6);
+      u8g2.drawBox(24 + bar_val, 37 + (i * 20), center_val - bar_val, 6);
     }
-    else if (val_bar > val_center)
+    else if (bar_val > center_val)
     {
-      u8g2.drawBox(val_center + 23, 37 + (i * 20), val_bar - val_center, 6);
+      u8g2.drawBox(center_val + 23, 37 + (i * 20), bar_val - center_val, 6);
     }
     
-    //Serial.println(val_center);
+    //Serial.println(center_val);
     
     // Height 6 pixels (X11)
     u8g2.setFont(u8g2_font_5x7_tr);
@@ -186,12 +186,12 @@ void main_screen()
     // Print SUB TRIM value
     if (subTrim[i] < 0)
     {
-      u8g2.setCursor(73, 35 + (i * 20));
+      u8g2.setCursor(66, 35 + (i * 20));
       u8g2.print(subTrim[i]);
     }
     else if (subTrim[i] > 0)
     {
-      u8g2.setCursor(78, 35 + (i * 20));
+      u8g2.setCursor(71, 35 + (i * 20));
       u8g2.print(subTrim[i]);
     }
     
