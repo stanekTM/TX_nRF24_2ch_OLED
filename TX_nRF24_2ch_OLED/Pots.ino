@@ -8,6 +8,10 @@ void read_pots()
   {
     raw_pots = analogRead(i);
     
+    // Range correction
+    if (raw_pots < min_pots_calib[i]) raw_pots = min_pots_calib[i];
+    if (raw_pots > max_pots_calib[i]) raw_pots = max_pots_calib[i];
+    
     int mid_sub_trim = MID_CONTROL_VAL + subTrim[i];
     int min_epa_val = MID_CONTROL_VAL - (5 * epa[i]);     // Minimum EPA CH1 and CH2 values (1000us to 1500us)
     int max_epa_val = MID_CONTROL_VAL + (5 * epa[i + 2]); // Maximum EPA CH1 and CH2 values (1500us to 2000us)
@@ -44,6 +48,10 @@ void read_pots()
     {
       pots_value[i] = (MIN_CONTROL_VAL + MAX_CONTROL_VAL) - pots_value[i];
     }
+    
+    // Range correction
+    if (pots_value[i] < MIN_CONTROL_VAL) pots_value[i] = MIN_CONTROL_VAL;
+    if (pots_value[i] > MAX_CONTROL_VAL) pots_value[i] = MAX_CONTROL_VAL;
   }
 }
  
