@@ -42,7 +42,7 @@ void sub_trim_screen()
   
   
   // Drawing only first 2 channels
-  unsigned char temp_Counter = 0;
+  unsigned char temp_counter = 0;
   
   for (int i = 0; i < CHANNELS; i++)
   {
@@ -65,9 +65,9 @@ void sub_trim_screen()
     u8g2.print(word_buffer);
     
     
-    if (menuSubActual - 1 == temp_Counter)
+    if (menuSubActual - 1 == temp_counter)
     {
-      if (subTrimSelection == temp_Counter)
+      if (subTrimSelection == temp_counter)
       {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
@@ -93,7 +93,7 @@ void sub_trim_screen()
       }
     }
     
-    temp_Counter++;
+    temp_counter++;
   }
 }
  

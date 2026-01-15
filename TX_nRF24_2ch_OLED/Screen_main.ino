@@ -121,7 +121,7 @@ void main_screen()
     u8g2.drawVLine(75, 37 + (i * 20), 6); // Drawing vertical middle/center separation line
     
     
-    int center_val;
+    int center_val = 0;
     
     // Drawing a vertical line SUB TRIM
     if (bitRead(reverse, i) == 1)

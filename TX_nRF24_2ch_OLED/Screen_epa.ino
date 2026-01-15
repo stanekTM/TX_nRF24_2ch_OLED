@@ -48,7 +48,7 @@ void epa_screen()
   u8g2.drawHLine(0, 10, 128); // Drawing horizontal line under header
   
   
-  for (int i = 0; i < 2; i++)
+  for (int i = 0; i < CHANNELS; i++)
   {
     // Print channel items name "CH1 and CH2"
     strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[i])));

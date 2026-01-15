@@ -8,7 +8,7 @@ void clear_data_screen()
 {
   if (digitalRead(PIN_BUTTON_EXIT) == LOW)
   {
-    bool isWait = true;
+    bool is_wait = true;
     
     // Set memory buffer for text strings
     char msg_buffer[13];
@@ -54,18 +54,18 @@ void clear_data_screen()
     } while (u8g2.nextPage());
     
     
-    while (isWait)
+    while (is_wait)
     {
       switch (read_button())
       {
         // Button DOWN
         case 3:
-        isWait = false;
+        is_wait = false;
         break;
         
         // Button UP
         case 1:
-        isWait = false;
+        is_wait = false;
         
         clear_data_eeprom(); // Clear EEPROM and, if necessary, set default parameters
         delay(2000);
