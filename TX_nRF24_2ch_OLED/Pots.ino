@@ -16,7 +16,7 @@ void read_pots()
     // Convert analog value to pots value
     if (raw_pots < (mid_pots_calib[ch] - DEAD_ZONE))
     {
-      pots_value[ch] = map(raw_pots, min_pots_calib[ch], mid_pots_calib[ch] - DEAD_ZONE, min_epa_val/*1000*/, mid_sub_trim);
+      pots_value[ch] = map(raw_pots, min_pots_calib[ch], mid_pots_calib[ch] - DEAD_ZONE, min_epa_val/*1000*/, mid_sub_trim/*1500*/);
       
       // Use of EXPO
       if (expo[ch] > 0)
@@ -26,7 +26,7 @@ void read_pots()
     }
     else if (raw_pots > (mid_pots_calib[ch] + DEAD_ZONE))
     {
-      pots_value[ch] = map(raw_pots, mid_pots_calib[ch] + DEAD_ZONE, max_pots_calib[ch], mid_sub_trim, max_epa_val/*2000*/);
+      pots_value[ch] = map(raw_pots, mid_pots_calib[ch] + DEAD_ZONE, max_pots_calib[ch], mid_sub_trim/*1500*/, max_epa_val/*2000*/);
       
       // Use of EXPO
       if (expo[ch] > 0)
