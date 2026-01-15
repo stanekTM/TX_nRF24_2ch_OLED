@@ -21,7 +21,7 @@ void read_pots()
       // Use of EXPO
       if (expo[i] > 0)
       {
-        pots_value[i] = calc_expo(mid_sub_trim, pots_value[i], MIN_CONTROL_VAL, expo[i]);
+        pots_value[i] = calc_expo(mid_sub_trim, pots_value[i], min_epa_val, expo[i]);
       }
     }
     else if (raw_pots > (mid_pots_calib[i] + DEAD_ZONE))
@@ -31,12 +31,12 @@ void read_pots()
       // Use of EXPO
       if (expo[i] > 0)
       {
-        pots_value[i] = calc_expo(mid_sub_trim, pots_value[i], MAX_CONTROL_VAL, expo[i]);
+        pots_value[i] = calc_expo(mid_sub_trim, pots_value[i], max_epa_val, expo[i]);
       }
     }
     else
     {
-      pots_value[i] = mid_sub_trim;
+      pots_value[i] = mid_sub_trim/*1500*/;
     }
     
     // Check REVERSE and applying REVERSE value if necessary
