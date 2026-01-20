@@ -121,6 +121,8 @@ void main_screen()
     u8g2.drawVLine(75, 37 + (i * 20), 6); // Drawing vertical middle/center separation line
     
     
+    /*
+    // Bar version 1
     int center_val = 0;
     
     // Drawing a vertical line SUB TRIM
@@ -137,23 +139,35 @@ void main_screen()
       u8g2.drawVLine(center_val + 23, 37 + (i * 20), 6);
     }
     
-    
     // Value bars subdivision (pots value / 2)
-    // Value SUB TRIM  1=52, 10=53, 50=57, 100=62, 125=65
-    // Value SUB TRIM -1=51, 10=50, 50=46, 100=41, 125=39
     int bar_val = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 104);
     
     // Drawing cursor in every channel bar
-    if (bar_val < center_val)
-    {
-      u8g2.drawBox(24 + bar_val, 37 + (i * 20), center_val - bar_val, 6);
-    }
-    else if (bar_val > center_val)
-    {
-      u8g2.drawBox(center_val + 23, 37 + (i * 20), bar_val - center_val, 6);
-    }
+    if (bar_val < center_val) u8g2.drawBox(24 + bar_val, 37 + (i * 20), center_val - bar_val, 6);
     
-    //Serial.println(center_val);
+    else if (bar_val > center_val) u8g2.drawBox(center_val + 23, 37 + (i * 20), bar_val - center_val, 6);
+    
+    // End of bar version 1
+    */
+    
+    /*
+    // Bar version 2
+    // Value bars subdivision (pots value / 2)
+    int bar_val = map(pots_value[i] - subTrim[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 104);
+    bar_val = constrain(bar_val, 0, 104);
+    
+    // Drawing cursor in every channel bar
+    if (bar_val < 52) u8g2.drawBox(24 + bar_val, 37 + (i * 20), 52 - bar_val, 6);
+    
+    else if (bar_val > 52) u8g2.drawBox(76, 37 + (i * 20), bar_val - 52, 6);
+    
+    // End of bar version 2
+    */
+    
+    
+    // Bar version 3
+    u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 24, 125), 37 + (i * 20), 3, 6);
+    
     
     // Height 6 pixels (X11)
     u8g2.setFont(u8g2_font_5x7_tr);
@@ -191,7 +205,7 @@ void main_screen()
     }
     else if (subTrim[i] > 0)
     {
-      u8g2.setCursor(71, 35 + (i * 20));
+      u8g2.setCursor(73, 35 + (i * 20));
       u8g2.print(subTrim[i]);
     }
     

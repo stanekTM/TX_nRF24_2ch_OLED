@@ -118,9 +118,9 @@ telemetry_packet_size telemetry_packet;
 //*********************************************************************************************************************
 // Control range value
 //*********************************************************************************************************************
-#define MIN_CONTROL_VAL  1000
+#define MIN_CONTROL_VAL  900
 #define MID_CONTROL_VAL  1500
-#define MAX_CONTROL_VAL  2000
+#define MAX_CONTROL_VAL  2100
 
 //*********************************************************************************************************************
 // Analog reading parameters for calibration

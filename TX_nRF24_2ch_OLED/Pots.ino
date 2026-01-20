@@ -8,8 +8,8 @@ void read_pots()
   {
     raw_pots = analogRead(i);
     
-    int min_epa_val = map(epa[i],     EPA_MAX, 0,  900, MID_CONTROL_VAL); // epa[0], epa[1]
-    int max_epa_val = map(epa[i + 2], EPA_MAX, 0, 2100, MID_CONTROL_VAL); // epa[2], epa[3]
+    int min_epa_val = map(epa[i],     EPA_MAX, 0, MIN_CONTROL_VAL, MID_CONTROL_VAL); // epa[0], epa[1]
+    int max_epa_val = map(epa[i + 2], EPA_MAX, 0, MAX_CONTROL_VAL, MID_CONTROL_VAL); // epa[2], epa[3]
     
     // Convert analog value to pots value
     if (raw_pots < mid_pots_calib[i] - DEAD_ZONE)
