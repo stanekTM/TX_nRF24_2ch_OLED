@@ -106,7 +106,7 @@ telemetry_packet_size telemetry_packet;
 // Config global parameters TX
 //*********************************************************************************************************************
 #define DEAD_ZONE                 10   // Dead zone bar center value of poor quality joysticks
-#define EPA_MAX                   100  // Maximum EPA value
+#define EPA_MAX                   120  // Maximum EPA value
 #define SUB_TRIM_MAX              100  // Maximum SUB TRIM value
 #define CHANNELS                  2    // Number of channels
 
