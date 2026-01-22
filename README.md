@@ -9,8 +9,8 @@ This RC transmitter works with RC receiver from my repository [**RX_nRF24_Motor_
 Thank you to the original authors "Gabapentin" [Arduino-RC-6CH-Radio-control](https://github.com/Gabapentin/Arduino-RC-6CH-Radio-control) and "doohans" [arduino_surface_TX_4ch](https://github.com/doohans/arduino_surface_TX_4ch) for code inspiration.
 
 ## The firmware includes
-* Two proportional channels 900us -> 2100us
-* Adjustable left and right endpoints 0 -> 120% (+-600us)
+* Two proportional channels 1000us -> 2000us
+* Adjustable left and right endpoints 0 -> 100% (+-500us)
 * Adjustable sub-trims +-100us
 * Adjustable exponential curves in steps 1 -> 9
 * Channel reverse
