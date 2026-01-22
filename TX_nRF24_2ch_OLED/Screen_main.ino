@@ -118,50 +118,34 @@ void main_screen()
   {
     u8g2.drawFrame(23, 36 + (i * 20), 105, 8); // Draw boxes/frames for every channel
     
-    u8g2.drawVLine(75, 37 + (i * 20), 6); // Drawing vertical middle/center separation line
+    u8g2.drawVLine(75, 37 + (i * 20), 6); // Drawing a vertical middle separation line
     
-    /*
-    // Bar version 1
+    
+    // Bar version 1 (with sub-trim shifting)
     int center_val = 0;
     
     // Drawing a vertical line SUB TRIM
     if (bitRead(reverse, i) == 1)
     {
-      center_val = map(subTrim[i], -136, 126, 65, 39);
-      
-      u8g2.drawVLine(center_val + 23, 37 + (i * 20), 6);
+      center_val = map(subTrim[i], -100, 100, 61, 41);
     }
     else
     {
-      center_val = map(subTrim[i], -136, 126, 39, 65);
-      
-      u8g2.drawVLine(center_val + 23, 37 + (i * 20), 6);
+      center_val = map(subTrim[i], -100, 100, 41, 61);
     }
     
-    // Value bars subdivision (pots value / 2)
+    u8g2.drawVLine(center_val + 24, 37 + (i * 20), 6); // Drawing a vertical line with a subtrim value
+    
     int bar_val = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 104);
     
     // Drawing cursor in every channel bar
     if (bar_val < center_val) u8g2.drawBox(24 + bar_val, 37 + (i * 20), center_val - bar_val, 6);
     
-    else if (bar_val > center_val) u8g2.drawBox(center_val + 23, 37 + (i * 20), bar_val - center_val, 6);
-    
-    // End of bar version 1
-    */
-    
-    // Bar version 2
-    int bar_val = map(pots_value[i] - subTrim[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 104);
-    
-    // Drawing cursor in every channel bar
-    if (bar_val < 52) u8g2.drawBox(24 + bar_val, 37 + (i * 20), 52 - bar_val, 6);
-    
-    else if (bar_val > 52) u8g2.drawBox(76, 37 + (i * 20), bar_val - 52, 6);
-    
-    // End of bar version 2
+    else if (bar_val > center_val) u8g2.drawBox(center_val + 24, 37 + (i * 20), bar_val - center_val, 6);
     
     
-    // Bar version 3
-    //u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 24, 125), 37 + (i * 20), 3, 6);
+    // Bar version 2 (sliding rectangle)
+    //u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 24, 124), 37 + (i * 20), 3, 6);
     
     
     // Height 6 pixels (X11)
