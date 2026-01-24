@@ -8,10 +8,13 @@ void read_pots()
   {
     raw_pots = analogRead(i);
     
-    int min_epa_val = (1500 - (epa[i]     * 5)) + subTrim[i]; // epa[0], epa[1] 1000us to 1500us
-    int max_epa_val = (1500 + (epa[i + 2] * 5)) + subTrim[i]; // epa[2], epa[3] 2000us to 1500us
-    
     int mid_epa_val = MID_CONTROL_VAL + subTrim[i];
+    
+    // epa[0], epa[1] 1000us to 1500us
+    int min_epa_val = map((1500 - (epa[i] * 5)), 1000, 1500, 1000, 1500 + subTrim[i]);
+    
+    // epa[2], epa[3] 2000us to 1500us
+    int max_epa_val = map((1500 + (epa[i + 2] * 5)), 2000, 1500, 2000, 1500 + subTrim[i]);
     
     // Convert analog value to pots value
     if (raw_pots < mid_pots_calib[i] - DEAD_ZONE)
@@ -32,9 +35,6 @@ void read_pots()
     {
       pots_value[i] = mid_epa_val;
     }
-    
-    // Use SUB TRIM and limit to 1000us to 2000us
-    pots_value[i] = constrain(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
     
     // Check REVERSE and applying REVERSE value if necessary
     if (bitRead(reverse, i) == 1) pots_value[i] = (MIN_CONTROL_VAL + MAX_CONTROL_VAL) - pots_value[i];
