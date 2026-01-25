@@ -45,12 +45,12 @@ void setup()
   u8g2.firstPage(); do {
     
     // Print version string
-    u8g2.setCursor(0, 28);
+    u8g2.setCursor(10, 28);
     u8g2.print(fw_version);
     
   } while (u8g2.nextPage());
   
-  delay(1000);
+  delay(1500);
   
   // If you hold down the EXIT button while powering on, you can clear/write the data to the default values
   clear_data_screen(); // Print screen CLEAR DATA? message
