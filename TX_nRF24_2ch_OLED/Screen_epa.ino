@@ -99,7 +99,7 @@ void epa_screen()
     // Left section start
     // EPA value
     u8g2.setCursor(6, 31 + (i * 26));
-    u8g2.print(epa[i]);
+    u8g2.print(epa[i]); // epa[0], epa[1]
     
     if (i == menuSubActual - 1)
     {
@@ -129,7 +129,7 @@ void epa_screen()
     // Right section start
     // EPA value
     u8g2.setCursor(103, 31 + (i * 26));
-    u8g2.print(epa[i + 2]);
+    u8g2.print(epa[i + 2]); // epa[2], epa[3]
     
     if (i + 2 == menuSubActual - 1)
     {
