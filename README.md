@@ -15,9 +15,10 @@ Thank you to the original authors "Gabapentin" [Arduino-RC-6CH-Radio-control](ht
 * Adjustable exponential curves in steps 1 -> 9
 * Channel reverse
 * Calibration of potentiometers
-* Memory for ten models
+* Memory for 10 models
 * Five character model name
 * RX voltage telemetry
+* Deleting all saved data (out of calibration)
 
 ## Arduino pins
 ```
