@@ -183,39 +183,44 @@ unsigned char stored_data_eeprom(unsigned char mod)
 }
 
 //*********************************************************************************************************************
-// Read and update EEPROM data format
+// This function will read a 2 byte integer from the eeprom at the specified address and address + 1
 //*********************************************************************************************************************
 int EEPROMReadInt(int p_address)
 {
-  // Read a 16 bit value in EEPROM
-  byte byte1 = EEPROM.read(p_address);
-  byte byte2 = EEPROM.read(p_address + 1);
+  byte lowByte = EEPROM.read(p_address);
+  byte highByte = EEPROM.read(p_address + 1);
   
-  long first_two_bytes = ((byte1 << 0) & 0xFF) + ((byte2 << 8) & 0xFF00);
+  long first_two_bytes = ((lowByte << 0) & 0xFF) + ((highByte << 8) & 0xFF00);
   
   return (first_two_bytes);
 }
 
-// Will update only changed value to preserve EEPROM writing cycles
+//*********************************************************************************************************************
+// This function will update a 2 byte integer to the eeprom at the specified address and address + 1
+// only changed value to preserve EEPROM writing cycles
+//*********************************************************************************************************************
 void EEPROMUpdateInt(int p_address, int p_value)
 {
   // Write a 16bit value in EEPROM
-  byte byte1 = ((p_value >> 0) & 0xFF);
-  byte byte2 = ((p_value >> 8) & 0xFF);
+  byte lowByte = ((p_value >> 0) & 0xFF);
+  byte highByte = ((p_value >> 8) & 0xFF);
   
-  EEPROM.update(p_address, byte1);
-  EEPROM.update(p_address + 1, byte2);
+  EEPROM.update(p_address, lowByte);
+  EEPROM.update(p_address + 1, highByte);
 }
 
+//*********************************************************************************************************************
+// This function will write a 2 byte integer to the eeprom at the specified address and address + 1
+//*********************************************************************************************************************
 /*
 void EEPROMWriteInt(int p_address, int p_value)
 {
   // Write a 16bit value in EEPROM
-  byte byte1 = ((p_value >> 0) & 0xFF);
-  byte byte2 = ((p_value >> 8) & 0xFF);
+  byte lowByte = ((p_value >> 0) & 0xFF);
+  byte highByte = ((p_value >> 8) & 0xFF);
   
-  EEPROM.write(p_address, byte1);
-  EEPROM.write(p_address + 1, byte2);
+  EEPROM.write(p_address, lowByte);
+  EEPROM.write(p_address + 1, highByte);
 }
 */
  
