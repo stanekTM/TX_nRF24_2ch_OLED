@@ -103,21 +103,14 @@ struct telemetry_packet_size
 telemetry_packet_size telemetry_packet;
 
 //*********************************************************************************************************************
-// Config global parameters TX
+// Global TX control range config
 //*********************************************************************************************************************
-#define DEAD_ZONE                 10   // Dead zone bar center value of poor quality joysticks
-#define EPA_MAX                   100  // Maximum EPA value
-#define SUB_TRIM_MAX              100  // Maximum SUB TRIM value
-#define CHANNELS                  2    // Number of channels
+#define DEAD_ZONE        10   // Dead zone bar center value of poor quality joysticks
+#define EPA_MAX          100  // Maximum EPA value
+#define SUB_TRIM_MAX     100  // Maximum SUB TRIM value
+#define CHANNELS         2    // Number of channels
 
-#define MENU_COUNT                7    // Total menu count
-#define MODELS                    10   // Total memory models
-#define NUM_BYTES_PER_MODEL       25   // Maximum bytes for data storage per model
-#define ACTUAL_MODEL_EEPROM_ADDR  1023
-
-//*********************************************************************************************************************
 // Control range value
-//*********************************************************************************************************************
 #define MIN_CONTROL_VAL  1000
 #define MID_CONTROL_VAL  1500
 #define MAX_CONTROL_VAL  2000
@@ -132,6 +125,32 @@ unsigned int mid_pots_calib[] = {512, 512};
 unsigned int max_pots_calib[] = {1023, 1023};
 
 //*********************************************************************************************************************
+// Checking the status to start the calibration process
+//*********************************************************************************************************************
+bool calibStatus = 1;
+
+//*********************************************************************************************************************
+// TX battery voltage monitoring
+//*********************************************************************************************************************
+float tx_batt_volt = 0;
+bool tx_low_batt = 0;
+
+//*********************************************************************************************************************
+// RX battery voltage monitoring
+//*********************************************************************************************************************
+float rx_batt_volt = 0;
+bool rx_low_batt = 0;
+bool previous_state_batt = 0;
+
+//*********************************************************************************************************************
+// Global menu and memory config
+//*********************************************************************************************************************
+#define MENU_COUNT                7    // Total menu count
+#define MODELS                    10   // Total memory models
+#define NUM_BYTES_PER_MODEL       25   // Maximum bytes for data storage per model
+#define ACTUAL_MODEL_EEPROM_ADDR  1023
+
+//*********************************************************************************************************************
 // Setting control output values
 //*********************************************************************************************************************
 short epa[4];                          // EPA value array
@@ -144,17 +163,6 @@ short expo[2];                         // EXPO value array
 unsigned char expoSelection = 0xFF;    // Default value for EXPO selection
 
 unsigned char reverse;                 // Reading bit status
-
-//*********************************************************************************************************************
-// MODEL NAME
-//*********************************************************************************************************************
-char modelName[] = "MODEL";              // Default MODEL NAME 5byte
-unsigned char modelNameSelection = 0xFF; // Default value for MODEL NAME selection
-
-//*********************************************************************************************************************
-// Checking the status to start the calibration process
-//*********************************************************************************************************************
-bool calibStatus = 1;
 
 //*********************************************************************************************************************
 // Menu management variables
@@ -172,6 +180,12 @@ unsigned char modelPage     = 0; // For model page
 //*********************************************************************************************************************
 U8G2_SSD1306_128X64_NONAME_1_HW_I2C
 u8g2(U8G2_R0, U8X8_PIN_NONE);       // https://github.com/olikraus/u8g2/wiki/u8g2setupcpp#constructor-name
+
+//*********************************************************************************************************************
+// MODEL NAME
+//*********************************************************************************************************************
+char modelName[] = "MODEL";              // Default MODEL NAME 5byte
+unsigned char modelNameSelection = 0xFF; // Default value for MODEL NAME selection
 
 //*********************************************************************************************************************
 // Using PROGMEM for characters and text strings to save RAM memory
