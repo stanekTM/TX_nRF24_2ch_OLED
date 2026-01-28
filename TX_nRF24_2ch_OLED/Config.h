@@ -85,7 +85,7 @@ const char fw_version[] = "TX stanekTM v1.8";
 // Setting a unique address (5 bytes number or character)
 const byte address[] = "jirka";
 
-// This structure defines the data sent (max 32 bytes)
+// Sent data structure (max 32 bytes)
 struct rc_packet_size
 {
   unsigned int ch1 = 1500; // A0
@@ -93,7 +93,7 @@ struct rc_packet_size
 };
 rc_packet_size rc_packet;
 
-// This struct defines data, which are embedded inside the ACK payload
+// Structure of received ACK data
 struct telemetry_packet_size
 {
   byte rssi;
