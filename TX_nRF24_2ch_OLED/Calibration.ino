@@ -9,7 +9,7 @@ void calibration()
   {
     // Get MIN and MAX value for each channel
 
-    for (int i = 0; i < CHANNELS; i++)
+    for (int i = 0; i < RC_CHANNELS; i++)
     {
       raw_pots = analogRead(i);
       
@@ -50,7 +50,7 @@ void calibration()
   while (calibStatus == 1)
   {
     // Get CENTER value for each channel
-    for (int i = 0; i < CHANNELS; i++)
+    for (int i = 0; i < RC_CHANNELS; i++)
     {
       mid_pots_calib[i] = analogRead(i);
     }

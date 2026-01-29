@@ -42,7 +42,7 @@ void expo_screen()
   
   
   // Drawing only first 2 channels
-  for (int i = 0; i < CHANNELS; i++)
+  for (int i = 0; i < RC_CHANNELS; i++)
   {
     // Print channel items name "CH1, CH2"
     strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[i])));

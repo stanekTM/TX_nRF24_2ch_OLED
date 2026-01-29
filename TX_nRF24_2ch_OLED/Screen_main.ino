@@ -114,7 +114,7 @@ void main_screen()
   
   
   // Drawing only first 2 channels
-  for (int i = 0; i < CHANNELS; i++)
+  for (int i = 0; i < RC_CHANNELS; i++)
   {
     u8g2.drawFrame(23, 36 + (i * 20), 105, 8); // Draw boxes/frames for every channel
     

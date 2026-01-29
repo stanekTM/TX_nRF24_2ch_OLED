@@ -11,7 +11,7 @@ void radio_setup()
   radio.enableAckPayload();
   radio.enableDynamicPayloads();
   radio.setRetries(2, 0);
-  radio.setChannel(RADIO_CHANNEL);
+  radio.setChannel(RF_CHANNEL);
   radio.setDataRate(RF24_250KBPS);
   radio.setPALevel(RF24_PA_MIN); // RF24_PA_MIN (-18dBm), RF24_PA_LOW (-12dBm), RF24_PA_HIGH (-6dbm), RF24_PA_MAX (0dBm)
   radio.stopListening();

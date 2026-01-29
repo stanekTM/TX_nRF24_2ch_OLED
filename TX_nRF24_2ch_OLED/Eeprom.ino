@@ -22,7 +22,7 @@ void clear_data_eeprom()
     EEPROM.update(eeprom_pos++, 0x00); // Save default REVERSE value in first address of start position
     
     // Save default SUB TRIM center values ​​for two channels in each model memory bank
-    for (int i = 0; i < CHANNELS; i++)
+    for (int i = 0; i < RC_CHANNELS; i++)
     {
       EEPROMUpdateInt(eeprom_pos, 0);
       eeprom_pos += 2;
@@ -35,7 +35,7 @@ void clear_data_eeprom()
     }
     
     // Save default EXPO values will start after first address of start position
-    for (int i = 0; i < CHANNELS; i++)
+    for (int i = 0; i < RC_CHANNELS; i++)
     {
       EEPROM.update(eeprom_pos++, 0);
     }
@@ -64,7 +64,7 @@ void save_data_eeprom()
   EEPROM.update(eeprom_pos++, reverse); // Save REVERSE data
   
   // Save SUB TRIM data
-  for (int i = 0; i < CHANNELS; i++)
+  for (int i = 0; i < RC_CHANNELS; i++)
   {
     EEPROMUpdateInt(eeprom_pos, subTrim[i]);
     eeprom_pos += 2;
@@ -78,7 +78,7 @@ void save_data_eeprom()
   }
   
   // Save EXPO data
-  for (int i = 0; i < CHANNELS; i++)
+  for (int i = 0; i < RC_CHANNELS; i++)
   {
     EEPROM.update(eeprom_pos, expo[i]);
     eeprom_pos++;
@@ -93,7 +93,7 @@ void calib_save_data_eeprom()
   unsigned int eeprom_pos; // For EEPROM position reference
   
   // Save MIN and MAX
-  for (int i = 0; i < CHANNELS; i++)
+  for (int i = 0; i < RC_CHANNELS; i++)
   {
     // MIN
     eeprom_pos = 1000 + (i * 4);
@@ -105,7 +105,7 @@ void calib_save_data_eeprom()
   }
   
   // Save CENTER
-  for (int i = 0; i < CHANNELS; i++)
+  for (int i = 0; i < RC_CHANNELS; i++)
   {
     eeprom_pos = 1016 + (i * 2);
     EEPROMUpdateInt(eeprom_pos, mid_pots_calib[i]);
@@ -138,7 +138,7 @@ unsigned char stored_data_eeprom(unsigned char mod)
   reverse = EEPROM.read(eeprom_pos++); // Read REVERSE from first position
   
   // Read SUB TRIM offset values for selected model
-  for (int i = 0; i < CHANNELS; i++)
+  for (int i = 0; i < RC_CHANNELS; i++)
   {
     subTrim[i] = EEPROMReadInt(eeprom_pos);
     eeprom_pos += 2;
@@ -151,7 +151,7 @@ unsigned char stored_data_eeprom(unsigned char mod)
   }
   
   // Read EXPO values after first position
-  for (int i = 0; i < CHANNELS; i++)
+  for (int i = 0; i < RC_CHANNELS; i++)
   {
     expo[i] = EEPROM.read(eeprom_pos++);
   } 
@@ -161,7 +161,7 @@ unsigned char stored_data_eeprom(unsigned char mod)
   unsigned int pos_eeprom; // For EEPROM position reference
   
   // Read MIN and MAX calibration values from EEPROM
-  for (int i = 0; i < CHANNELS; i++)
+  for (int i = 0; i < RC_CHANNELS; i++)
   {
     // Read MIN calibration values for channels
     pos_eeprom = 1000 + (i * 4);
@@ -173,7 +173,7 @@ unsigned char stored_data_eeprom(unsigned char mod)
   }
   
   // Read CENTER calibration values from EEPROM
-  for (int i = 0; i < CHANNELS; i++)
+  for (int i = 0; i < RC_CHANNELS; i++)
   {
     pos_eeprom = 1016 + (i * 2);
     mid_pots_calib[i] = EEPROMReadInt(pos_eeprom);

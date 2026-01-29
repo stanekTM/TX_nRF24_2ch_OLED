@@ -80,7 +80,7 @@ const char fw_version[] = "TX stanekTM v1.8";
 // Config radio comunication
 //*********************************************************************************************************************
 // RF communication channel setting (0-125, 2.4Ghz + 76 = 2.476Ghz)
-#define RADIO_CHANNEL  76
+#define RF_CHANNEL  76
 
 // Setting a unique address (5 bytes number or character)
 const byte address[] = "jirka";
@@ -108,7 +108,7 @@ telemetry_packet_size telemetry_packet;
 #define DEAD_ZONE        10   // Dead zone bar center value of poor quality joysticks
 #define EPA_MAX          100  // Maximum EPA value
 #define SUB_TRIM_MAX     100  // Maximum SUB TRIM value
-#define CHANNELS         2    // Number of channels
+#define RC_CHANNELS      2    // Number of channels
 
 // Control range value
 #define MIN_CONTROL_VAL  1000
