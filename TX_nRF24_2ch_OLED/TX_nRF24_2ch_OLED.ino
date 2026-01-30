@@ -74,15 +74,9 @@ void loop()
   }
   
   send_and_receive_data();
-  
   read_pots();
-  
-  rc_packet.ch1 = pots_value[0]; // A0
-  rc_packet.ch2 = pots_value[1]; // A1
-  
+  select();
   TX_batt_monitoring();
   RX_batt_monitoring();
-  
-  select();
 }
  

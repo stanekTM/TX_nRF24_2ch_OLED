@@ -32,14 +32,14 @@ void calibration_screen()
     u8g2.setCursor(0, 22);
     u8g2.print(word_buffer);
     u8g2.setCursor(30, 22);
-    u8g2.print(analogRead(0));
+    u8g2.print(analogRead(pins_pots[0]));
     
     // Print "CH2" and value
     strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[1])));
     u8g2.setCursor(71, 22);
     u8g2.print(word_buffer);
     u8g2.setCursor(101, 22);
-    u8g2.print(analogRead(1));
+    u8g2.print(analogRead(pins_pots[1]));
     
     // Print "Move the pots"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[8])));
@@ -97,14 +97,14 @@ void calib_center_screen()
     u8g2.setCursor(0, 22);
     u8g2.print(word_buffer);
     u8g2.setCursor(30, 22);
-    u8g2.print(analogRead(0));
+    u8g2.print(analogRead(pins_pots[0]));
     
     // Print "CH2" and value
     strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[1])));
     u8g2.setCursor(71, 22);
     u8g2.print(word_buffer);
     u8g2.setCursor(101, 22);
-    u8g2.print(analogRead(1));
+    u8g2.print(analogRead(pins_pots[1]));
     
     // Print "Don't"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[7])));

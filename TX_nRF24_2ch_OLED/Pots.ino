@@ -6,7 +6,7 @@ void read_pots()
 {
   for (int i = 0; i < RC_CHANNELS; i++)
   {
-    raw_pots = analogRead(i);
+    raw_pots = analogRead(pins_pots[i]);
     
     int mid_epa_val = MID_CONTROL_VAL + subTrim[i];
     
@@ -38,6 +38,9 @@ void read_pots()
     
     // Check REVERSE and applying REVERSE value if necessary
     if (bitRead(reverse, i) == 1) pots_value[i] = (MIN_CONTROL_VAL + MAX_CONTROL_VAL) - pots_value[i];
+    
+    // Processing data for sending a packet
+    rc_packet[i] = pots_value[i];
   }
 }
  

@@ -25,7 +25,7 @@ unsigned long rf_timeout = 0;
 
 void send_and_receive_data()
 {
-  if (radio.write(&rc_packet, sizeof(rc_packet_size)))
+  if (radio.write(&rc_packet, rc_packet_size))
   {
     if (radio.available())
     {

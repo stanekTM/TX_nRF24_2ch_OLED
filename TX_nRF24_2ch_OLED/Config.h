@@ -15,92 +15,12 @@ const char fw_version[] = "TX stanekTM v1.8";
 #define RX_BATTERY_VOLTAGE    4.2  // Maximum nominal battery voltage
 #define RX_MONITORED_VOLTAGE  3.45 // Minimum battery voltage for alarm
 
-//*********************************************************************************************************************
-// ATmega328P/PB pins overview
-//*********************************************************************************************************************
-// ATmega328P/PB pins overview
-// PD0 - D0   PWM  328PB
-// PD1 - D1   PWM  328PB
-// PD2 - D2   PWM  328PB
-// PD3 - D3   PWM
-// PD4 - D4
-// PD5 - D5   PWM
-// PD6 - D6   PWM
-// PD7 - D7
-// PB0 - D8
-// PB1 - D9   PWM
-// PB2 - D10  PWM
-// PB3 - D11  PWM  MOSI
-// PB4 - D12       MISO
-// PB5 - D13       SCK
-// PC0 - D14 / A0
-// PC1 - D15 / A1
-// PC2 - D16 / A2
-// PC3 - D17 / A3
-// PC4 - D18 / A4   SDA
-// PC5 - D19 / A5   SCL
-// PB6 - D20        XTAL1
-// PB7 - D21        XTAL2
-// PC6 - D22        RESET
-// PE0 - D23        328PB
-// PE1 - D24        328PB
-// PE2 - D25 / A6   328PB
-// PE3 - D26 / A7   328PB
-// ADC6   -    A6
-// ADC7   -    A7
+float tx_batt_volt = 0;
+bool tx_low_batt = 0;
 
-//*********************************************************************************************************************
-// Connection pins
-//*********************************************************************************************************************
-// Pins for pots, joysticks
-// Joystick 1              A0
-// Joystick 2              A1
-
-// Input battery
-#define PIN_BATTERY        A7
-
-// Pins for buttons
-#define PIN_BUTTON_UP      2 // For Up/Prev functions
-#define PIN_BUTTON_DOWN    3 // For Down/Next functions
-#define PIN_BUTTON_SELECT  4 // For Menu/Select functions
-#define PIN_BUTTON_EXIT    5 // For Exit
-
-// Pins for nRF24L01+
-#define PIN_CE             9
-#define PIN_CSN            10
-//          MOSI           11 Hardware SPI
-//          MISO           12 Hardware SPI
-//          SCK            13 Hardware SPI
-
-// Pins for LCD display
-//          SDA            A4 Hardware I2C
-//          SCL            A5 Hardware I2C
-
-//*********************************************************************************************************************
-// Config radio comunication
-//*********************************************************************************************************************
-// RF communication channel setting (0-125, 2.4Ghz + 76 = 2.476Ghz)
-#define RF_CHANNEL  76
-
-// Setting a unique address (5 bytes number or character)
-const byte address[] = "jirka";
-
-// Sent data structure (max 32 bytes)
-struct rc_packet_size
-{
-  unsigned int ch1 = 1500; // A0
-  unsigned int ch2 = 1500; // A1
-};
-rc_packet_size rc_packet;
-
-// Structure of received ACK data
-struct telemetry_packet_size
-{
-  byte rssi;
-  byte batt_A1 = 255;
-  byte batt_A2; // Not used yet
-};
-telemetry_packet_size telemetry_packet;
+float rx_batt_volt = 0;
+bool rx_low_batt = 0;
+bool previous_state_batt = 0;
 
 //*********************************************************************************************************************
 // Global TX control range config
@@ -114,6 +34,30 @@ telemetry_packet_size telemetry_packet;
 #define MIN_CONTROL_VAL  1000
 #define MID_CONTROL_VAL  1500
 #define MAX_CONTROL_VAL  2000
+
+//*********************************************************************************************************************
+// Config radio comunication
+//*********************************************************************************************************************
+// RF communication channel setting (0-125, 2.4Ghz + 76 = 2.476Ghz)
+#define RF_CHANNEL  76
+
+// Setting a unique address (5 bytes number or character)
+const byte address[] = "jirka";
+
+//*********************************************************************************************************************
+// Sent data array (max 32 bytes)
+//*********************************************************************************************************************
+unsigned int rc_packet[RC_CHANNELS] = {1500};
+byte rc_packet_size = RC_CHANNELS * 2; // For one control channel with a value of 1000 to 2000 we need 2 bytes(packets)
+
+// Structure of received ACK data
+struct telemetry_packet_size
+{
+  byte rssi;
+  byte batt_A1 = 255;
+  byte batt_A2; // Not used yet
+};
+telemetry_packet_size telemetry_packet;
 
 //*********************************************************************************************************************
 // Analog reading parameters for calibration
@@ -130,27 +74,6 @@ unsigned int max_pots_calib[] = {1023, 1023};
 bool calibStatus = 1;
 
 //*********************************************************************************************************************
-// TX battery voltage monitoring
-//*********************************************************************************************************************
-float tx_batt_volt = 0;
-bool tx_low_batt = 0;
-
-//*********************************************************************************************************************
-// RX battery voltage monitoring
-//*********************************************************************************************************************
-float rx_batt_volt = 0;
-bool rx_low_batt = 0;
-bool previous_state_batt = 0;
-
-//*********************************************************************************************************************
-// Global menu and memory config
-//*********************************************************************************************************************
-#define MENU_COUNT                7    // Total menu count
-#define MODELS                    10   // Total memory models
-#define NUM_BYTES_PER_MODEL       25   // Maximum bytes for data storage per model
-#define ACTUAL_MODEL_EEPROM_ADDR  1023
-
-//*********************************************************************************************************************
 // Setting control output values
 //*********************************************************************************************************************
 short epa[4];                          // EPA value array
@@ -163,6 +86,14 @@ short expo[2];                         // EXPO value array
 unsigned char expoSelection = 0xFF;    // Default value for EXPO selection
 
 unsigned char reverse;                 // Reading bit status
+
+//*********************************************************************************************************************
+// Global menu and memory config
+//*********************************************************************************************************************
+#define MENU_COUNT                7    // Total menu count
+#define MODELS                    10   // Total memory models
+#define NUM_BYTES_PER_MODEL       25   // Maximum bytes for data storage per model
+#define ACTUAL_MODEL_EEPROM_ADDR  1023
 
 //*********************************************************************************************************************
 // Menu management variables
@@ -300,4 +231,64 @@ const char* const message[] PROGMEM = {
   message_11,
   message_12
 };
+
+//*********************************************************************************************************************
+// ATmega328P/PB pins overview
+//*********************************************************************************************************************
+// ATmega328P/PB pins overview
+// PD0 - D0   PWM  328PB
+// PD1 - D1   PWM  328PB
+// PD2 - D2   PWM  328PB
+// PD3 - D3   PWM
+// PD4 - D4
+// PD5 - D5   PWM
+// PD6 - D6   PWM
+// PD7 - D7
+// PB0 - D8
+// PB1 - D9   PWM
+// PB2 - D10  PWM
+// PB3 - D11  PWM  MOSI
+// PB4 - D12       MISO
+// PB5 - D13       SCK
+// PC0 - D14 / A0
+// PC1 - D15 / A1
+// PC2 - D16 / A2
+// PC3 - D17 / A3
+// PC4 - D18 / A4   SDA
+// PC5 - D19 / A5   SCL
+// PB6 - D20        XTAL1
+// PB7 - D21        XTAL2
+// PC6 - D22        RESET
+// PE0 - D23        328PB
+// PE1 - D24        328PB
+// PE2 - D25 / A6   328PB
+// PE3 - D26 / A7   328PB
+// ADC6   -    A6
+// ADC7   -    A7
+
+//*********************************************************************************************************************
+// Connection pins
+//*********************************************************************************************************************
+// Analog input pin array for pots (possible combination, max 2)
+const byte pins_pots[] = {A0, A1};
+
+// Input battery
+#define PIN_BATTERY        A7
+
+// Pins for buttons
+#define PIN_BUTTON_UP      2 // For Up/Prev functions
+#define PIN_BUTTON_DOWN    3 // For Down/Next functions
+#define PIN_BUTTON_SELECT  4 // For Menu/Select functions
+#define PIN_BUTTON_EXIT    5 // For Exit
+
+// Pins for nRF24L01+
+#define PIN_CE             9
+#define PIN_CSN            10
+//          MOSI           11 Hardware SPI
+//          MISO           12 Hardware SPI
+//          SCK            13 Hardware SPI
+
+// Pins for LCD display
+//          SDA            A4 Hardware I2C
+//          SCL            A5 Hardware I2C
  

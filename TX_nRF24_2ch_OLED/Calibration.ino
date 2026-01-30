@@ -11,7 +11,7 @@ void calibration()
 
     for (int i = 0; i < RC_CHANNELS; i++)
     {
-      raw_pots = analogRead(i);
+      raw_pots = analogRead(pins_pots[i]);
       
       // MIN
       if (raw_pots < min_pots_calib[i])
@@ -52,7 +52,7 @@ void calibration()
     // Get CENTER value for each channel
     for (int i = 0; i < RC_CHANNELS; i++)
     {
-      mid_pots_calib[i] = analogRead(i);
+      mid_pots_calib[i] = analogRead(pins_pots[i]);
     }
     
     calib_center_screen(); // Print "CENTER CALIBRATION" in real time
