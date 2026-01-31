@@ -4,6 +4,8 @@
   **************
   Surface 2 channel RC transmitter from my repository https://github.com/stanekTM/TX_nRF24_2ch_OLED
   
+  Includes nRF24L01+ transceiver and ATmega328P processor with an OLED screen.
+  
   This RC transmitter works with RC receiver from my repository https://github.com/stanekTM/RX_nRF24_Motor_Servo
   
   Thank you to the original authors "Gabapentin" https://github.com/Gabapentin/Arduino-RC-6CH-Radio-control
@@ -55,7 +57,8 @@ void setup()
   // If you hold down the EXIT button while powering on, you can clear/write the data to the default values
   clear_data_screen(); // Print screen CLEAR DATA? message
   
-  modelActual = stored_data_eeprom(255); // Reading selected model data from EEPROM
+  // Reading selected model data from EEPROM
+  modelActual = stored_data_eeprom(255);
 }
 
 //**************************************************************************************************************

@@ -83,15 +83,15 @@ void expo_screen()
       
       
       // Draw EXPO Graph
-      u8g2.drawFrame(77, 13, 51, 51); // rámeček
+      u8g2.drawFrame(77, 13, 51, 51);
       
-      u8g2.drawHLine(78, 38, 49); // vodorovná čára
-      //u8g2.drawHLine(0, 62, 128); // pomocná
+      u8g2.drawHLine(78, 38, 49);
+      //u8g2.drawHLine(0, 62, 128); // Auxiliary line
       
-      u8g2.drawVLine(102, 14, 49); // svislá čára
-      //u8g2.drawVLine(126, 0, 64); // pomocná
+      u8g2.drawVLine(102, 14, 49);
+      //u8g2.drawVLine(126, 0, 64); // Auxiliary line
       
-      u8g2.drawLine(77, 63, 127, 13); // šikmá čára
+      u8g2.drawLine(77, 63, 127, 13); // Diagonal line
       
       
       if (expo[i] > 0)

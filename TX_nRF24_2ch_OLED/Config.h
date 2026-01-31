@@ -44,9 +44,7 @@ bool previous_state_batt = 0;
 // Setting a unique address (5 bytes number or character)
 const byte address[] = "jirka";
 
-//*********************************************************************************************************************
 // Sent data array (max 32 bytes)
-//*********************************************************************************************************************
 unsigned int rc_packet[RC_CHANNELS] = {1500};
 byte rc_packet_size = RC_CHANNELS * 2; // For one control channel with a value of 1000 to 2000 we need 2 bytes(packets)
 
@@ -63,10 +61,10 @@ telemetry_packet_size telemetry_packet;
 // Analog reading parameters for calibration
 //*********************************************************************************************************************
 unsigned int raw_pots;
-unsigned int pots_value[] = {1500, 1500};
-unsigned int min_pots_calib[] = {0, 0};
-unsigned int mid_pots_calib[] = {512, 512};
-unsigned int max_pots_calib[] = {1023, 1023};
+unsigned int pots_value[RC_CHANNELS] = {1500};
+unsigned int min_pots_calib[RC_CHANNELS] = {0};
+unsigned int mid_pots_calib[RC_CHANNELS] = {512};
+unsigned int max_pots_calib[RC_CHANNELS] = {1023};
 
 //*********************************************************************************************************************
 // Checking the status to start the calibration process
