@@ -7,18 +7,18 @@ void calibration()
   // Checking the status to start the calibration process
   while (calibStatus == 1)
   {
-    // Get MIN and MAX value for each channel
+    // Get min. and max. value for each channel
     for (int i = 0; i < RC_CHANNELS; i++)
     {
       raw_pots = analogRead(pins_pots[i]);
       
-      // MIN
+      // Min.
       if (raw_pots < min_pots_calib[i])
       {
         min_pots_calib[i] = raw_pots;
       }
       
-      // MAX
+      // Max.
       if (raw_pots > max_pots_calib[i])
       {
         max_pots_calib[i] = raw_pots;
@@ -46,7 +46,7 @@ void calibration()
   // Checking the status to start the calibration process
   while (calibStatus == 1)
   {
-    // Get CENTER value for each channel
+    // Get center value for each channel
     for (int i = 0; i < RC_CHANNELS; i++)
     {
       mid_pots_calib[i] = analogRead(pins_pots[i]);
@@ -63,7 +63,7 @@ void calibration()
     }
   }
   
-  // Save MIN, MAX and CENTER calibration values in EEPROM
+  // Save min., max. and center calibration values in EEPROM
   calib_save_data_eeprom();
   
   // Print message "SAVE DATA CALIBRATION"

@@ -91,25 +91,25 @@ void save_data_eeprom()
 }
 
 //*********************************************************************************************************************
-// Save MIN, MAX and CENTER calibration values in EEPROM
+// Save min., max. and center calibration values in EEPROM
 //*********************************************************************************************************************
 void calib_save_data_eeprom()
 {
   unsigned int eeprom_pos; // For EEPROM position reference
   
-  // Save MIN and MAX
+  // Save min. and max.
   for (int i = 0; i < RC_CHANNELS; i++)
   {
-    // MIN
+    // Min.
     eeprom_pos = 1000 + (i * 4);
     EEPROMUpdateInt(eeprom_pos, min_pots_calib[i]);
     
-    // MAX
+    // Max.
     eeprom_pos += 2;
     EEPROMUpdateInt(eeprom_pos, max_pots_calib[i]);
   }
   
-  // Save CENTER
+  // Save center
   for (int i = 0; i < RC_CHANNELS; i++)
   {
     eeprom_pos = 1016 + (i * 2);
@@ -164,22 +164,22 @@ unsigned char stored_data_eeprom(unsigned char mod)
   } 
   
 
-  // Read MIN, MAX and CENTER values in EEPROM
+  // Read min., max. and center values in EEPROM
   unsigned int pos_eeprom; // For EEPROM position reference
   
-  // Read MIN and MAX calibration values from EEPROM
+  // Read min. and max. calibration values from EEPROM
   for (int i = 0; i < RC_CHANNELS; i++)
   {
-    // Read MIN calibration values for channels
+    // Read min. calibration values for channels
     pos_eeprom = 1000 + (i * 4);
     min_pots_calib[i] = EEPROMReadInt(pos_eeprom);
     
-    // Read MAX calibration values for channels
+    // Read max. calibration values for channels
     pos_eeprom += 2;
     max_pots_calib[i] = EEPROMReadInt(pos_eeprom);
   }
   
-  // Read CENTER calibration values from EEPROM
+  // Read center calibration values from EEPROM
   for (int i = 0; i < RC_CHANNELS; i++)
   {
     pos_eeprom = 1016 + (i * 2);

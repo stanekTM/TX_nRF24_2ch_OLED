@@ -175,7 +175,7 @@ void select()
   
   
   //**************************************************************
-  // MIN step control for selecting channels/values (button DOWN)
+  // Min. step control for selecting channels/values (button DOWN)
   //**************************************************************
   if (pressed_button == 3)
   {
@@ -345,7 +345,7 @@ void select()
   
   
   //************************************************************
-  // MAX step control for selecting channels/values (button UP)
+  // Max. step control for selecting channels/values (button UP)
   //************************************************************
   if (pressed_button == 1)
   {

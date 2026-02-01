@@ -28,7 +28,7 @@ bool previous_state_batt = 0;
 #define DEAD_ZONE        10   // Dead zone bar center value of poor quality joysticks
 #define EPA_MAX          100  // Maximum EPA value
 #define SUB_TRIM_MAX     100  // Maximum SUB TRIM value
-#define RC_CHANNELS      2    // Number of channels
+#define RC_CHANNELS      2    // Number of control channels
 
 // Control range value
 #define MIN_CONTROL_VAL  1000
@@ -44,7 +44,7 @@ bool previous_state_batt = 0;
 // Setting a unique address (5 bytes number or character)
 const byte address[] = "jirka";
 
-// Sent data array (max 32 bytes)
+// Sent data array (max. 32 bytes)
 unsigned int rc_packet[RC_CHANNELS] = {1500};
 byte rc_packet_size = RC_CHANNELS * 2; // For one control channel with a value of 1000 to 2000 we need 2 bytes(packets)
 
@@ -267,7 +267,7 @@ const char* const message[] PROGMEM = {
 //*********************************************************************************************************************
 // Connection pins
 //*********************************************************************************************************************
-// Analog input pin array for pots (possible combination, max 2)
+// Analog input pin array for pots (possible combination, max. 2)
 const byte pins_pots[] = {A0, A1};
 
 // Input battery
