@@ -1,12 +1,12 @@
 /*
   **************************************************************************************************************
-  RC transmitter
-  **************
-  Surface 2 channel RC transmitter from my repository https://github.com/stanekTM/TX_nRF24_2ch_OLED
+  Surface 2 channel RC transmitter
+  ********************************
+  RC transmitter from my repository https://github.com/stanekTM/TX_nRF24_2ch_OLED
   
-  Includes nRF24L01+ transceiver and ATmega328P processor with an OLED screen.
+  Hardware includes nRF24L01+ transceiver and ATmega328P processor with an OLED screen.
   
-  This RC transmitter works with RC receiver from my repository https://github.com/stanekTM/RX_nRF24_Motor_Servo
+  This RC transmitter works with RC receiver from my repository https://github.com/stanekTM/RX_nRF24_Stanek
   
   Thank you to the original authors "Gabapentin" https://github.com/Gabapentin/Arduino-RC-6CH-Radio-control
   and "doohans" https://github.com/doohans/arduino_surface_TX_4ch for code inspiration.
