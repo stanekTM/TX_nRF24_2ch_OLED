@@ -4,7 +4,7 @@
 //*********************************************************************************************************************
 // Version
 //*********************************************************************************************************************
-const char fw_version[] = "TX stanekTM v1.8";
+const char fw_version[17] = "TX stanekTM v1.8";
 
 //*********************************************************************************************************************
 // Maximum nominal battery voltage TX/RX and minimum battery voltage for alarm
@@ -38,11 +38,11 @@ bool previous_state_batt = 0;
 //*********************************************************************************************************************
 // Config radio comunication
 //*********************************************************************************************************************
-// RF communication channel setting (0-125, 2.4Ghz + 76 = 2.476Ghz)
-#define RF_CHANNEL  76
-
 // Setting a unique address (5 bytes number or character)
-const byte address[] = "jirka";
+const byte address[6] = "jirka";
+
+// RF channel setting 0 to 125 (2.4GHz to 2.525GHz)
+#define RF_CHANNEL  76
 
 // Sent data array (max. 32 bytes)
 unsigned int rc_packet[RC_CHANNELS] = {1500};
@@ -113,7 +113,7 @@ u8g2(U8G2_R0, U8X8_PIN_NONE);       // https://github.com/olikraus/u8g2/wiki/u8g
 //*********************************************************************************************************************
 // MODEL NAME
 //*********************************************************************************************************************
-char modelName[] = "MODEL";              // Default MODEL NAME 5byte
+char modelName[6] = "MODEL";              // Default MODEL NAME 5byte
 unsigned char modelNameSelection = 0xFF; // Default value for MODEL NAME selection
 
 //*********************************************************************************************************************
@@ -129,7 +129,7 @@ const char menu_4[] PROGMEM = "SUB TRIM";
 const char menu_5[] PROGMEM = "MODEL NAME";
 const char menu_6[] PROGMEM = "EXPO";
 
-const char* const menu_name[] PROGMEM = {
+const char* const menu_name[7] PROGMEM = {
   menu_0,
   menu_1,
   menu_2,
@@ -153,7 +153,7 @@ const char word_7[] PROGMEM = "free";
 const char word_8[] PROGMEM = "NOR";
 const char word_9[] PROGMEM = "REV";
 
-const char* const word_name[] PROGMEM = {
+const char* const word_name[10] PROGMEM = {
   word_0,
   word_1,
   word_2,
@@ -182,7 +182,7 @@ const char char_9[] PROGMEM = "/";
 const char char_10[] PROGMEM = "=";
 const char char_11[] PROGMEM = "V";
 
-const char* const one_char[] PROGMEM = {
+const char* const one_char[12] PROGMEM = {
   char_0,
   char_1,
   char_2,
@@ -214,7 +214,7 @@ const char message_10[] PROGMEM = "DOWN";
 const char message_11[] PROGMEM = "YES";
 const char message_12[] PROGMEM = "NO";
 
-const char* const message[] PROGMEM = {
+const char* const message[13] PROGMEM = {
   message_0,
   message_1,
   message_2,
@@ -234,9 +234,9 @@ const char* const message[] PROGMEM = {
 // ATmega328P/PB pins overview
 //*********************************************************************************************************************
 // ATmega328P/PB pins overview
-// PD0 - D0   PWM  328PB
-// PD1 - D1   PWM  328PB
-// PD2 - D2   PWM  328PB
+// PD0 - D0   PWM  ATmega328PB
+// PD1 - D1   PWM  ATmega328PB
+// PD2 - D2   PWM  ATmega328PB
 // PD3 - D3   PWM
 // PD4 - D4
 // PD5 - D5   PWM
@@ -257,10 +257,10 @@ const char* const message[] PROGMEM = {
 // PB6 - D20        XTAL1
 // PB7 - D21        XTAL2
 // PC6 - D22        RESET
-// PE0 - D23        328PB
-// PE1 - D24        328PB
-// PE2 - D25 / A6   328PB
-// PE3 - D26 / A7   328PB
+// PE0 - D23        ATmega328PB
+// PE1 - D24        ATmega328PB
+// PE2 - D25 / A6   ATmega328PB
+// PE3 - D26 / A7   ATmega328PB
 // ADC6   -    A6
 // ADC7   -    A7
 
@@ -268,7 +268,7 @@ const char* const message[] PROGMEM = {
 // Connection pins
 //*********************************************************************************************************************
 // Analog input pin array for pots (possible combination, max. 2)
-const byte pins_pots[] = {A0, A1};
+const byte pins_pots[2] = {A0, A1};
 
 // Input battery
 #define PIN_BATTERY        A7
