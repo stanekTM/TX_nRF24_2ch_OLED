@@ -268,7 +268,7 @@ const char* const message[13] PROGMEM = {
 // Connection pins
 //*********************************************************************************************************************
 // Analog input pin array for pots (possible combination, max. 2)
-const byte pins_pots[2] = {A0, A1};
+const byte pins_pots[2] = {A1, A0};
 
 // Input battery
 #define PIN_BATTERY        A7
