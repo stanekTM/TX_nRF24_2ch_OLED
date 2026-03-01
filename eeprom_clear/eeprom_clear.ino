@@ -14,7 +14,7 @@
 void setup()
 {
   // initialize the LED pin as an output.
-  pinMode(13, OUTPUT);
+  pinMode(6, OUTPUT);
   
   /***
     Iterate through each byte of the EEPROM storage.
@@ -28,13 +28,13 @@ void setup()
     This will make your code portable to all AVR processors.
   ***/
 
-  for (int i = 0 ; i < EEPROM.length(); i++)
+  for (int i = 0; i < EEPROM.length(); i++)
   {
     EEPROM.write(i, 0);
   }
 
   // turn the LED on when we're done
-  digitalWrite(13, HIGH);
+  digitalWrite(6, HIGH);
 }
 
 void loop()
