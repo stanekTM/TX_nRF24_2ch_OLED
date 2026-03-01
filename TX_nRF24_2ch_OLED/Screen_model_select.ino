@@ -58,7 +58,7 @@ void model_select_screen()
   
   // For EEPROM position reference
   int tempModelNoIdx;
-  unsigned int eepromPos;
+  unsigned int eeprom_pos;
   
   // Print MODEL SELECT list
   for (int i = 0; i < 5; i++)
@@ -73,13 +73,13 @@ void model_select_screen()
     u8g2.print(tempModelNoIdx + 1);
     
     // Define start position for EEPROM write/update (25 * [0, 1, 2, 3, 4...])
-    eepromPos = NUM_BYTES_PER_MODEL * tempModelNoIdx;
+    eeprom_pos = NUM_BYTES_PER_MODEL * tempModelNoIdx;
     
     // Print model name
     for (int j = 0; j < 5; j++)
     {
       u8g2.setCursor(10 + (j * 8), 21 + (i * 10));
-      char ch = EEPROM.read(eepromPos++);
+      char ch = EEPROM.read(eeprom_pos++);
       u8g2.print(ch);
     }
     
@@ -103,13 +103,13 @@ void model_select_screen()
     u8g2.print(tempModelNoIdx + 1);
     
     // Define start position for EEPROM write/update (25 * [0, 1, 2, 3, 4...])
-    eepromPos = NUM_BYTES_PER_MODEL * tempModelNoIdx;
+    eeprom_pos = NUM_BYTES_PER_MODEL * tempModelNoIdx;
     
     // Print model name
     for (int j = 0; j < 5; j++)
     {
       u8g2.setCursor(74 + (j * 8), 21 + (i * 10));
-      char ch = EEPROM.read(eepromPos++);
+      char ch = EEPROM.read(eeprom_pos++);
       u8g2.print(ch);
     }
     
