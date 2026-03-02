@@ -90,7 +90,7 @@ unsigned char reverse;                 // Reading bit status
 //*********************************************************************************************************************
 #define MENU_COUNT                7    // Total menu count
 #define MODELS                    10   // Total memory models
-#define NUM_BYTES_PER_MODEL       25   // Maximum bytes for data storage per model
+#define NUM_BYTES_PER_MODEL       16   // Maximum bytes for data storage per model
 #define ACTUAL_MODEL_EEPROM_ADDR  1023
 
 //*********************************************************************************************************************
@@ -98,11 +98,11 @@ unsigned char reverse;                 // Reading bit status
 //*********************************************************************************************************************
 unsigned char menuActual    = 0;
 unsigned char menuSubActual = 1;
-unsigned char modelActual   = 0; // Added for model menu management
-unsigned char menuSubModel  = 0; // Added for model menu management
+unsigned char modelActual   = 0;
+unsigned char menuSubModel  = 0;
 unsigned char screen        = 0;
-unsigned char menuPage      = 0; // For menu page
-unsigned char modelPage     = 0; // For model page
+unsigned char menuPage      = 0;
+unsigned char modelPage     = 0;
 
 //*********************************************************************************************************************
 // OLED SSD1306 I2C config
@@ -268,7 +268,7 @@ const char* const message[13] PROGMEM = {
 // Connection pins
 //*********************************************************************************************************************
 // Analog input pin array for pots (possible combination, max. 2)
-const byte pins_pots[2] = {A1, A0};
+const byte pins_pots[2] = {A0, A1};
 
 // Input battery
 #define PIN_BATTERY        A7

@@ -4,7 +4,7 @@
 //*********************************************************************************************************************
 void save_data_screen()
 {
-  save_data_eeprom(); // Save to EEPROM and set default parameters if necessary
+  save_data_eeprom(); // Save selected model data to EEPROM
   
   
   u8g2.firstPage(); do {

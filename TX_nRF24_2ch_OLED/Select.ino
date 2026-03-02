@@ -114,7 +114,9 @@ void select()
         
         // Save data in EEPROM
         EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, modelActual);
-        stored_data_eeprom(modelActual); // Reading selected model data from EEPROM
+        
+        // Load selected model data from EEPROM
+        load_data_eeprom(modelActual);
         
         screen = 0;
         menuActual = 0;

@@ -56,8 +56,8 @@ void setup()
   // If you hold down the EXIT button while powering on, you can clear/write the data to the default values
   clear_data_screen(); // Print screen CLEAR DATA? message
   
-  // Reading selected model data from EEPROM
-  modelActual = stored_data_eeprom(255);
+  // Load selected model data from EEPROM
+  modelActual = load_data_eeprom(255);
 }
 
 //**************************************************************************************************************

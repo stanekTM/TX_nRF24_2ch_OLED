@@ -1,17 +1,17 @@
 
 //*********************************************************************************************************************
-// Reading selected model data from EEPROM
+// Load selected model data from EEPROM (locations 1 to 160 bytes), RC channels EEPROM locations 212 to 222 bytes
 //*********************************************************************************************************************
-unsigned char stored_data_eeprom(unsigned char mod)
+unsigned char load_data_eeprom(unsigned char model)
 {
-  // Read which model to upload data
-  if (mod == 255)
+  // Read ACTUAL MODEL
+  if (model == 255)
   {
-    mod = EEPROM.read(ACTUAL_MODEL_EEPROM_ADDR); // mod 0 to 9
+    model = EEPROM.read(ACTUAL_MODEL_EEPROM_ADDR); // model 0 to 9
   }
   
-  // Define start position for EEPROM read (25 * [0, 1, 2, 3, 4...])
-  unsigned int eeprom_pos = NUM_BYTES_PER_MODEL * mod;
+  // Define the starting position of reading from EEPROM (16 * (0, 1, 2, 3, 4...))
+  unsigned int eeprom_pos = NUM_BYTES_PER_MODEL * model; // EEPROM locations 1 to 160 bytes
   
   // Read model name "XXXXX"
   for (int i = 0; i < 5; i++)
@@ -51,27 +51,27 @@ unsigned char stored_data_eeprom(unsigned char mod)
   //Serial.println(eeprom_pos); // 16
   //Serial.println(reverse);    // bit 0 NOR and NOR, bit 1 REV and NOR, bit 2 NOR and REV, bit 3 REV and REV
   
-  // Read RC channels
+  // Read RC channels EEPROM locations 212 to 222 bytes
   for (int i = 0; i < RC_CHANNELS; i++)
-  {  
-    EEPROM.get( i * 4 + 1000,      min_pots_calib[i]);
-    EEPROM.get((i * 4 + 1000) + 2, max_pots_calib[i]);
-    EEPROM.get( i * 2 + 1016,      mid_pots_calib[i]);
+  {
+    EEPROM.get(i * 6 + 200, min_pots_calib[i]); // EEPROM locations 212, 218
+    EEPROM.get(i * 6 + 202, mid_pots_calib[i]); // EEPROM locations 214, 220
+    EEPROM.get(i * 6 + 204, max_pots_calib[i]); // EEPROM locations 216, 222
   }
   
-  return mod;
+  return model;
 }
 
 //*********************************************************************************************************************
-// Save to EEPROM and set default parameters if necessary
+// Save selected model data to EEPROM (locations 1 to 160 bytes)
 //*********************************************************************************************************************
 void save_data_eeprom()
 {
   // Save ACTUAL MODEL
   EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, modelActual);
   
-  // Define start position for EEPROM write/update (25 * [0, 1, 2, 3, 4...])
-  unsigned int eeprom_pos = NUM_BYTES_PER_MODEL * modelActual;
+  // Define the initial position of saving to EEPROM
+  unsigned int eeprom_pos = NUM_BYTES_PER_MODEL * modelActual; // EEPROM locations 1 to 160 bytes
   
   // Save model name "XXXXX"
   for (int i = 0; i < 5; i++)
@@ -113,18 +113,18 @@ void save_data_eeprom()
 }
 
 //*********************************************************************************************************************
-// Clear EEPROM and, if necessary, set default parameters
+// Clear all model data and save default values ​​to EEPROM (locations 1 to 160 bytes)
 //*********************************************************************************************************************
 void clear_data_eeprom()
 {
-  // Save default "modelActual = 0"
+  // Save default ACTUAL MODEL
   EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, 0);
   
-  // Start writing default values for every model memory bank
+  // Start saving all default model data for each memory bank
   for (int j = 0; j < MODELS; j++)
   {
-    // Define start position for EEPROM storing (25 * [0, 1, 2, 3, 4...])
-    unsigned int eeprom_pos = NUM_BYTES_PER_MODEL * j;
+    // Define the initial save position for each memory bank
+    unsigned int eeprom_pos = NUM_BYTES_PER_MODEL * j;  // EEPROM locations 1 to 160 bytes
     
     // Save default model name "MODEL"
     for (int i = 0; i < 5; i++)
@@ -167,15 +167,15 @@ void clear_data_eeprom()
 }
 
 //*********************************************************************************************************************
-// Save min., max. and center calibration values in EEPROM
+// Save RC channel calibration values ​​to EEPROM (locations 212 to 222 bytes)
 //*********************************************************************************************************************
 void calib_save_data_eeprom()
 {
   for (int i = 0; i < RC_CHANNELS; i++)
   {
-    EEPROM.put( i * 4 + 1000,      min_pots_calib[i]);
-    EEPROM.put((i * 4 + 1000) + 2, max_pots_calib[i]);
-    EEPROM.put( i * 2 + 1016,      mid_pots_calib[i]);
+    EEPROM.put(i * 6 + 200, min_pots_calib[i]); // EEPROM locations 212, 218
+    EEPROM.put(i * 6 + 202, mid_pots_calib[i]); // EEPROM locations 214, 220
+    EEPROM.put(i * 6 + 204, max_pots_calib[i]); // EEPROM locations 216, 222
   }
 }
  

@@ -67,7 +67,7 @@ void clear_data_screen()
         case 1:
         is_wait = false;
         
-        // Clear EEPROM and, if necessary, set default parameters
+        // Clear all model data and save default values ​​to EEPROM
         clear_data_eeprom();
         delay(2000);
         break;
