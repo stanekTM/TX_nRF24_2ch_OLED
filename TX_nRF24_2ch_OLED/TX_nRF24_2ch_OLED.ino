@@ -51,7 +51,6 @@ void setup()
     u8g2.print(fw_version);
     
   } while (u8g2.nextPage());
-  
   delay(1500);
   
   // If you hold down the EXIT button while powering on, you can clear/write the data to the default values
