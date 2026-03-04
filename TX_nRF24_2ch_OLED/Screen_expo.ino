@@ -42,7 +42,7 @@ void expo_screen()
   
   
   // Drawing only first 2 channels
-  for (int i = 0; i < RC_CHANNELS; i++)
+  for (uint8_t i = 0; i < RC_CHANNELS; i++)
   {
     // Print channel items name "CH1, CH2"
     strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[i])));
@@ -97,14 +97,14 @@ void expo_screen()
       if (expo[i] > 0)
       { 
         // Bottom
-        for (int j = 77; j <= 102; j++)
+        for (uint8_t j = 77; j <= 102; j++)
         {
           u8g2.drawPixel(j, map(calc_expo(MID_CONTROL_VAL,
           map(j, 77, 102, MIN_CONTROL_VAL, MID_CONTROL_VAL), MIN_CONTROL_VAL, expo[i]), MIN_CONTROL_VAL, MID_CONTROL_VAL, 63, 38));
         }
         
         // Top
-        for (int j = 102; j <= 127; j++)
+        for (uint8_t j = 102; j <= 127; j++)
         {
           u8g2.drawPixel(j, map(calc_expo(MID_CONTROL_VAL,
           map(j, 102, 127, MID_CONTROL_VAL, MAX_CONTROL_VAL), MAX_CONTROL_VAL, expo[i]), MID_CONTROL_VAL, MAX_CONTROL_VAL, 38, 13));

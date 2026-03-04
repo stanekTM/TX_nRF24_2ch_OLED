@@ -57,7 +57,7 @@ void menu_screen()
   u8g2.drawHLine(0, 10, 128); // Drawing horizontal line under header
   
   
-  for (int i = 1; i < 6; i++)
+  for (uint8_t i = 1; i < 6; i++)
   {
     if (i + (5 * menuPage) > MENU_COUNT)
     break;

@@ -21,15 +21,15 @@ void radio_setup()
 //*********************************************************************************************************************
 // Send and receive data
 //*********************************************************************************************************************
-unsigned long rf_timeout = 0;
+uint32_t rf_timeout = 0;
 
 void send_and_receive_data()
 {
-  if (radio.write(&rc_packet, rc_packet_size))
+  if (radio.write(&rc_packet, sizeof(rc_packet)))
   {
     if (radio.available())
     {
-      radio.read(&telemetry_packet, sizeof(telemetry_packet_size));
+      radio.read(&telemetry_packet, sizeof(telemetry_packet));
       
       rf_timeout = millis();
     }

@@ -4,7 +4,7 @@
 // Y = X * EXPO((X - EPA) / dv))
 // Proper dv value : 300 ~ 700
 //*********************************************************************************************************************
-int calc_expo(unsigned short mid_value, unsigned short value, unsigned short max_value, unsigned short dv)
+uint16_t calc_expo(uint16_t mid_value, uint16_t value, uint16_t max_value, uint16_t dv)
 {
   if (value == mid_value)
   {
@@ -28,7 +28,7 @@ int calc_expo(unsigned short mid_value, unsigned short value, unsigned short max
   }
   else
   {
-    unsigned short trim_val = mid_value - MID_CONTROL_VAL;
+    uint16_t trim_val = mid_value - MID_CONTROL_VAL;
     
     value = (MAX_CONTROL_VAL + trim_val) - value + (MIN_CONTROL_VAL + trim_val);
     max_value = (MAX_CONTROL_VAL + trim_val) - max_value + (MIN_CONTROL_VAL + trim_val);

@@ -4,17 +4,17 @@
 //*********************************************************************************************************************
 void read_pots()
 {
-  for (int i = 0; i < RC_CHANNELS; i++)
+  for (uint8_t i = 0; i < RC_CHANNELS; i++)
   {
     raw_pots = analogRead(pins_pots[i]);
     
-    int mid_epa_val = MID_CONTROL_VAL + subTrim[i];
+    uint16_t mid_epa_val = MID_CONTROL_VAL + subTrim[i];
     
     // epa[0], epa[1] 1000us to 1500us
-    int min_epa_val = map((1500 - (epa[i] * 5)), 1000, 1500, 1000, 1500 + subTrim[i]);
+    uint16_t min_epa_val = map((1500 - (epa[i] * 5)), 1000, 1500, 1000, 1500 + subTrim[i]);
     
     // epa[2], epa[3] 2000us to 1500us
-    int max_epa_val = map((1500 + (epa[i + 2] * 5)), 2000, 1500, 2000, 1500 + subTrim[i]);
+    uint16_t max_epa_val = map((1500 + (epa[i + 2] * 5)), 2000, 1500, 2000, 1500 + subTrim[i]);
     
     // Convert analog value to pots value
     if (raw_pots < mid_pots_calib[i] - DEAD_ZONE)

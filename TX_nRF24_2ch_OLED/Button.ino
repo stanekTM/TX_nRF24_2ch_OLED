@@ -2,9 +2,9 @@
 //*********************************************************************************************************************
 // Reading the state of the SELECT, UP, DOWN and EXIT input buttons in a loop
 //*********************************************************************************************************************
-unsigned long button_time = 0; // The time variable must be global
+uint32_t button_time = 0; // The time variable must be global
 
-unsigned char read_button()
+uint8_t read_button()
 {
   if (millis() - button_time > 200) // Button anti-bounce delay
   {
@@ -33,9 +33,9 @@ unsigned char read_button()
       menuActual = 0;
       menuPage = 0;
       
+      modelNameSelection = 0xFF;
       epaSelection = 0xFF;
       subTrimSelection = 0xFF;
-      modelNameSelection = 0xFF;
       expoSelection = 0xFF;
     }
   }

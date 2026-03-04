@@ -1,5 +1,9 @@
 
+#ifndef __Config_h__
+#define __Config_h__
+
 #include <Arduino.h>
+#include <stdint.h>
 
 //*********************************************************************************************************************
 // Version
@@ -39,32 +43,31 @@ bool previous_state_batt = 0;
 // Config radio comunication
 //*********************************************************************************************************************
 // Setting a unique address (5 bytes number or character)
-const byte address[6] = "jirka";
+const uint8_t address[6] = "jirka";
 
 // RF channel setting 0 to 125 (2.4GHz to 2.525GHz)
 #define RF_CHANNEL  76
 
 // Sent data array (max. 32 bytes)
-unsigned int rc_packet[RC_CHANNELS] = {1500};
-byte rc_packet_size = RC_CHANNELS * 2; // For one control channel with a value of 1000 to 2000 we need 2 bytes(packets)
+uint16_t rc_packet[RC_CHANNELS] = {1500};
 
 // Structure of received ACK data
-struct telemetry_packet_size
+struct telemetry_packet
 {
-  byte rssi;
-  byte batt_A1 = 255;
-  byte batt_A2; // Not used yet
-};
-telemetry_packet_size telemetry_packet;
+  uint8_t rssi;
+  uint8_t batt_A1 = 255;
+  uint8_t batt_A2; // Not used yet
+}
+telemetry_packet;
 
 //*********************************************************************************************************************
 // Analog reading parameters for calibration
 //*********************************************************************************************************************
-unsigned int raw_pots;
-unsigned int pots_value[RC_CHANNELS] = {1500};
-unsigned int min_pots_calib[RC_CHANNELS] = {0};
-unsigned int mid_pots_calib[RC_CHANNELS] = {512};
-unsigned int max_pots_calib[RC_CHANNELS] = {1023};
+uint16_t raw_pots;
+uint16_t pots_value[RC_CHANNELS] = {1500};
+uint16_t min_pots_calib[RC_CHANNELS] = {0};
+uint16_t mid_pots_calib[RC_CHANNELS] = {512};
+uint16_t max_pots_calib[RC_CHANNELS] = {1023};
 
 //*********************************************************************************************************************
 // Checking the status to start the calibration process
@@ -72,18 +75,21 @@ unsigned int max_pots_calib[RC_CHANNELS] = {1023};
 bool calibStatus = 1;
 
 //*********************************************************************************************************************
-// Setting control output values
+// Variables for managing adjustable values
 //*********************************************************************************************************************
-short epa[4];                          // EPA value array
-unsigned char epaSelection = 0xFF;     // Default value for EPA selection
+char modelName[6] = "MODEL";       // Default MODEL NAME 5byte
+uint8_t modelNameSelection = 0xFF; // Default value for MODEL NAME selection
 
-short subTrim[2];                      // SUB TRIM channel array
-unsigned char subTrimSelection = 0xFF; // Default value for SUB TRIM
+uint8_t epa[4];                    // EPA value array
+uint8_t epaSelection = 0xFF;       // Default value for EPA selection
 
-short expo[2];                         // EXPO value array
-unsigned char expoSelection = 0xFF;    // Default value for EXPO selection
+int8_t subTrim[2];                 // SUB TRIM channel array
+uint8_t subTrimSelection = 0xFF;   // Default value for SUB TRIM selection
 
-unsigned char reverse;                 // Reading bit status
+uint8_t expo[2];                   // EXPO value array
+uint8_t expoSelection = 0xFF;      // Default value for EXPO selection
+
+uint8_t reverse;                   // Reading bit status
 
 //*********************************************************************************************************************
 // Global menu and memory config
@@ -96,25 +102,19 @@ unsigned char reverse;                 // Reading bit status
 //*********************************************************************************************************************
 // Menu management variables
 //*********************************************************************************************************************
-unsigned char menuActual    = 0;
-unsigned char menuSubActual = 1;
-unsigned char modelActual   = 0;
-unsigned char menuSubModel  = 0;
-unsigned char screen        = 0;
-unsigned char menuPage      = 0;
-unsigned char modelPage     = 0;
+uint8_t menuActual    = 0;
+uint8_t menuSubActual = 1;
+uint8_t modelActual   = 0;
+uint8_t menuSubModel  = 0;
+uint8_t screen        = 0;
+uint8_t menuPage      = 0;
+uint8_t modelPage     = 0;
 
 //*********************************************************************************************************************
 // OLED SSD1306 I2C config
 //*********************************************************************************************************************
 U8G2_SSD1306_128X64_NONAME_1_HW_I2C
 u8g2(U8G2_R0, U8X8_PIN_NONE);       // https://github.com/olikraus/u8g2/wiki/u8g2setupcpp#constructor-name
-
-//*********************************************************************************************************************
-// MODEL NAME
-//*********************************************************************************************************************
-char modelName[6] = "MODEL";              // Default MODEL NAME 5byte
-unsigned char modelNameSelection = 0xFF; // Default value for MODEL NAME selection
 
 //*********************************************************************************************************************
 // Using PROGMEM for characters and text strings to save RAM memory
@@ -268,7 +268,7 @@ const char* const message[13] PROGMEM = {
 // Connection pins
 //*********************************************************************************************************************
 // Analog input pin array for pots (possible combination, max. 2)
-const byte pins_pots[2] = {A0, A1};
+const uint8_t pins_pots[2] = {A0, A1};
 
 // Input battery
 #define PIN_BATTERY        A7
@@ -289,4 +289,6 @@ const byte pins_pots[2] = {A0, A1};
 // Pins for LCD display
 //          SDA            A4 Hardware I2C
 //          SCL            A5 Hardware I2C
+ 
+#endif // End __Config_h__
  

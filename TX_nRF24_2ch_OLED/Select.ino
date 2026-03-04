@@ -63,9 +63,9 @@ void select()
     }
   }
   
-
+  
   // If pressed button
-  unsigned char pressed_button = read_button();
+  uint8_t pressed_button = read_button();
   
   //**************************************************************
   // Step control for selecting MENU (button SELECT)
@@ -476,7 +476,7 @@ void select()
       else
       {
         // Changing selected position character ASCII value (UP)
-        if (modelName[modelNameSelection] < 0x7e)
+        if (modelName[modelNameSelection] < 0x7E)
         {
           modelName[modelNameSelection]++;
         }

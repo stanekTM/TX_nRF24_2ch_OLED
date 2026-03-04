@@ -114,7 +114,7 @@ void main_screen()
   
   
   // Drawing only first 2 channels
-  for (int i = 0; i < RC_CHANNELS; i++)
+  for (uint8_t i = 0; i < RC_CHANNELS; i++)
   {
     u8g2.drawFrame(23, 36 + (i * 20), 105, 8); // Draw boxes/frames for every channel
     
@@ -122,7 +122,7 @@ void main_screen()
     
     
     // Bar version 1 (with sub-trim shifting)
-    int center_val = 0;
+    uint8_t center_val = 0;
     
     // Drawing a vertical line SUB TRIM
     if (bitRead(reverse, i) == 1)
@@ -136,7 +136,7 @@ void main_screen()
     
     u8g2.drawVLine(center_val + 24, 37 + (i * 20), 6); // Drawing a vertical line with a subtrim value
     
-    int bar_val = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 104);
+    uint8_t bar_val = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 104);
     
     // Drawing cursor in every channel bar
     if (bar_val < center_val) u8g2.drawBox(24 + bar_val, 37 + (i * 20), center_val - bar_val, 6);

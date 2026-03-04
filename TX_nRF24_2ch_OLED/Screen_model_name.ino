@@ -47,7 +47,7 @@ void model_name_screen()
   u8g2.setFont(u8g2_font_VCR_OSD_tr);
   
   // Print model name "XXXXX" 5byte
-  for (int i = 0; i < 5; i++)
+  for (uint8_t i = 0; i < 5; i++)
   {
     u8g2.setCursor(13 + (i * 23), 45);
     u8g2.print(modelName[i]);
