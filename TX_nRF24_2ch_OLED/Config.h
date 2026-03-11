@@ -40,16 +40,21 @@ bool previous_state_batt = 0;
 #define MAX_CONTROL_VAL  2000
 
 //*********************************************************************************************************************
-// Config radio comunication
+// Config radio
 //*********************************************************************************************************************
 // Setting a unique address (5 bytes number or character)
-const uint8_t address[6] = "jirka";
+const uint8_t RF_address[6] = "jirka";
 
 // RF channel setting 0 to 125 (2.4GHz to 2.525GHz)
 #define RF_CHANNEL  76
 
-// Sent data array (max. 32 bytes)
-uint16_t rc_packet[RC_CHANNELS] = {1500};
+// Structure of sent data (max. 32 bytes)
+struct tx_packet
+{
+  bool fail_safe_flag = 0; // Not used yet
+  uint16_t rc_data[RC_CHANNELS] = {1500};
+}
+tx_packet;
 
 // Structure of received ACK data
 struct telemetry_packet

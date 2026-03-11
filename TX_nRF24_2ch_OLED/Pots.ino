@@ -40,7 +40,7 @@ void read_pots()
     if (bitRead(reverse, i) == 1) pots_value[i] = (MIN_CONTROL_VAL + MAX_CONTROL_VAL) - pots_value[i];
     
     // Processing data for sending a packet
-    rc_packet[i] = pots_value[i];
+    tx_packet.rc_data[i] = pots_value[i];
   }
 }
  
