@@ -29,7 +29,7 @@ void send_and_receive_data()
   {
     if (radio.available())
     {
-      radio.read(&telemetry_packet, sizeof(telemetry_packet));
+      radio.read(&rx_ack_packet, sizeof(rx_ack_packet));
       
       rf_timeout = millis();
     }

@@ -57,13 +57,13 @@ struct tx_packet
 tx_packet;
 
 // Structure of received ACK data
-struct telemetry_packet
+struct rx_ack_packet
 {
   uint8_t rssi;
   uint8_t batt_A1 = 255;
   uint8_t batt_A2; // Not used yet
 }
-telemetry_packet;
+rx_ack_packet;
 
 //*********************************************************************************************************************
 // Analog reading parameters for calibration

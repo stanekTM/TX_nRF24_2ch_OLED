@@ -74,7 +74,7 @@ void main_screen()
   
   if (millis() - rf_timeout > 1000) // If we lose RF data for 1 second
   {
-    telemetry_packet.rssi = 0;
+    rx_ack_packet.rssi = 0;
     
     // Print "off!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[5])));
@@ -158,7 +158,7 @@ void main_screen()
     
     // Print RSSI value in %
     u8g2.setCursor(108, 21);
-    u8g2.print(telemetry_packet.rssi);
+    u8g2.print(rx_ack_packet.rssi);
     
     // Print "%"
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));

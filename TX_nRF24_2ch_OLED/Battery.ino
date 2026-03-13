@@ -16,7 +16,7 @@ void TX_batt_monitoring()
 //*********************************************************************************************************************
 void RX_batt_monitoring()
 {
-  rx_batt_volt = telemetry_packet.batt_A1 * (RX_BATTERY_VOLTAGE / 255);
+  rx_batt_volt = rx_ack_packet.batt_A1 * (RX_BATTERY_VOLTAGE / 255);
   
   rx_low_batt = rx_batt_volt <= RX_MONITORED_VOLTAGE;
   
