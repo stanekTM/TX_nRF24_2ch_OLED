@@ -1,11 +1,11 @@
 ## Surface 2 channel RC transmitter
 Hardware includes nRF24L01+ transceiver and ATmega328P processor with an OLED screen.
 
-The code is Arduino.
-
 Telemetry monitors receiver voltage and "fake" RSSI (the nRF24L01+ transceiver does not contain real RSSI and is only a rough counting of lost packets).
 
 This RC transmitter works with RC receiver from my repository [**RX_nRF24_Stanek**](https://github.com/stanekTM/RX_nRF24_Stanek).
+
+The code is Arduino.
 
 ### The firmware includes
 * Two proportional channels 1000us -> 2000us
